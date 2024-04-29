@@ -1,0 +1,940 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 1.0 (409.60.6)"
+    }
+    defaultPrim = "BuildingScene"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+reorder rootPrims = ["BuildingScene", "Base_Cube_copy"]
+
+def Xform "BuildingScene"
+{
+    reorder nameChildren = ["Building", "SmoothConcrete", "SmoothConcrete_red", "SmoothConcrete_orange", "SmoothConcrete_yellow", "Black_ABS_Plastic", "Scratched_Metallic_Paint", "Material"]
+    quatf xformOp:orient = (1, 0, 0, 0)
+    float3 xformOp:scale = (1, 1, 1)
+    float3 xformOp:translate = (0, 0, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+    def "Black_ABS_Plastic" (
+        active = true
+        references = @BlackABSPlastic.usdz@
+    )
+    {
+        color3f inputs:Basecolor_Tint (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-45.51249, 49.172512)
+                    float2 sizeInSubgraph = (160.5, 53)
+                    int stackingOrderInSubgraph = 2293
+                }
+            }
+        )
+        float2 inputs:UV_Scale (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-725.2588, 351.55255)
+                    float2 sizeInSubgraph = (138.5, 53)
+                    int stackingOrderInSubgraph = 2280
+                }
+            }
+        )
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Mix"
+        {
+            float2 ui:nodegraph:node:size = (109, 145)
+        }
+
+        over "Swizzle_1"
+        {
+            float2 ui:nodegraph:node:size = (145.5, 53)
+        }
+
+        over "Swizzle"
+        {
+            float2 ui:nodegraph:node:size = (133.5, 40)
+        }
+
+        over "Multiply_1"
+        {
+            float2 ui:nodegraph:node:size = (60, 36)
+        }
+
+        over "Dot"
+        {
+            float2 ui:nodegraph:node:size = (44, 18)
+        }
+
+        over "multiply"
+        {
+            float2 ui:nodegraph:node:size = (60, 36)
+        }
+
+        over "add"
+        {
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+        }
+
+        over "PreviewSurface"
+        {
+            float2 ui:nodegraph:node:size = (148.5, 199)
+        }
+
+        over "BaseColor"
+        {
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Roughness"
+        {
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Metallic"
+        {
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Normal"
+        {
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+    }
+
+    def "Scratched_Metallic_Paint" (
+        active = true
+        references = @ScratchedMetallicPaint.usdz@
+    )
+    {
+        color3f inputs:Basecolor_Tint = (0.58702075, 0.66982037, 0.62750196) (
+            colorSpace = "srgb_displayp3"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-56.812614, 67.17455)
+                    float2 sizeInSubgraph = (160.5, 53)
+                    int stackingOrderInSubgraph = 2344
+                }
+            }
+        )
+        float2 inputs:UV_Scale (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-725.2588, 351.55255)
+                    float2 sizeInSubgraph = (138.5, 53)
+                    int stackingOrderInSubgraph = 2272
+                }
+            }
+        )
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Dot"
+        {
+            float2 ui:nodegraph:node:size = (44, 18)
+        }
+
+        over "multiply"
+        {
+            float2 ui:nodegraph:node:size = (60, 36)
+        }
+
+        over "add"
+        {
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+        }
+
+        over "PreviewSurface"
+        {
+            float2 ui:nodegraph:node:size = (148.5, 199)
+        }
+
+        over "Mix"
+        {
+            float2 ui:nodegraph:node:size = (109, 145)
+        }
+
+        over "Swizzle"
+        {
+            float2 ui:nodegraph:node:size = (133.5, 40)
+        }
+
+        over "Swizzle_1"
+        {
+            float2 ui:nodegraph:node:size = (145.5, 53)
+        }
+
+        over "Multiply_1"
+        {
+            float2 ui:nodegraph:node:size = (60, 36)
+        }
+
+        over "BaseColor"
+        {
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Roughness"
+        {
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Metallic"
+        {
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Normal"
+        {
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+    }
+
+    def Material "Material"
+    {
+        prepend token outputs:mtlx:surface.connect = </BuildingScene/Material/PreviewSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (299.25, 99.5)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 4
+
+        def Shader "PreviewSurface"
+        {
+            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+            color3f inputs:diffuseColor = (0.14175443, 0.19116968, 0.46135616) (
+                colorSpace = "srgb_displayp3"
+            )
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (70.66016, 96.5)
+            float2 ui:nodegraph:node:size = (148.5, 199)
+            int ui:nodegraph:node:stackingOrder = 3
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:diffuseColor"]
+        }
+    }
+
+    def Xform "Building" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["Cube", "Windows"]
+        def Cube "Cube" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            customData = {
+                float3 rotationEulerHint = (0, 0, 0)
+            }
+        )
+        {
+            rel material:binding = </BuildingScene/SmoothConcrete_red> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double size = 0.2
+            quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+            float3 xformOp:scale = (0.99999946, 0.99999946, 0.99999946)
+            float3 xformOp:translate = (-0.0000032745302, 5.9604645e-8, -0.0005482286)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:mtlx:surface.connect = </BuildingScene/Building/Cube/DefaultMaterial/PreviewSurface.outputs:out>
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </BuildingScene/Building/Cube/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 109.5)
+                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+
+                def Shader "DefaultSurfaceShader" (
+                    active = true
+                )
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.4215367, 0.5147498, 1) (
+                        colorSpace = "srgb_displayp3"
+                    )
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+
+                def Shader "PreviewSurface" (
+                    active = false
+                )
+                {
+                    uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                    token outputs:out
+                    float2 ui:nodegraph:node:pos = (-255, 105)
+                    float2 ui:nodegraph:node:size = (148.5, 199)
+                }
+            }
+
+            def RealityKitComponent "GroundingShadow"
+            {
+                bool enableIBLShadow = 1
+                bool enableMeshShadow = 1
+                uniform token info:id = "RealityKit.GroundingShadow"
+            }
+
+            def RealityKitComponent "Collider"
+            {
+                uint group = 1
+                uniform token info:id = "RealityKit.Collider"
+                uint mask = 4294967295
+                token type = "Default"
+
+                def RealityKitStruct "Shape"
+                {
+                    float3 extent = (0.2, 0.2, 0.2)
+                    token shapeType = "Box"
+
+                    def RealityKitStruct "pose"
+                    {
+                    }
+                }
+            }
+        }
+
+        def Xform "Windows" (
+            active = true
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cube "Cube_1" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double size = 0.2
+                quatf xformOp:orient = (0.70710677, 0, -0.7071067, 0)
+                float3 xformOp:scale = (0.09999993, 0.09999993, 0.09999993)
+                float3 xformOp:translate = (-0.05, 0.05, 0.09099999)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cube "Cube_2" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double size = 0.2
+                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
+                float3 xformOp:translate = (0.05, 0.05, 0.091)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_2/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cube "Cube_3" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                reorder nameChildren = ["DefaultMaterial", "Cube"]
+                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double size = 0.2
+                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
+                float3 xformOp:translate = (-0.05, 0.025, 0.091000006)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_3/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cube "Cube_4" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double size = 0.2
+                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
+                float3 xformOp:translate = (-0.025, 0.025, 0.091000006)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_4/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cube "Cube_5" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double size = 0.2
+                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
+                float3 xformOp:translate = (-0.025, 0.05, 0.091000006)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_5/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cube "Cube_6" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double size = 0.2
+                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
+                float3 xformOp:translate = (0.025000002, 0.05, 0.091)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_6/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cube "Cube_7" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double size = 0.2
+                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
+                float3 xformOp:translate = (0.025000002, 0.025, 0.091)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_7/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cube "Cube_8" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double size = 0.2
+                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
+                float3 xformOp:translate = (0.05, 0.025, 0.091)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_8/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+        }
+    }
+
+    def "SmoothConcrete" (
+        active = true
+        references = @SmoothConcrete.usdz@
+    )
+    {
+        color3f inputs:Basecolor_Tint (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-56.812614, 67.17455)
+                    float2 sizeInSubgraph = (160.5, 53)
+                    int stackingOrderInSubgraph = 2344
+                }
+            }
+        )
+        float2 inputs:UV_Scale (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-725.2588, 351.55255)
+                    float2 sizeInSubgraph = (138.5, 53)
+                    int stackingOrderInSubgraph = 2272
+                }
+            }
+        )
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+
+        over "Dot"
+        {
+            float2 ui:nodegraph:node:size = (44, 18)
+        }
+
+        over "multiply"
+        {
+            float2 ui:nodegraph:node:size = (60, 36)
+        }
+
+        over "add"
+        {
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+        }
+
+        over "PreviewSurface"
+        {
+            float2 ui:nodegraph:node:size = (148.5, 199)
+        }
+
+        over "Mix"
+        {
+            float2 ui:nodegraph:node:size = (109, 145)
+        }
+
+        over "Swizzle"
+        {
+            float2 ui:nodegraph:node:size = (133.5, 40)
+        }
+
+        over "Swizzle_1"
+        {
+            float2 ui:nodegraph:node:size = (145.5, 53)
+        }
+
+        over "Multiply_1"
+        {
+            float2 ui:nodegraph:node:size = (60, 36)
+        }
+
+        over "BaseColor"
+        {
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Roughness"
+        {
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Metallic"
+        {
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Normal"
+        {
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+    }
+
+    def "SmoothConcrete_red" (
+        active = true
+        references = @SmoothConcrete.usdz@
+    )
+    {
+        color3f inputs:Basecolor_Tint = (0.7196603, 0.21552327, 0.2086508) (
+            colorSpace = "srgb_displayp3"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-56.812614, 67.17455)
+                    float2 sizeInSubgraph = (160.5, 53)
+                    int stackingOrderInSubgraph = 2344
+                }
+            }
+        )
+        float2 inputs:UV_Scale (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-725.2588, 351.55255)
+                    float2 sizeInSubgraph = (138.5, 53)
+                    int stackingOrderInSubgraph = 2272
+                }
+            }
+        )
+        token outputs:mtlx:surface.connect = </BuildingScene/SmoothConcrete_red/PreviewSurface.outputs:out>
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+
+        over "Dot"
+        {
+            float2 inputs:in.connect = </BuildingScene/SmoothConcrete_red.inputs:UV_Scale>
+            float2 ui:nodegraph:node:size = (44, 18)
+        }
+
+        over "multiply"
+        {
+            float3 inputs:in1.connect = </BuildingScene/SmoothConcrete_red/Normal.outputs:out>
+            float2 ui:nodegraph:node:size = (60, 36)
+        }
+
+        over "add"
+        {
+            float3 inputs:in1.connect = </BuildingScene/SmoothConcrete_red/multiply.outputs:out>
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+        }
+
+        over "PreviewSurface"
+        {
+            color3f inputs:diffuseColor.connect = </BuildingScene/SmoothConcrete_red/Mix.outputs:out>
+            float inputs:metallic.connect = </BuildingScene/SmoothConcrete_red/Metallic.outputs:out>
+            float3 inputs:normal.connect = </BuildingScene/SmoothConcrete_red/add.outputs:out>
+            float inputs:roughness.connect = </BuildingScene/SmoothConcrete_red/Roughness.outputs:out>
+            float2 ui:nodegraph:node:size = (148.5, 199)
+        }
+
+        over "Mix"
+        {
+            color3f inputs:bg.connect = </BuildingScene/SmoothConcrete_red/Swizzle_1.outputs:out>
+            color3f inputs:fg.connect = </BuildingScene/SmoothConcrete_red/Multiply_1.outputs:out>
+            float inputs:mix.connect = </BuildingScene/SmoothConcrete_red/Swizzle.outputs:out>
+            float2 ui:nodegraph:node:size = (109, 145)
+        }
+
+        over "Swizzle"
+        {
+            color4f inputs:in.connect = </BuildingScene/SmoothConcrete_red/BaseColor.outputs:out>
+            float2 ui:nodegraph:node:size = (133.5, 40)
+        }
+
+        over "Swizzle_1"
+        {
+            color4f inputs:in.connect = </BuildingScene/SmoothConcrete_red/BaseColor.outputs:out>
+            float2 ui:nodegraph:node:size = (145.5, 53)
+        }
+
+        over "Multiply_1"
+        {
+            color3f inputs:in1.connect = </BuildingScene/SmoothConcrete_red.inputs:Basecolor_Tint>
+            color3f inputs:in2.connect = </BuildingScene/SmoothConcrete_red/Swizzle_1.outputs:out>
+            float2 ui:nodegraph:node:size = (60, 36)
+        }
+
+        over "BaseColor"
+        {
+            float2 inputs:uvtiling.connect = </BuildingScene/SmoothConcrete_red/Dot.outputs:out>
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Roughness"
+        {
+            float2 inputs:uvtiling.connect = </BuildingScene/SmoothConcrete_red/Dot.outputs:out>
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Metallic"
+        {
+            float2 inputs:uvtiling.connect = </BuildingScene/SmoothConcrete_red/Dot.outputs:out>
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Normal"
+        {
+            float2 inputs:uvtiling.connect = </BuildingScene/SmoothConcrete_red/Dot.outputs:out>
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+    }
+
+    def "SmoothConcrete_orange" (
+        active = true
+        references = @SmoothConcrete.usdz@
+    )
+    {
+        color3f inputs:Basecolor_Tint = (0.7276095, 0.43609047, 0.1294516) (
+            colorSpace = "srgb_displayp3"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-56.812614, 67.17455)
+                    float2 sizeInSubgraph = (160.5, 53)
+                    int stackingOrderInSubgraph = 2344
+                }
+            }
+        )
+        float2 inputs:UV_Scale (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-725.2588, 351.55255)
+                    float2 sizeInSubgraph = (138.5, 53)
+                    int stackingOrderInSubgraph = 2272
+                }
+            }
+        )
+        token outputs:mtlx:surface.connect = </BuildingScene/SmoothConcrete_orange/PreviewSurface.outputs:out>
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+
+        over "Dot"
+        {
+            float2 inputs:in.connect = </BuildingScene/SmoothConcrete_orange.inputs:UV_Scale>
+            float2 ui:nodegraph:node:size = (44, 18)
+        }
+
+        over "multiply"
+        {
+            float3 inputs:in1.connect = </BuildingScene/SmoothConcrete_orange/Normal.outputs:out>
+            float2 ui:nodegraph:node:size = (60, 36)
+        }
+
+        over "add"
+        {
+            float3 inputs:in1.connect = </BuildingScene/SmoothConcrete_orange/multiply.outputs:out>
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+        }
+
+        over "PreviewSurface"
+        {
+            color3f inputs:diffuseColor.connect = </BuildingScene/SmoothConcrete_orange/Mix.outputs:out>
+            float inputs:metallic.connect = </BuildingScene/SmoothConcrete_orange/Metallic.outputs:out>
+            float3 inputs:normal.connect = </BuildingScene/SmoothConcrete_orange/add.outputs:out>
+            float inputs:roughness.connect = </BuildingScene/SmoothConcrete_orange/Roughness.outputs:out>
+            float2 ui:nodegraph:node:size = (148.5, 199)
+        }
+
+        over "Mix"
+        {
+            color3f inputs:bg.connect = </BuildingScene/SmoothConcrete_orange/Swizzle_1.outputs:out>
+            color3f inputs:fg.connect = </BuildingScene/SmoothConcrete_orange/Multiply_1.outputs:out>
+            float inputs:mix.connect = </BuildingScene/SmoothConcrete_orange/Swizzle.outputs:out>
+            float2 ui:nodegraph:node:size = (109, 145)
+        }
+
+        over "Swizzle"
+        {
+            color4f inputs:in.connect = </BuildingScene/SmoothConcrete_orange/BaseColor.outputs:out>
+            float2 ui:nodegraph:node:size = (133.5, 40)
+        }
+
+        over "Swizzle_1"
+        {
+            color4f inputs:in.connect = </BuildingScene/SmoothConcrete_orange/BaseColor.outputs:out>
+            float2 ui:nodegraph:node:size = (145.5, 53)
+        }
+
+        over "Multiply_1"
+        {
+            color3f inputs:in1.connect = </BuildingScene/SmoothConcrete_orange.inputs:Basecolor_Tint>
+            color3f inputs:in2.connect = </BuildingScene/SmoothConcrete_orange/Swizzle_1.outputs:out>
+            float2 ui:nodegraph:node:size = (60, 36)
+        }
+
+        over "BaseColor"
+        {
+            float2 inputs:uvtiling.connect = </BuildingScene/SmoothConcrete_orange/Dot.outputs:out>
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Roughness"
+        {
+            float2 inputs:uvtiling.connect = </BuildingScene/SmoothConcrete_orange/Dot.outputs:out>
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Metallic"
+        {
+            float2 inputs:uvtiling.connect = </BuildingScene/SmoothConcrete_orange/Dot.outputs:out>
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Normal"
+        {
+            float2 inputs:uvtiling.connect = </BuildingScene/SmoothConcrete_orange/Dot.outputs:out>
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+    }
+
+    def "SmoothConcrete_yellow" (
+        active = true
+        references = @SmoothConcrete.usdz@
+    )
+    {
+        color3f inputs:Basecolor_Tint = (0.742852, 0.6600827, 0.055880312) (
+            colorSpace = "srgb_displayp3"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-56.812614, 67.17455)
+                    float2 sizeInSubgraph = (160.5, 53)
+                    int stackingOrderInSubgraph = 2344
+                }
+            }
+        )
+        float2 inputs:UV_Scale (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-725.2588, 351.55255)
+                    float2 sizeInSubgraph = (138.5, 53)
+                    int stackingOrderInSubgraph = 2272
+                }
+            }
+        )
+        token outputs:mtlx:surface.connect = </BuildingScene/SmoothConcrete_yellow/PreviewSurface.outputs:out>
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+
+        over "Dot"
+        {
+            float2 inputs:in.connect = </BuildingScene/SmoothConcrete_yellow.inputs:UV_Scale>
+            float2 ui:nodegraph:node:size = (44, 18)
+        }
+
+        over "multiply"
+        {
+            float3 inputs:in1.connect = </BuildingScene/SmoothConcrete_yellow/Normal.outputs:out>
+            float2 ui:nodegraph:node:size = (60, 36)
+        }
+
+        over "add"
+        {
+            float3 inputs:in1.connect = </BuildingScene/SmoothConcrete_yellow/multiply.outputs:out>
+            float2 ui:nodegraph:node:size = (61.5, 36.5)
+        }
+
+        over "PreviewSurface"
+        {
+            color3f inputs:diffuseColor.connect = </BuildingScene/SmoothConcrete_yellow/Mix.outputs:out>
+            float inputs:metallic.connect = </BuildingScene/SmoothConcrete_yellow/Metallic.outputs:out>
+            float3 inputs:normal.connect = </BuildingScene/SmoothConcrete_yellow/add.outputs:out>
+            float inputs:roughness.connect = </BuildingScene/SmoothConcrete_yellow/Roughness.outputs:out>
+            float2 ui:nodegraph:node:size = (148.5, 199)
+        }
+
+        over "Mix"
+        {
+            color3f inputs:bg.connect = </BuildingScene/SmoothConcrete_yellow/Swizzle_1.outputs:out>
+            color3f inputs:fg.connect = </BuildingScene/SmoothConcrete_yellow/Multiply_1.outputs:out>
+            float inputs:mix.connect = </BuildingScene/SmoothConcrete_yellow/Swizzle.outputs:out>
+            float2 ui:nodegraph:node:size = (109, 145)
+        }
+
+        over "Swizzle"
+        {
+            color4f inputs:in.connect = </BuildingScene/SmoothConcrete_yellow/BaseColor.outputs:out>
+            float2 ui:nodegraph:node:size = (133.5, 40)
+        }
+
+        over "Swizzle_1"
+        {
+            color4f inputs:in.connect = </BuildingScene/SmoothConcrete_yellow/BaseColor.outputs:out>
+            float2 ui:nodegraph:node:size = (145.5, 53)
+        }
+
+        over "Multiply_1"
+        {
+            color3f inputs:in1.connect = </BuildingScene/SmoothConcrete_yellow.inputs:Basecolor_Tint>
+            color3f inputs:in2.connect = </BuildingScene/SmoothConcrete_yellow/Swizzle_1.outputs:out>
+            float2 ui:nodegraph:node:size = (60, 36)
+        }
+
+        over "BaseColor"
+        {
+            float2 inputs:uvtiling.connect = </BuildingScene/SmoothConcrete_yellow/Dot.outputs:out>
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Roughness"
+        {
+            float2 inputs:uvtiling.connect = </BuildingScene/SmoothConcrete_yellow/Dot.outputs:out>
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Metallic"
+        {
+            float2 inputs:uvtiling.connect = </BuildingScene/SmoothConcrete_yellow/Dot.outputs:out>
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+
+        over "Normal"
+        {
+            float2 inputs:uvtiling.connect = </BuildingScene/SmoothConcrete_yellow/Dot.outputs:out>
+            float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+    }
+}
+

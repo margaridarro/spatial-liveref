@@ -13,7 +13,8 @@
 		9111E4302B7E0DD7007F9AAC /* ImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9111E42F2B7E0DD7007F9AAC /* ImmersiveView.swift */; };
 		9111E4322B7E0DD8007F9AAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9111E4312B7E0DD8007F9AAC /* Assets.xcassets */; };
 		9111E4352B7E0DD8007F9AAC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9111E4342B7E0DD8007F9AAC /* Preview Assets.xcassets */; };
-		9111E4402B7E0DD8007F9AAC /* SpatialLiveRefTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9111E43F2B7E0DD8007F9AAC /* SpatialLiveRefTests.swift */; };
+		919A02202BB1CE6F006CA35C /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A021F2BB1CE6F006CA35C /* FileReader.swift */; };
+		91BDFF082BD95E9900DE33A8 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDFF072BD95E9900DE33A8 /* TestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +37,8 @@
 		9111E4342B7E0DD8007F9AAC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9111E4362B7E0DD8007F9AAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9111E43B2B7E0DD8007F9AAC /* SpatialLiveRefTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpatialLiveRefTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9111E43F2B7E0DD8007F9AAC /* SpatialLiveRefTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialLiveRefTests.swift; sourceTree = "<group>"; };
+		919A021F2BB1CE6F006CA35C /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
+		91BDFF072BD95E9900DE33A8 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +65,6 @@
 			children = (
 				9111E4262B7E0DD7007F9AAC /* SpatialLiveRef */,
 				9111E4272B7E0DD7007F9AAC /* Packages */,
-				9111E43E2B7E0DD8007F9AAC /* SpatialLiveRefTests */,
 				9111E4252B7E0DD7007F9AAC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -82,10 +83,12 @@
 			children = (
 				9111E42B2B7E0DD7007F9AAC /* SpatialLiveRefApp.swift */,
 				9111E42D2B7E0DD7007F9AAC /* ContentView.swift */,
+				919A021F2BB1CE6F006CA35C /* FileReader.swift */,
 				9111E42F2B7E0DD7007F9AAC /* ImmersiveView.swift */,
 				9111E4312B7E0DD8007F9AAC /* Assets.xcassets */,
 				9111E4362B7E0DD8007F9AAC /* Info.plist */,
 				9111E4332B7E0DD8007F9AAC /* Preview Content */,
+				91BDFF072BD95E9900DE33A8 /* TestView.swift */,
 			);
 			path = SpatialLiveRef;
 			sourceTree = "<group>";
@@ -104,14 +107,6 @@
 				9111E4342B7E0DD8007F9AAC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		9111E43E2B7E0DD8007F9AAC /* SpatialLiveRefTests */ = {
-			isa = PBXGroup;
-			children = (
-				9111E43F2B7E0DD8007F9AAC /* SpatialLiveRefTests.swift */,
-			);
-			path = SpatialLiveRefTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,7 +213,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9111E42E2B7E0DD7007F9AAC /* ContentView.swift in Sources */,
+				91BDFF082BD95E9900DE33A8 /* TestView.swift in Sources */,
 				9111E42C2B7E0DD7007F9AAC /* SpatialLiveRefApp.swift in Sources */,
+				919A02202BB1CE6F006CA35C /* FileReader.swift in Sources */,
 				9111E4302B7E0DD7007F9AAC /* ImmersiveView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,7 +224,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9111E4402B7E0DD8007F9AAC /* SpatialLiveRefTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
