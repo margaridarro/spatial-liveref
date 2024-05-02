@@ -1,0 +1,528 @@
+
+
+File: module-info.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/module/module-info.java
+Metrics:
+   LOC: 30
+   NOM: 0
+   Number of Refactorings: 0
+
+
+File: ParallelFailureHandling.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFailureHandling.java
+Metrics:
+   LOC: 41
+   NOM: 3
+   Number of Refactorings: 0
+
+
+File: ParallelFlowable.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowable.java
+Metrics:
+   LOC: 1631
+   NOM: 54
+   Number of Refactorings: 14
+
+
+File: ParallelTransformer.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelTransformer.java
+Metrics:
+   LOC: 32
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: ParallelFlowableConverter.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowableConverter.java
+Metrics:
+   LOC: 33
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: Single.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/Single.java
+Metrics:
+   LOC: 5562
+   NOM: 188
+   Number of Refactorings: 74
+
+
+File: SingleOnSubscribe.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/SingleOnSubscribe.java
+Metrics:
+   LOC: 30
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: Flowable.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/Flowable.java
+Metrics:
+   LOC: 20320
+   NOM: 537
+   Number of Refactorings: 425
+
+
+File: CompletableOperator.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/CompletableOperator.java
+Metrics:
+   LOC: 28
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: CompletableConverter.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/CompletableConverter.java
+Metrics:
+   LOC: 31
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: CompletableOnSubscribe.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/CompletableOnSubscribe.java
+Metrics:
+   LOC: 28
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: MaybeObserver.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/MaybeObserver.java
+Metrics:
+   LOC: 85
+   NOM: 4
+   Number of Refactorings: 0
+
+
+File: ObservableOnSubscribe.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/ObservableOnSubscribe.java
+Metrics:
+   LOC: 30
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: CompletableEmitter.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/CompletableEmitter.java
+Metrics:
+   LOC: 89
+   NOM: 6
+   Number of Refactorings: 0
+
+
+File: FlowableEmitter.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/FlowableEmitter.java
+Metrics:
+   LOC: 97
+   NOM: 6
+   Number of Refactorings: 0
+
+
+File: SingleConverter.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/SingleConverter.java
+Metrics:
+   LOC: 32
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: Observable.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/Observable.java
+Metrics:
+   LOC: 16795
+   NOM: 501
+   Number of Refactorings: 391
+
+
+File: Maybe.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/Maybe.java
+Metrics:
+   LOC: 6137
+   NOM: 201
+   Number of Refactorings: 82
+
+
+File: SingleEmitter.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/SingleEmitter.java
+Metrics:
+   LOC: 94
+   NOM: 6
+   Number of Refactorings: 0
+
+
+File: Notification.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/Notification.java
+Metrics:
+   LOC: 146
+   NOM: 13
+   Number of Refactorings: 0
+
+
+File: Scheduler.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/Scheduler.java
+Metrics:
+   LOC: 613
+   NOM: 11
+   Number of Refactorings: 7
+
+
+File: ObservableOperator.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/ObservableOperator.java
+Metrics:
+   LOC: 31
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: ObservableSource.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/ObservableSource.java
+Metrics:
+   LOC: 30
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: SingleOperator.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/SingleOperator.java
+Metrics:
+   LOC: 31
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: ObservableEmitter.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/ObservableEmitter.java
+Metrics:
+   LOC: 90
+   NOM: 5
+   Number of Refactorings: 0
+
+
+File: FlowableTransformer.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/FlowableTransformer.java
+Metrics:
+   LOC: 32
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: Completable.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/Completable.java
+Metrics:
+   LOC: 3328
+   NOM: 129
+   Number of Refactorings: 66
+
+
+File: MaybeOnSubscribe.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/MaybeOnSubscribe.java
+Metrics:
+   LOC: 30
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: CompletableSource.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/CompletableSource.java
+Metrics:
+   LOC: 29
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: FlowableConverter.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/FlowableConverter.java
+Metrics:
+   LOC: 32
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: SingleSource.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/SingleSource.java
+Metrics:
+   LOC: 33
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: SingleTransformer.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/SingleTransformer.java
+Metrics:
+   LOC: 31
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: ObservableConverter.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/ObservableConverter.java
+Metrics:
+   LOC: 32
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: MaybeConverter.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/MaybeConverter.java
+Metrics:
+   LOC: 33
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: CompletableObserver.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/CompletableObserver.java
+Metrics:
+   LOC: 63
+   NOM: 3
+   Number of Refactorings: 0
+
+
+File: FlowableOperator.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/FlowableOperator.java
+Metrics:
+   LOC: 32
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: CompletableTransformer.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/CompletableTransformer.java
+Metrics:
+   LOC: 28
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: MaybeSource.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/MaybeSource.java
+Metrics:
+   LOC: 33
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: MaybeOperator.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/MaybeOperator.java
+Metrics:
+   LOC: 31
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: BackpressureOverflowStrategy.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/BackpressureOverflowStrategy.java
+Metrics:
+   LOC: 27
+   NOM: 2
+   Number of Refactorings: 0
+
+
+File: ObservableTransformer.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/ObservableTransformer.java
+Metrics:
+   LOC: 31
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: SingleObserver.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/SingleObserver.java
+Metrics:
+   LOC: 79
+   NOM: 3
+   Number of Refactorings: 0
+
+
+File: BackpressureStrategy.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/BackpressureStrategy.java
+Metrics:
+   LOC: 42
+   NOM: 2
+   Number of Refactorings: 0
+
+
+File: MaybeTransformer.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/MaybeTransformer.java
+Metrics:
+   LOC: 31
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: FlowableOnSubscribe.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/FlowableOnSubscribe.java
+Metrics:
+   LOC: 30
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: Observer.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/Observer.java
+Metrics:
+   LOC: 111
+   NOM: 4
+   Number of Refactorings: 0
+
+
+File: FlowableSubscriber.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/FlowableSubscriber.java
+Metrics:
+   LOC: 38
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: Emitter.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/Emitter.java
+Metrics:
+   LOC: 41
+   NOM: 3
+   Number of Refactorings: 0
+
+
+File: MaybeEmitter.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/MaybeEmitter.java
+Metrics:
+   LOC: 99
+   NOM: 7
+   Number of Refactorings: 0
+
+
+File: SimplePlainQueue.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/operators/SimplePlainQueue.java
+Metrics:
+   LOC: 25
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: SpscLinkedArrayQueue.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/operators/SpscLinkedArrayQueue.java
+Metrics:
+   LOC: 267
+   NOM: 26
+   Number of Refactorings: 22
+
+
+File: SimpleQueue.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/operators/SimpleQueue.java
+Metrics:
+   LOC: 68
+   NOM: 5
+   Number of Refactorings: 0
+
+
+File: QueueDisposable.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/operators/QueueDisposable.java
+Metrics:
+   LOC: 54
+   NOM: 0
+   Number of Refactorings: 0
+
+
+File: QueueSubscription.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/operators/QueueSubscription.java
+Metrics:
+   LOC: 57
+   NOM: 0
+   Number of Refactorings: 0
+
+
+File: ScalarSupplier.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/operators/ScalarSupplier.java
+Metrics:
+   LOC: 37
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: SpscArrayQueue.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/operators/SpscArrayQueue.java
+Metrics:
+   LOC: 124
+   NOM: 13
+   Number of Refactorings: 1
+
+
+File: ConditionalSubscriber.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/operators/ConditionalSubscriber.java
+Metrics:
+   LOC: 34
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: QueueFuseable.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/operators/QueueFuseable.java
+Metrics:
+   LOC: 77
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: QueueFuseable.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/operators/QueueFuseable.java
+Metrics:
+   LOC: 77
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: ConditionalSubscriber.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/operators/ConditionalSubscriber.java
+Metrics:
+   LOC: 34
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: SpscArrayQueue.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/operators/SpscArrayQueue.java
+Metrics:
+   LOC: 124
+   NOM: 13
+   Number of Refactorings: 1
+
+
+File: ScalarSupplier.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/operators/ScalarSupplier.java
+Metrics:
+   LOC: 37
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: QueueSubscription.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/operators/QueueSubscription.java
+Metrics:
+   LOC: 57
+   NOM: 0
+   Number of Refactorings: 0
+
+
+File: QueueDisposable.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/operators/QueueDisposable.java
+Metrics:
+   LOC: 54
+   NOM: 0
+   Number of Refactorings: 0
+
+
+File: SimpleQueue.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/operators/SimpleQueue.java
+Metrics:
+   LOC: 68
+   NOM: 5
+   Number of Refactorings: 0
+
+
+File: SimplePlainQueue.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/operators/SimplePlainQueue.java
+Metrics:
+   LOC: 25
+   NOM: 1
+   Number of Refactorings: 0

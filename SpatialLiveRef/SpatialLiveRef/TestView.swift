@@ -21,9 +21,9 @@ struct TestView: View {
     var body: some View {
         
         let y_translation : SIMD3<Float> = [0, -0.24, 0]
-        let y_rotation = -90.0 * Float.pi / 180.0
+        //let y_rotation = -90.0 * Float.pi / 180.0
         
-        let (files, refactorings) = getProjectFiles(file_path: "projects/RxJava/Prints/files.txt", refactorings_path: "projects/RxJava/Prints/refactorings.txt")
+        //let (files, refactorings) = getProjectFiles(file_path: "projects/RxJava/Prints/files.txt", refactorings_path: "projects/RxJava/Prints/refactorings.txt")
         VStack {
 //            HStack{
 //                RealityView { content in
@@ -58,7 +58,7 @@ struct TestView: View {
                         print(pink_cube)
                         
                         var model = pink_cube.components[ModelComponent.self]
-                        print("Model:\n", model)
+                        //print("Model:\n", model)
                         
                         //print("\nCOLOR before: ", material.color)
                         var material = SimpleMaterial()
