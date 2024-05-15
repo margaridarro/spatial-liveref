@@ -41,8 +41,7 @@ func getProjectFiles (file_path : String, refactorings_path : String) -> ([[Stri
             }
             
         }
-    }
-    catch {
+    } catch {
         print("\nFiles Error info: \(error)\n")
         return ([["0"]], [["0"]])
     }
@@ -114,13 +113,15 @@ func getProjectFiles (file_path : String, refactorings_path : String) -> ([[Stri
                  LOC To Be Changed: 21
                  */
                 let refactoring = line.replacingOccurrences(of: ":", with: "")
-                let class_name =  lines[id+2].replacingOccurrences(of: "Method: ", with: "")
+                let class_name =  lines[id+2].replacingOccurrences(of: "Class: ", with: "")
                 let file_path = lines[id+3].replacingOccurrences(of: "File: ", with: "")
                 let n_elements = lines[id+4].replacingOccurrences(of: "Number of Elements: ", with: "")
                 let severity = lines[id+5].replacingOccurrences(of: "Severity: ", with: "")
+                let method_name = lines[id+7].replacingOccurrences(of: "Method: ", with: "")
                 let loc_to_change = lines[id+8].replacingOccurrences(of: "LOC To Be Changed: ", with: "")
                 
-                refactorings_list.append([refactoring, class_name, file_path, n_elements, severity, loc_to_change])
+                refactorings_list.append([refactoring, method_name, file_path, n_elements, severity, loc_to_change, class_name])
+                
             } else if line.contains("Introduce Parameter Object:") {
                 /*
                  Introduce Parameter Object:
@@ -136,8 +137,9 @@ func getProjectFiles (file_path : String, refactorings_path : String) -> ([[Stri
                 let file_path = lines[id+3].replacingOccurrences(of: "File:", with: "")
                 let n_elements = lines[id+4].replacingOccurrences(of: "Number of Elements: ", with: "")
                 let severity = lines[id+5].replacingOccurrences(of: "Severity: ", with: "")
+                let loc_to_change = lines[id+6].replacingOccurrences(of: "LOC To Be Changed: ", with: "")
                 
-                refactorings_list.append([refactoring, method_name, file_path, n_elements, severity])
+                refactorings_list.append([refactoring, method_name, file_path, n_elements, severity, loc_to_change])
             }
         }
     } catch {

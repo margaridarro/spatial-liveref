@@ -61,7 +61,7 @@ class Refactoring {
         self.elements = elements
         self.severity = severity
         self.locToChange = locToChange
-        self.className = className
+        self.className = className // only applicable to ExtractClass
     }
     
     
