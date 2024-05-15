@@ -11,7 +11,7 @@ import RealityKit
 import RealityKitContent
 
 
-class FileBuilding : Entity {
+class FileBuildingEntity : Entity {
     
     var fileName : String
     var filePath : String
