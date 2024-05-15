@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9110B3442BF4C32D0082036B /* FileBuildingEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110B3432BF4C32D0082036B /* FileBuildingEntity.swift */; };
 		9111E42A2B7E0DD7007F9AAC /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 9111E4292B7E0DD7007F9AAC /* RealityKitContent */; };
 		9111E42C2B7E0DD7007F9AAC /* SpatialLiveRefApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9111E42B2B7E0DD7007F9AAC /* SpatialLiveRefApp.swift */; };
 		9111E42E2B7E0DD7007F9AAC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9111E42D2B7E0DD7007F9AAC /* ContentView.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9110B3432BF4C32D0082036B /* FileBuildingEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBuildingEntity.swift; sourceTree = "<group>"; };
 		9111E4242B7E0DD7007F9AAC /* SpatialLiveRef.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpatialLiveRef.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9111E4282B7E0DD7007F9AAC /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		9111E42B2B7E0DD7007F9AAC /* SpatialLiveRefApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpatialLiveRefApp.swift; sourceTree = "<group>"; };
@@ -69,13 +71,13 @@
 				91633F432BE3AD9A004399E4 /* Prints */,
 				9111E42B2B7E0DD7007F9AAC /* SpatialLiveRefApp.swift */,
 				9111E42D2B7E0DD7007F9AAC /* ContentView.swift */,
+				9110B3432BF4C32D0082036B /* FileBuildingEntity.swift */,
 				919A021F2BB1CE6F006CA35C /* FileReader.swift */,
 				9111E42F2B7E0DD7007F9AAC /* ImmersiveView.swift */,
 				9111E4312B7E0DD8007F9AAC /* Assets.xcassets */,
 				9111E4362B7E0DD8007F9AAC /* Info.plist */,
 				9111E4332B7E0DD8007F9AAC /* Preview Content */,
-				91BDFF072BD95E9900DE33A8 /* TestView.swift */,
-				91633F472BE3D850004399E4 /* BuildingView.swift */,
+				91633F4B2BE41098004399E4 /* Archive */,
 			);
 			path = SpatialLiveRef;
 			sourceTree = "<group>";
@@ -94,6 +96,15 @@
 				9111E4342B7E0DD8007F9AAC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		91633F4B2BE41098004399E4 /* Archive */ = {
+			isa = PBXGroup;
+			children = (
+				91BDFF072BD95E9900DE33A8 /* TestView.swift */,
+				91633F472BE3D850004399E4 /* BuildingView.swift */,
+			);
+			path = Archive;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9110B3442BF4C32D0082036B /* FileBuildingEntity.swift in Sources */,
 				9111E42E2B7E0DD7007F9AAC /* ContentView.swift in Sources */,
 				91BDFF082BD95E9900DE33A8 /* TestView.swift in Sources */,
 				9111E42C2B7E0DD7007F9AAC /* SpatialLiveRefApp.swift in Sources */,
