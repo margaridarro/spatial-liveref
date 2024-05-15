@@ -55,17 +55,26 @@ struct ContentView : View {
                  */
                 
                 for _ in file_list {
-                    let x_pos = (Float.random(in: -4..<4)) * 0.1
-                    let z_pos = (Float.random(in: -2..<2)) * 0.1
-                   
                     
+                    let x_pos = (Float.random(in: -4..<4)) * 0.1
+                    let z_pos = (Float.random(in: -1.9..<1.9)) * 0.1
+
+                    
+                    let entity = FileBuilding(resourceName: "BuildingSceneYellow", fileName: "String", filePath: "String", loc: 0, nom: 0, numberRefactorings: 0, refactorings: [Refactoring(refactoringType: RefactoringType.ExtractMethod, methodName: "", elements: 0, severity: 0, locToChange: 0, className: "")])
+                        
+                        entity.transform.scale = [0.1, 0.2, 0.1]
+                        entity.transform.translation = cubes_y_translation + [x_pos, 0, z_pos]
+                        content.add(entity)
+                      
+                    /*
                     if let scene = try? await Entity(named: "BuildingSceneYellow", in: realityKitContentBundle) {
                         
                         scene.transform.scale = [0.1, 0.2, 0.1]
                         scene.transform.translation = cubes_y_translation + [x_pos, 0, z_pos]
                         content.add(scene)
                         
-                    }
+                        
+                    }*/
                 }
                 
                 
