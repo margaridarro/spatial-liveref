@@ -7,14 +7,14 @@
 
 import Foundation
 
-func getProjectFiles (file_path : String, refactorings_path : String) -> ([[String]], [[String]]) {
+func getProjectFiles (file_path : String, refactorings_path : String) -> ([String : FileBuildingEntity], [[String]], [[String]]) {
 
     /*
     // LPOO project
     let file = "projects/feup-lpoo/proj/Prints/files.txt"
     let refactorings_file = "projects/feup-lpoo/proj/Prints/refactorings.txt"
     */
-    
+    var fileBuildings : [String: FileBuildingEntity] = [:]
     var file_list: [[String]] = []
     var refactorings_list: [[String]] = []
   
@@ -22,9 +22,7 @@ func getProjectFiles (file_path : String, refactorings_path : String) -> ([[Stri
    
     do {
         let text = try String(contentsOf: fileURL!, encoding: .utf8)
-        //print("text:", text)
         let lines = text.components(separatedBy: "\n")
-        //print("lines:", lines)
         
         for (id, line) in lines.enumerated() {
             
@@ -32,18 +30,21 @@ func getProjectFiles (file_path : String, refactorings_path : String) -> ([[Stri
                 
                 let file_name = lines[id].replacingOccurrences(of: "File: ", with: "")
                 let file_path = lines[id+1].replacingOccurrences(of: "File Path: ", with: "")
-                let loc = lines[id+3].replacingOccurrences(of: "   LOC: ", with: "")
-                let nom = lines[id+4].replacingOccurrences(of: "   NOM: ", with: "")
-                let n_refactorings = lines[id+5].replacingOccurrences(of: "   Number of Refactorings: ", with: "")
+                let loc_string = lines[id+3].replacingOccurrences(of: "   LOC: ", with: "")
+                let nom_string = lines[id+4].replacingOccurrences(of: "   NOM: ", with: "")
+                let n_refactorings_string = lines[id+5].replacingOccurrences(of: "   Number of Refactorings: ", with: "")
                 
-                file_list.append([file_name, file_path, loc, nom, n_refactorings])
+                let loc : Int! = Int(loc_string)
+                let nom : Int! = Int(nom_string)
+                let n_refactorings : Int! = Int(n_refactorings_string)
                 
+                file_list.append([file_name, file_path, loc_string, nom_string, n_refactorings_string])
+                fileBuildings[file_path] = FileBuildingEntity(fileName: file_name, filePath: file_path, loc: loc, nom: nom, numberRefactorings: n_refactorings, refactorings: [])
             }
-            
         }
     } catch {
         print("\nFiles Error info: \(error)\n")
-        return ([["0"]], [["0"]])
+        return ([:], [["0"]], [["0"]])
     }
     
     let refactoringsURL = Bundle.main.url(forResource: "Prints/refactorings", withExtension: "txt")
@@ -51,9 +52,19 @@ func getProjectFiles (file_path : String, refactorings_path : String) -> ([[Stri
     do {
         let text_refactorings = try String(contentsOf: refactoringsURL!, encoding: .utf8)
         let lines = text_refactorings.components(separatedBy: "\n")
-        //print(lines)
         
         for (id, line) in lines.enumerated() {
+            
+            var refactoring_type : RefactoringType = RefactoringType.ExtractVariable
+            var refactoring_name : String = ""
+            var method_name : String = ""
+            var file_path : String = ""
+            var n_elements_string : String = ""
+            var severity_string : String = ""
+            var loc_to_change_string : String = ""
+            var class_name : String = ""
+            
+            var refactoring_found = false
             
             if line.contains("Extract Variable:") {
                 /*
@@ -67,14 +78,23 @@ func getProjectFiles (file_path : String, refactorings_path : String) -> ([[Stri
                  Severity: 9.863636363636363
                  LOC To Be Changed: 1
                  */
-                let refactoring = line.replacingOccurrences(of: ":", with: "")
-                let method_name =  lines[id+3].replacingOccurrences(of: "Method: ", with: "")
-                let file_path = lines[id+5].replacingOccurrences(of: "File: ", with: "")
-                let n_elements = lines[id+6].replacingOccurrences(of: "Number of Elements: ", with: "")
-                let severity = lines[id+7].replacingOccurrences(of: "Severity: ", with: "")
-                let loc_to_change = lines[id+8].replacingOccurrences(of: "LOC To Be Changed: ", with: "")
+            
+                refactoring_type = RefactoringType.ExtractVariable
+                refactoring_name = line.replacingOccurrences(of: ":", with: "")
+                method_name =  lines[id+3].replacingOccurrences(of: "Method: ", with: "")
                 
-                refactorings_list.append([refactoring, method_name, file_path, n_elements, severity, loc_to_change])
+                var next_line_id = id+4
+                var current_line = ""
+                while !current_line.contains("File") {
+                    current_line = lines[next_line_id]
+                    next_line_id += 1
+                }
+                file_path = lines[next_line_id-1].replacingOccurrences(of: "File: ", with: "")
+                n_elements_string = lines[next_line_id].replacingOccurrences(of: "Number of Elements: ", with: "")
+                severity_string = lines[next_line_id+1].replacingOccurrences(of: "Severity: ", with: "")
+                loc_to_change_string = lines[next_line_id+2].replacingOccurrences(of: "LOC To Be Changed: ", with: "")
+  
+                refactoring_found = true
                 // TODO verify file "DONE" message
                 // TODO verify number of refactoring when "DONE"
                 
@@ -89,14 +109,15 @@ func getProjectFiles (file_path : String, refactorings_path : String) -> ([[Stri
                  Severity: 10.0
                  LOC To Be Changed: 6
                  */
-                let refactoring = line.replacingOccurrences(of: ":", with: "")
-                let method_name =  lines[id+2].replacingOccurrences(of: "Method: ", with: "")
-                let file_path = lines[id+3].replacingOccurrences(of: "File: ", with: "")
-                let n_elements = lines[id+5].replacingOccurrences(of: "Number of Elements: ", with: "")
-                let severity = lines[id+6].replacingOccurrences(of: "Severity: ", with: "")
-                let loc_to_change = lines[id+7].replacingOccurrences(of: "LOC To Be Changed: ", with: "")
+                refactoring_type = RefactoringType.ExtractMethod
+                refactoring_name = line.replacingOccurrences(of: ":", with: "")
+                method_name =  lines[id+2].replacingOccurrences(of: "Method: ", with: "")
+                file_path = lines[id+3].replacingOccurrences(of: "File: ", with: "")
+                n_elements_string = lines[id+5].replacingOccurrences(of: "Number of Elements: ", with: "")
+                severity_string = lines[id+6].replacingOccurrences(of: "Severity: ", with: "")
+                loc_to_change_string = lines[id+7].replacingOccurrences(of: "LOC To Be Changed: ", with: "")
                 
-                refactorings_list.append([refactoring, method_name, file_path, n_elements, severity, loc_to_change])
+                refactoring_found = true
                 // TODO verify file "DONE" message
                 // TODO verify number of refactoring when "DONE"
                 
@@ -112,15 +133,16 @@ func getProjectFiles (file_path : String, refactorings_path : String) -> ([[Stri
                  Method: resize   Method: lvNextBufferAndUnlink   Method: peek   Method: size
                  LOC To Be Changed: 21
                  */
-                let refactoring = line.replacingOccurrences(of: ":", with: "")
-                let class_name =  lines[id+2].replacingOccurrences(of: "Class: ", with: "")
-                let file_path = lines[id+3].replacingOccurrences(of: "File: ", with: "")
-                let n_elements = lines[id+4].replacingOccurrences(of: "Number of Elements: ", with: "")
-                let severity = lines[id+5].replacingOccurrences(of: "Severity: ", with: "")
-                let method_name = lines[id+7].replacingOccurrences(of: "Method: ", with: "")
-                let loc_to_change = lines[id+8].replacingOccurrences(of: "LOC To Be Changed: ", with: "")
-                
-                refactorings_list.append([refactoring, method_name, file_path, n_elements, severity, loc_to_change, class_name])
+                refactoring_type = RefactoringType.ExtractClass
+                refactoring_name = line.replacingOccurrences(of: ":", with: "")
+                class_name =  lines[id+2].replacingOccurrences(of: "Class: ", with: "")
+                file_path = lines[id+3].replacingOccurrences(of: "File: ", with: "")
+                n_elements_string = lines[id+4].replacingOccurrences(of: "Number of Elements: ", with: "")
+                severity_string = lines[id+5].replacingOccurrences(of: "Severity: ", with: "")
+                method_name = lines[id+7].replacingOccurrences(of: "Method: ", with: "")
+                loc_to_change_string = lines[id+8].replacingOccurrences(of: "LOC To Be Changed: ", with: "")
+                               
+                refactoring_found = true
                 
             } else if line.contains("Introduce Parameter Object:") {
                 /*
@@ -132,20 +154,37 @@ func getProjectFiles (file_path : String, refactorings_path : String) -> ([[Stri
                  Severity: 10.0
                  LOC To Be Changed: 0
                  */
-                let refactoring = line.replacingOccurrences(of: ":", with: "")
-                let method_name =  lines[id+2].replacingOccurrences(of: "Method: ", with: "")
-                let file_path = lines[id+3].replacingOccurrences(of: "File:", with: "")
-                let n_elements = lines[id+4].replacingOccurrences(of: "Number of Elements: ", with: "")
-                let severity = lines[id+5].replacingOccurrences(of: "Severity: ", with: "")
-                let loc_to_change = lines[id+6].replacingOccurrences(of: "LOC To Be Changed: ", with: "")
+                refactoring_type = RefactoringType.IntroduceParameterObject
+                refactoring_name = line.replacingOccurrences(of: ":", with: "")
+                method_name =  lines[id+2].replacingOccurrences(of: "Method: ", with: "")
+                file_path = lines[id+3].replacingOccurrences(of: "File:", with: "")
+                n_elements_string = lines[id+4].replacingOccurrences(of: "Number Elements: ", with: "")
+                severity_string = lines[id+5].replacingOccurrences(of: "Severity: ", with: "")
+                loc_to_change_string = lines[id+6].replacingOccurrences(of: "LOC To Be Changed: ", with: "")
                 
-                refactorings_list.append([refactoring, method_name, file_path, n_elements, severity, loc_to_change])
+                refactoring_found = true
             }
+            
+            if refactoring_found {
+                
+                refactorings_list.append([refactoring_name, method_name, file_path, n_elements_string, severity_string, loc_to_change_string, class_name])
+                
+                let n_elements : Int! = Int(n_elements_string)
+                let severity : Float! = Float(severity_string)
+                let loc_to_change : Int! = Int(loc_to_change_string)
+                
+                let refactoring = Refactoring(refactoringType: refactoring_type, methodName: method_name, elements: n_elements, severity: severity, locToChange: loc_to_change, className: class_name)
+                
+                if fileBuildings.keys.contains(file_path) {
+                    fileBuildings[file_path]!.addRefactoring(refactoring: refactoring)
+                }
+            }
+        
         }
     } catch {
         print("\nRefactorings Error info: \(error)\n")
-        return (file_list, [["1"]])
+        return (fileBuildings, file_list, [["1"]])
     }
    
-    return (file_list, refactorings_list)
+    return (fileBuildings, file_list, refactorings_list)
 }
