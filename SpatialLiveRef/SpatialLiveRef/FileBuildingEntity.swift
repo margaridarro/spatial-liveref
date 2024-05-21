@@ -18,9 +18,10 @@ class FileBuildingEntity : Entity {
     var loc : Int
     var nom : Int
     var numberRefactorings : Int
+    var resourceName = "BuildingScene"
     var refactorings : [Refactoring]
 
-    init(resourceName: String, fileName : String, filePath : String, loc : Int, nom : Int, numberRefactorings : Int, refactorings : [Refactoring]) {
+    init(fileName : String, filePath : String, loc : Int, nom : Int, numberRefactorings : Int, refactorings : [Refactoring]) {
         self.fileName = fileName
         self.filePath = filePath
         self.loc = loc
@@ -46,6 +47,28 @@ class FileBuildingEntity : Entity {
         super.init()
     }
     
+    func addRefactoring(refactoring: Refactoring) {
+        refactorings.append(refactoring)
+        refactorings.sort(by: >)
+        
+        while !self.children.isEmpty{
+            self.removeChild(self.children.first!)
+        }
+
+        let severity = refactorings.first!.severity
+        if (severity < 4.0) {
+            resourceName = "BuildingSceneYellow"
+        } else if (severity < 7.0) {
+            resourceName = "BuildingSceneOrange"
+        } else {
+            resourceName = "BuildingSceneRed"
+        }
+        if let modelEntity = try? Entity.load(named: resourceName, in: realityKitContentBundle) {
+            self.addChild(modelEntity)
+        } else {
+            print("Failed to load model entity named \(resourceName)")
+        }
+    }
     
     /*
     // No errors
@@ -99,9 +122,18 @@ class Refactoring {
         self.className = className // only applicable to ExtractClass
     }
     
-    
 }
 
+extension Refactoring : Comparable {
+    
+    static func == (lhs: Refactoring, rhs: Refactoring) -> Bool {
+        return lhs.refactoringType == rhs.refactoringType && lhs.methodName == rhs.methodName && lhs.elements == rhs.elements && lhs.severity == rhs.severity && lhs.locToChange == rhs.locToChange && lhs.className == rhs.className
+    }
+    
+    static func < (lhs: Refactoring, rhs: Refactoring) -> Bool {
+        return lhs.severity < rhs.severity
+    }
+}
 
 enum RefactoringType {
     case ExtractVariable, ExtractMethod, ExtractClass, IntroduceParameterObject
