@@ -14,6 +14,7 @@
 		9111E4302B7E0DD7007F9AAC /* ImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9111E42F2B7E0DD7007F9AAC /* ImmersiveView.swift */; };
 		9111E4322B7E0DD8007F9AAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9111E4312B7E0DD8007F9AAC /* Assets.xcassets */; };
 		9111E4352B7E0DD8007F9AAC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9111E4342B7E0DD8007F9AAC /* Preview Assets.xcassets */; };
+		915533D02BFCE5FB00BCFA51 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915533CF2BFCE5FB00BCFA51 /* Node.swift */; };
 		91633F442BE3AD9A004399E4 /* Prints in Resources */ = {isa = PBXBuildFile; fileRef = 91633F432BE3AD9A004399E4 /* Prints */; };
 		91633F482BE3D850004399E4 /* BuildingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91633F472BE3D850004399E4 /* BuildingView.swift */; };
 		919A02202BB1CE6F006CA35C /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A021F2BB1CE6F006CA35C /* FileReader.swift */; };
@@ -30,6 +31,7 @@
 		9111E4312B7E0DD8007F9AAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9111E4342B7E0DD8007F9AAC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9111E4362B7E0DD8007F9AAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		915533CF2BFCE5FB00BCFA51 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		91633F432BE3AD9A004399E4 /* Prints */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Prints; path = ../../../../projects/RxJava/Prints; sourceTree = "<group>"; };
 		91633F472BE3D850004399E4 /* BuildingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingView.swift; sourceTree = "<group>"; };
 		919A021F2BB1CE6F006CA35C /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				91633F432BE3AD9A004399E4 /* Prints */,
 				9111E42B2B7E0DD7007F9AAC /* SpatialLiveRefApp.swift */,
 				9111E42D2B7E0DD7007F9AAC /* ContentView.swift */,
+				915533CF2BFCE5FB00BCFA51 /* Node.swift */,
 				9110B3432BF4C32D0082036B /* FileBuildingEntity.swift */,
 				919A021F2BB1CE6F006CA35C /* FileReader.swift */,
 				9111E42F2B7E0DD7007F9AAC /* ImmersiveView.swift */,
@@ -182,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9110B3442BF4C32D0082036B /* FileBuildingEntity.swift in Sources */,
+				915533D02BFCE5FB00BCFA51 /* Node.swift in Sources */,
 				9111E42E2B7E0DD7007F9AAC /* ContentView.swift in Sources */,
 				91BDFF082BD95E9900DE33A8 /* TestView.swift in Sources */,
 				9111E42C2B7E0DD7007F9AAC /* SpatialLiveRefApp.swift in Sources */,
@@ -322,7 +326,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SpatialLiveRef/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FL9VKG65ZN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -350,7 +354,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SpatialLiveRef/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FL9VKG65ZN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";

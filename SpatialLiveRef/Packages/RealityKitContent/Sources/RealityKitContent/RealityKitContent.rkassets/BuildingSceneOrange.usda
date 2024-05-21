@@ -226,6 +226,9 @@ def Xform "BuildingScene"
     )
     {
         reorder nameChildren = ["Cube", "Windows"]
+        float3 xformOp:translate = (0, 0.1, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
         def Cube "Cube" (
             prepend apiSchemas = ["MaterialBindingAPI"]
             customData = {
@@ -233,7 +236,7 @@ def Xform "BuildingScene"
             }
         )
         {
-            rel material:binding = </BuildingScene/SmoothConcrete_red> (
+            rel material:binding = </BuildingScene/SmoothConcrete> (
                 bindMaterialAs = "weakerThanDescendants"
             )
             double size = 0.2
@@ -255,7 +258,7 @@ def Xform "BuildingScene"
                 )
                 {
                     uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0.4215367, 0.5147498, 1) (
+                    color3f inputs:diffuseColor = (1, 0.514639, 0.14340499) (
                         colorSpace = "srgb_displayp3"
                     )
                     float inputs:roughness = 0.75
@@ -538,7 +541,8 @@ def Xform "BuildingScene"
         references = @SmoothConcrete.usdz@
     )
     {
-        color3f inputs:Basecolor_Tint (
+        color3f inputs:Basecolor_Tint = (0.6977086, 0.41016454, 0) (
+            colorSpace = "srgb_displayp3"
             customData = {
                 dictionary realitykit = {
                     float2 positionInSubgraph = (-56.812614, 67.17455)
@@ -624,7 +628,7 @@ def Xform "BuildingScene"
         references = @SmoothConcrete.usdz@
     )
     {
-        color3f inputs:Basecolor_Tint = (0.7196603, 0.21552327, 0.2086508) (
+        color3f inputs:Basecolor_Tint = (0.56133634, 0.1714964, 0.1614655) (
             colorSpace = "srgb_displayp3"
             customData = {
                 dictionary realitykit = {

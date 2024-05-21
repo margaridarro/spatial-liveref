@@ -226,6 +226,9 @@ def Xform "BuildingScene"
     )
     {
         reorder nameChildren = ["Cube", "Windows"]
+        float3 xformOp:translate = (0, 0.1, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
         def Cube "Cube" (
             prepend apiSchemas = ["MaterialBindingAPI"]
             customData = {

@@ -221,318 +221,6 @@ def Xform "BuildingScene"
         }
     }
 
-    def Xform "Building" (
-        active = true
-    )
-    {
-        reorder nameChildren = ["Cube", "Windows"]
-        def Cube "Cube" (
-            prepend apiSchemas = ["MaterialBindingAPI"]
-            customData = {
-                float3 rotationEulerHint = (0, 0, 0)
-            }
-        )
-        {
-            rel material:binding = </BuildingScene/SmoothConcrete> (
-                bindMaterialAs = "weakerThanDescendants"
-            )
-            double size = 0.2
-            quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
-            float3 xformOp:scale = (0.99999946, 0.99999946, 0.99999946)
-            float3 xformOp:translate = (-0.0000032745302, 5.9604645e-8, -0.0005482286)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Material "DefaultMaterial"
-            {
-                token outputs:mtlx:surface.connect = </BuildingScene/Building/Cube/DefaultMaterial/PreviewSurface.outputs:out>
-                token outputs:realitykit:vertex
-                token outputs:surface.connect = </BuildingScene/Building/Cube/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 109.5)
-                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
-
-                def Shader "DefaultSurfaceShader" (
-                    active = true
-                )
-                {
-                    uniform token info:id = "UsdPreviewSurface"
-                    color3f inputs:diffuseColor = (0.4215367, 0.5147498, 1) (
-                        colorSpace = "srgb_displayp3"
-                    )
-                    float inputs:roughness = 0.75
-                    token outputs:surface
-                }
-
-                def Shader "PreviewSurface" (
-                    active = false
-                )
-                {
-                    uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
-                    token outputs:out
-                    float2 ui:nodegraph:node:pos = (-255, 105)
-                    float2 ui:nodegraph:node:size = (148.5, 199)
-                }
-            }
-
-            def RealityKitComponent "GroundingShadow"
-            {
-                bool enableIBLShadow = 1
-                bool enableMeshShadow = 1
-                uniform token info:id = "RealityKit.GroundingShadow"
-            }
-
-            def RealityKitComponent "Collider"
-            {
-                uint group = 1
-                uniform token info:id = "RealityKit.Collider"
-                uint mask = 4294967295
-                token type = "Default"
-
-                def RealityKitStruct "Shape"
-                {
-                    float3 extent = (0.2, 0.2, 0.2)
-                    token shapeType = "Box"
-
-                    def RealityKitStruct "pose"
-                    {
-                    }
-                }
-            }
-        }
-
-        def Xform "Windows" (
-            active = true
-        )
-        {
-            quatf xformOp:orient = (1, 0, 0, 0)
-            float3 xformOp:scale = (1, 1, 1)
-            float3 xformOp:translate = (0, 0, 0)
-            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-            def Cube "Cube_1" (
-                prepend apiSchemas = ["MaterialBindingAPI"]
-            )
-            {
-                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
-                    bindMaterialAs = "weakerThanDescendants"
-                )
-                double size = 0.2
-                quatf xformOp:orient = (0.70710677, 0, -0.7071067, 0)
-                float3 xformOp:scale = (0.09999993, 0.09999993, 0.09999993)
-                float3 xformOp:translate = (-0.05, 0.05, 0.09099999)
-                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-                def Material "DefaultMaterial"
-                {
-                    token outputs:mtlx:surface
-                    token outputs:realitykit:vertex
-                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                    def Shader "DefaultSurfaceShader"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (1, 1, 1)
-                        float inputs:roughness = 0.75
-                        token outputs:surface
-                    }
-                }
-            }
-
-            def Cube "Cube_2" (
-                prepend apiSchemas = ["MaterialBindingAPI"]
-            )
-            {
-                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
-                    bindMaterialAs = "weakerThanDescendants"
-                )
-                double size = 0.2
-                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
-                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
-                float3 xformOp:translate = (0.05, 0.05, 0.091)
-                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-                def Material "DefaultMaterial"
-                {
-                    token outputs:mtlx:surface
-                    token outputs:realitykit:vertex
-                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_2/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                    def Shader "DefaultSurfaceShader"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (1, 1, 1)
-                        float inputs:roughness = 0.75
-                        token outputs:surface
-                    }
-                }
-            }
-
-            def Cube "Cube_3" (
-                prepend apiSchemas = ["MaterialBindingAPI"]
-            )
-            {
-                reorder nameChildren = ["DefaultMaterial", "Cube"]
-                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
-                    bindMaterialAs = "weakerThanDescendants"
-                )
-                double size = 0.2
-                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
-                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
-                float3 xformOp:translate = (-0.05, 0.025, 0.091000006)
-                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-                def Material "DefaultMaterial"
-                {
-                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_3/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                    def Shader "DefaultSurfaceShader"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (1, 1, 1)
-                        float inputs:roughness = 0.75
-                        token outputs:surface
-                    }
-                }
-            }
-
-            def Cube "Cube_4" (
-                prepend apiSchemas = ["MaterialBindingAPI"]
-            )
-            {
-                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
-                    bindMaterialAs = "weakerThanDescendants"
-                )
-                double size = 0.2
-                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
-                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
-                float3 xformOp:translate = (-0.025, 0.025, 0.091000006)
-                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-                def Material "DefaultMaterial"
-                {
-                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_4/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                    def Shader "DefaultSurfaceShader"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (1, 1, 1)
-                        float inputs:roughness = 0.75
-                        token outputs:surface
-                    }
-                }
-            }
-
-            def Cube "Cube_5" (
-                prepend apiSchemas = ["MaterialBindingAPI"]
-            )
-            {
-                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
-                    bindMaterialAs = "weakerThanDescendants"
-                )
-                double size = 0.2
-                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
-                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
-                float3 xformOp:translate = (-0.025, 0.05, 0.091000006)
-                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-                def Material "DefaultMaterial"
-                {
-                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_5/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                    def Shader "DefaultSurfaceShader"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (1, 1, 1)
-                        float inputs:roughness = 0.75
-                        token outputs:surface
-                    }
-                }
-            }
-
-            def Cube "Cube_6" (
-                prepend apiSchemas = ["MaterialBindingAPI"]
-            )
-            {
-                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
-                    bindMaterialAs = "weakerThanDescendants"
-                )
-                double size = 0.2
-                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
-                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
-                float3 xformOp:translate = (0.025000002, 0.05, 0.091)
-                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-                def Material "DefaultMaterial"
-                {
-                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_6/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                    def Shader "DefaultSurfaceShader"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (1, 1, 1)
-                        float inputs:roughness = 0.75
-                        token outputs:surface
-                    }
-                }
-            }
-
-            def Cube "Cube_7" (
-                prepend apiSchemas = ["MaterialBindingAPI"]
-            )
-            {
-                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
-                    bindMaterialAs = "weakerThanDescendants"
-                )
-                double size = 0.2
-                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
-                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
-                float3 xformOp:translate = (0.025000002, 0.025, 0.091)
-                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-                def Material "DefaultMaterial"
-                {
-                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_7/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                    def Shader "DefaultSurfaceShader"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (1, 1, 1)
-                        float inputs:roughness = 0.75
-                        token outputs:surface
-                    }
-                }
-            }
-
-            def Cube "Cube_8" (
-                prepend apiSchemas = ["MaterialBindingAPI"]
-            )
-            {
-                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
-                    bindMaterialAs = "weakerThanDescendants"
-                )
-                double size = 0.2
-                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
-                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
-                float3 xformOp:translate = (0.05, 0.025, 0.091)
-                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
-
-                def Material "DefaultMaterial"
-                {
-                    token outputs:mtlx:surface
-                    token outputs:realitykit:vertex
-                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_8/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
-
-                    def Shader "DefaultSurfaceShader"
-                    {
-                        uniform token info:id = "UsdPreviewSurface"
-                        color3f inputs:diffuseColor = (1, 1, 1)
-                        float inputs:roughness = 0.75
-                        token outputs:surface
-                    }
-                }
-            }
-        }
-    }
-
     def "SmoothConcrete" (
         active = true
         references = @SmoothConcrete.usdz@
@@ -624,7 +312,7 @@ def Xform "BuildingScene"
         references = @SmoothConcrete.usdz@
     )
     {
-        color3f inputs:Basecolor_Tint = (0.56133634, 0.1714964, 0.1614655) (
+        color3f inputs:Basecolor_Tint = (0.7196603, 0.21552327, 0.2086508) (
             colorSpace = "srgb_displayp3"
             customData = {
                 dictionary realitykit = {
@@ -934,6 +622,321 @@ def Xform "BuildingScene"
         {
             float2 inputs:uvtiling.connect = </BuildingScene/SmoothConcrete_yellow/Dot.outputs:out>
             float2 ui:nodegraph:node:size = (158.5, 235)
+        }
+    }
+
+    def Xform "Building" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["Cube", "Windows"]
+        float3 xformOp:translate = (0, 0.1, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Cube "Cube" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            customData = {
+                float3 rotationEulerHint = (0, 0, 0)
+            }
+        )
+        {
+            rel material:binding = </BuildingScene/SmoothConcrete_red> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double size = 0.2
+            quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+            float3 xformOp:scale = (0.99999946, 0.99999946, 0.99999946)
+            float3 xformOp:translate = (-0.0000032745302, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Material "DefaultMaterial"
+            {
+                token outputs:mtlx:surface.connect = </BuildingScene/Building/Cube/DefaultMaterial/PreviewSurface.outputs:out>
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </BuildingScene/Building/Cube/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 109.5)
+                float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+
+                def Shader "DefaultSurfaceShader" (
+                    active = true
+                )
+                {
+                    uniform token info:id = "UsdPreviewSurface"
+                    color3f inputs:diffuseColor = (0.4215367, 0.5147498, 1) (
+                        colorSpace = "srgb_displayp3"
+                    )
+                    float inputs:roughness = 0.75
+                    token outputs:surface
+                }
+
+                def Shader "PreviewSurface" (
+                    active = false
+                )
+                {
+                    uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                    token outputs:out
+                    float2 ui:nodegraph:node:pos = (-255, 105)
+                    float2 ui:nodegraph:node:size = (148.5, 199)
+                }
+            }
+
+            def RealityKitComponent "GroundingShadow"
+            {
+                bool enableIBLShadow = 1
+                bool enableMeshShadow = 1
+                uniform token info:id = "RealityKit.GroundingShadow"
+            }
+
+            def RealityKitComponent "Collider"
+            {
+                uint group = 1
+                uniform token info:id = "RealityKit.Collider"
+                uint mask = 4294967295
+                token type = "Default"
+
+                def RealityKitStruct "Shape"
+                {
+                    float3 extent = (0.2, 0.2, 0.2)
+                    token shapeType = "Box"
+
+                    def RealityKitStruct "pose"
+                    {
+                    }
+                }
+            }
+        }
+
+        def Xform "Windows" (
+            active = true
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cube "Cube_1" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double size = 0.2
+                quatf xformOp:orient = (0.70710677, 0, -0.7071067, 0)
+                float3 xformOp:scale = (0.09999993, 0.09999993, 0.09999993)
+                float3 xformOp:translate = (-0.05, 0.05, 0.09099999)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cube "Cube_2" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double size = 0.2
+                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
+                float3 xformOp:translate = (0.05, 0.05, 0.091)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_2/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cube "Cube_3" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                reorder nameChildren = ["DefaultMaterial", "Cube"]
+                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double size = 0.2
+                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
+                float3 xformOp:translate = (-0.05, 0.025, 0.091000006)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_3/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cube "Cube_4" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double size = 0.2
+                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
+                float3 xformOp:translate = (-0.025, 0.025, 0.091000006)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_4/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cube "Cube_5" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double size = 0.2
+                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
+                float3 xformOp:translate = (-0.025, 0.05, 0.091000006)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_5/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cube "Cube_6" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double size = 0.2
+                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
+                float3 xformOp:translate = (0.025000002, 0.05, 0.091)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_6/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cube "Cube_7" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double size = 0.2
+                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
+                float3 xformOp:translate = (0.025000002, 0.025, 0.091)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_7/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
+
+            def Cube "Cube_8" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </BuildingScene/Scratched_Metallic_Paint> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                double size = 0.2
+                quatf xformOp:orient = (0.70710677, 0, -0.70710677, 0)
+                float3 xformOp:scale = (0.099999934, 0.099999934, 0.099999934)
+                float3 xformOp:translate = (0.05, 0.025, 0.091)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:mtlx:surface
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = </BuildingScene/Building/Windows/Cube_8/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+                    def Shader "DefaultSurfaceShader"
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+                }
+            }
         }
     }
 }
