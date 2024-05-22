@@ -47,32 +47,30 @@ struct ContentView : View {
                 print("File count: ", file_list.count)
                 print("Refactoring count: ", refactoring_list.count)
                 
-                var fileTree = buildFileTree(files: fileBuildings)
+                let fileTree = buildFileTree(files: fileBuildings)
                 
-                var nodesMap : [String : Int] = [:]
-                var nodesArray : [(String, Int)] = []
-                var nodesArrayAuxiliar : [(fileName: String, level: Int)] = []
+                var platformArray : [(String, Int)] = []
+                var auxPlatformArray : [(fileName: String, level: Int)] = []
                 
-                iterateNode(node: fileTree, nodes: &nodesMap, nodesArray: &nodesArray, level: 0)
+                getDirectoriesWithFiles(node: fileTree, directoriesArray: &platformArray, level: 0)
                 
-                nodesArrayAuxiliar = nodesArray
-                nodesArray = nodesArrayAuxiliar.sorted(by: { $0.level < $1.level })
-                print("nodesArray: ", nodesArray)
+                auxPlatformArray = platformArray
+                platformArray = auxPlatformArray.sorted(by: { $0.level < $1.level })
                 
-                for node in nodesArray {
-                    if node.1 == 0 {
-                        continue
-                    }
-                    if !node.0.contains(".java") {
-                        print("node: ", node.0)
-                        let planeMesh = MeshResource.generatePlane(width: 0.5, depth: 0.5)
-                        let plane = ModelEntity(mesh: planeMesh, materials: [material])
-                        plane.transform.translation = [0.1*Float(node.1), 0, 0.2]
-                        plane.transform.scale = [1.5/Float(node.1), 1, 1]
-                        content.add(plane)
-                    }
+                var platformMaterial = PhysicallyBasedMaterial()
+                platformMaterial.roughness = PhysicallyBasedMaterial.Roughness(floatLiteral: 1.0)
+                platformMaterial.metallic = PhysicallyBasedMaterial.Metallic(floatLiteral: 0.0)
+                
+                var count : Float = 0
+                for node in platformArray {
+                    platformMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .random())
+                    let planeMesh = MeshResource.generatePlane(width: 0.35/count + 0.2, depth: 0.35/count + 0.2)
+                    let platform = ModelEntity(mesh: planeMesh, materials: [platformMaterial])
+                    platform.transform.translation = [0, 0.01*count, 0]
+                    content.add(platform)
+                    count += 1
                 }
-                print(content.entities)
+                
                 
                 let (locMutilplier, nomMultiplier) = projectParametersAnalysis(files: fileBuildings)
                 
