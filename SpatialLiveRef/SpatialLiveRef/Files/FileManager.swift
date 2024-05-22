@@ -7,7 +7,7 @@
 
 import Foundation
 
-func getFilesMetrics(files: [String:FileBuildingEntity]) -> (locMultiplier: Float, nomMultiplier: Float){
+func getFilesMetrics(files: [String:BuildingEntity]) -> (locMultiplier: Float, nomMultiplier: Float){
     
     var locs : [Float] = []
     var noms : [Float] = []
@@ -28,7 +28,7 @@ func getFilesMetrics(files: [String:FileBuildingEntity]) -> (locMultiplier: Floa
 }
 
 
-func buildFileTree(files: [String:FileBuildingEntity]) -> Node<String>{
+func buildFileTree(files: [String : BuildingEntity]) -> Node<String>{
     
     var path = files[files.keys.startIndex].key.split(separator: "/")
     let fileTree = Node(String(path[0]))

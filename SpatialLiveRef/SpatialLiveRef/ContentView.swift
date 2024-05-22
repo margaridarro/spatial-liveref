@@ -11,7 +11,7 @@ import RealityKitContent
 
 struct ContentView : View {
     
-    var fileBuildings: [String : FileBuildingEntity]
+    var buildingEntities: [String : BuildingEntity]
     var file_list: [[String]]
     var refactoring_list: [[String]]
     
@@ -34,7 +34,7 @@ struct ContentView : View {
                 let plane = generatePlane()
                 content.add(plane)
                 
-                let fileTree = buildFileTree(files: fileBuildings)
+                let fileTree = buildFileTree(files: buildingEntities)
                 
                 var platformArray : [(String, Int)] = []
                 var auxPlatformArray : [(fileName: String, level: Int)] = []
@@ -43,7 +43,6 @@ struct ContentView : View {
                 
                 auxPlatformArray = platformArray
                 platformArray = auxPlatformArray.sorted(by: { $0.level < $1.level })
-                
                 
                 var (platformMesh, platformMaterial) = getPlatformProperties()
                 
@@ -62,21 +61,24 @@ struct ContentView : View {
                 
                 platformArray = auxPlatformArray.sorted(by: { $0.level > $1.level })
                 
+                
+                
                 /**
                  Creating buildings from file information
                  */
-                for fileBuilding in fileBuildings {
+                for buildingEntity in buildingEntities {
 
-                    let entity = generateBuilding(fileBuilding: fileBuilding.value, fileBuildings: fileBuildings)
+                    let entity = generateBuilding(buildingEntity: buildingEntity.value, buildingEntities: buildingEntities)
 
                     content.add(entity)
                 }
                 
+                generateBuildingArrangement(buildingEntities: buildingEntities, platformArray: platformArray)
             }
         }
     }
 }
 
 #Preview(windowStyle: .volumetric) {
-    ContentView(fileBuildings: getProjectFiles(file_path: "projects/RxJava/Prints/files.txt", refactorings_path: "projects/RxJava/Prints/refactorings.txt").0, file_list: getProjectFiles(file_path: "projects/RxJava/Prints/files.txt", refactorings_path: "projects/RxJava/Prints/refactorings.txt").1, refactoring_list: getProjectFiles(file_path: "projects/RxJava/Prints/files.txt", refactorings_path: "projects/RxJava/Prints/refactorings.txt").2)
+    ContentView(buildingEntities: getProjectFiles(file_path: "projects/RxJava/Prints/files.txt", refactorings_path: "projects/RxJava/Prints/refactorings.txt").0, file_list: getProjectFiles(file_path: "projects/RxJava/Prints/files.txt", refactorings_path: "projects/RxJava/Prints/refactorings.txt").1, refactoring_list: getProjectFiles(file_path: "projects/RxJava/Prints/files.txt", refactorings_path: "projects/RxJava/Prints/refactorings.txt").2)
 }

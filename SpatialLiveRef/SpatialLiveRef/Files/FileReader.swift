@@ -7,14 +7,14 @@
 
 import Foundation
 
-func getProjectFiles (file_path : String, refactorings_path : String) -> ([String : FileBuildingEntity], [[String]], [[String]]) {
+func getProjectFiles (file_path : String, refactorings_path : String) -> ([String : BuildingEntity], [[String]], [[String]]) {
 
     /*
     // LPOO project
     let file = "projects/feup-lpoo/proj/Prints/files.txt"
     let refactorings_file = "projects/feup-lpoo/proj/Prints/refactorings.txt"
     */
-    var fileBuildings : [String: FileBuildingEntity] = [:]
+    var buildingEntities : [String: BuildingEntity] = [:]
     var file_list: [[String]] = []
     var refactorings_list: [[String]] = []
   
@@ -39,7 +39,7 @@ func getProjectFiles (file_path : String, refactorings_path : String) -> ([Strin
                 let n_refactorings : Int! = Int(n_refactorings_string)
                 
                 file_list.append([file_name, file_path, loc_string, nom_string, n_refactorings_string])
-                fileBuildings[file_path] = FileBuildingEntity(fileName: file_name, filePath: file_path, loc: loc, nom: nom, numberRefactorings: n_refactorings, refactorings: [])
+                buildingEntities[file_path] = BuildingEntity(fileName: file_name, filePath: file_path, loc: loc, nom: nom, numberRefactorings: n_refactorings, refactorings: [])
             }
         }
     } catch {
@@ -175,17 +175,17 @@ func getProjectFiles (file_path : String, refactorings_path : String) -> ([Strin
                 
                 let refactoring = Refactoring(refactoringType: refactoring_type, methodName: method_name, elements: n_elements, severity: severity, locToChange: loc_to_change, className: class_name)
                 
-                if fileBuildings.keys.contains(file_path) {
-                    fileBuildings[file_path]!.addRefactoring(refactoring: refactoring)
+                if buildingEntities.keys.contains(file_path) {
+                    buildingEntities[file_path]!.addRefactoring(refactoring: refactoring)
                 }
             }
         
         }
     } catch {
         print("\nRefactorings Error info: \(error)\n")
-        return (fileBuildings, file_list, [["1"]])
+        return (buildingEntities, file_list, [["1"]])
     }
-    return (fileBuildings, file_list, refactorings_list)
+    return (buildingEntities, file_list, refactorings_list)
 }
 
 

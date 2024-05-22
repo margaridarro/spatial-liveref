@@ -11,7 +11,7 @@ import RealityKit
 import RealityKitContent
 
 
-class FileBuildingEntity : Entity {
+class BuildingEntity : Entity {
     
     var fileName : String
     var filePath : String
@@ -20,6 +20,8 @@ class FileBuildingEntity : Entity {
     var numberRefactorings : Int
     var resourceName = "BuildingScene"
     var refactorings : [Refactoring]
+    var width : Float = 0.1
+    var height : Float = 1
 
     init(fileName : String, filePath : String, loc : Int, nom : Int, numberRefactorings : Int, refactorings : [Refactoring]) {
         self.fileName = fileName

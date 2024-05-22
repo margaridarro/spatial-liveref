@@ -13,7 +13,7 @@ struct SpatialLiveRefApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView(fileBuildings: fileBuildings, file_list: files, refactoring_list: refactorings)
+            ContentView(buildingEntities: fileBuildings, file_list: files, refactoring_list: refactorings)
         }.windowStyle(.volumetric)
 
         ImmersiveSpace(id: "ImmersiveSpace") {

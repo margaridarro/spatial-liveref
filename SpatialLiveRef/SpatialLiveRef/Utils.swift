@@ -47,20 +47,18 @@ func generatePlane() -> (ModelEntity){
     return plane
 }
 
-func generateBuilding(fileBuilding: FileBuildingEntity, fileBuildings: [String: FileBuildingEntity]) -> (FileBuildingEntity){
+func generateBuilding(buildingEntity: BuildingEntity, buildingEntities: [String: BuildingEntity]) -> (BuildingEntity){
     
-    let (locMutilplier, nomMultiplier) = getFilesMetrics(files: fileBuildings)
+    let (locMutilplier, nomMultiplier) = getFilesMetrics(files: buildingEntities)
     
     let x_pos = (Float.random(in: -4..<4)) * 0.1
     let z_pos = (Float.random(in: -4..<4)) * 0.1
-
-    let entity = fileBuilding
     
-    let width = 0.1+Float(entity.nom)*nomMultiplier
-    let height = locMutilplier*Float(entity.loc)
-    entity.transform.scale = [width, 0.15+height, width]
+    buildingEntity.width = 0.1+Float(buildingEntity.nom)*nomMultiplier
+    buildingEntity.height = locMutilplier*Float(buildingEntity.loc)
+    buildingEntity.transform.scale = [buildingEntity.width, 0.15+buildingEntity.height, buildingEntity.width]
     
-    entity.transform.translation = [x_pos, 0, z_pos]
+    buildingEntity.transform.translation = [x_pos, 0, z_pos]
     
-    return entity
+    return buildingEntity
 }
