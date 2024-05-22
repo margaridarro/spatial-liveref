@@ -44,17 +44,6 @@ extension Node where String: Equatable {
     }
 }
 
-/*
-// var nodesArray : [String] = []
-// var nodes : [String : Int] = [:]
-func iterateNode(node : Node<String>, nodes : inout [String : Int], nodesArray : inout [(String, Int)], level: Int) {
-    nodes[node.value] = level
-    nodesArray.append((node.value, level))
-    for child in node.children {
-        iterateNode(node: child, nodes: &nodes, nodesArray: &nodesArray, level: level+1)
-    }
-}*/
-
 func getDirectoriesWithFiles(node : Node<String>, directoriesArray : inout [(String, Int)], level: Int) {
     
     for child in node.children {

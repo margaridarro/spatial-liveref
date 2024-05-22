@@ -49,7 +49,7 @@ func generatePlane() -> (ModelEntity){
 
 func generateBuilding(fileBuilding: FileBuildingEntity, fileBuildings: [String: FileBuildingEntity]) -> (FileBuildingEntity){
     
-    let (locMutilplier, nomMultiplier) = projectParametersAnalysis(files: fileBuildings)
+    let (locMutilplier, nomMultiplier) = getFilesMetrics(files: fileBuildings)
     
     let x_pos = (Float.random(in: -4..<4)) * 0.1
     let z_pos = (Float.random(in: -4..<4)) * 0.1
