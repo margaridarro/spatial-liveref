@@ -31,21 +31,8 @@ struct ContentView : View {
                 /**
                  Creating plane
                  */
-                let planeMesh = MeshResource.generatePlane(width: 0.5, depth: 0.5)
-                //let planeMaterial = SimpleMaterial(color: .systemGreen, isMetallic: false)
-                
-                var material = PhysicallyBasedMaterial()
-                material.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .darkGray)
-                material.roughness = PhysicallyBasedMaterial.Roughness(floatLiteral: 1.0)
-                material.metallic = PhysicallyBasedMaterial.Metallic(floatLiteral: 0.0)
-                
-                let plane = ModelEntity(mesh: planeMesh, materials: [material])
-                plane.transform.scale = [2, 1, 1]
-               
+                let plane = generatePlane()
                 content.add(plane)
-                
-                print("File count: ", file_list.count)
-                print("Refactoring count: ", refactoring_list.count)
                 
                 let fileTree = buildFileTree(files: fileBuildings)
                 
@@ -57,44 +44,31 @@ struct ContentView : View {
                 auxPlatformArray = platformArray
                 platformArray = auxPlatformArray.sorted(by: { $0.level < $1.level })
                 
-                var platformMaterial = PhysicallyBasedMaterial()
-                platformMaterial.roughness = PhysicallyBasedMaterial.Roughness(floatLiteral: 1.0)
-                platformMaterial.metallic = PhysicallyBasedMaterial.Metallic(floatLiteral: 0.0)
+                
+                var (platformMesh, platformMaterial) = getPlatformProperties()
                 
                 var count : Float = 0
-                for node in platformArray {
+                for _ in platformArray {
                     platformMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .random())
-                    let planeMesh = MeshResource.generatePlane(width: 0.35/count + 0.2, depth: 0.35/count + 0.2)
-                    let platform = ModelEntity(mesh: planeMesh, materials: [platformMaterial])
+                    
+                    let platform = ModelEntity(mesh: platformMesh, materials: [platformMaterial])
+                    
+                    platform.transform.scale = [0.35/count + 0.2, 1, 0.35/count + 0.2]
                     platform.transform.translation = [0, 0.01*count, 0]
+                    
                     content.add(platform)
                     count += 1
                 }
                 
-                
-                let (locMutilplier, nomMultiplier) = projectParametersAnalysis(files: fileBuildings)
+                platformArray = auxPlatformArray.sorted(by: { $0.level > $1.level })
                 
                 /**
                  Creating buildings from file information
                  */
                 for fileBuilding in fileBuildings {
-                    /*
-                    if (!fileBuilding.value.refactorings.isEmpty){
-                        print("FILE: ", fileBuilding.key)
-                        print("resourceName: ", fileBuilding.value.resourceName)
-                        print("refactoring: ", fileBuilding.value.refactorings.first!.severity)
-                        print("children: ", fileBuilding.value.children)
-                    }*/
-                    let x_pos = (Float.random(in: -4..<4)) * 0.1
-                    let z_pos = (Float.random(in: -1.9..<1.9)) * 0.1
 
-                    let entity = fileBuilding.value
-                    
-                    let width = 0.1+Float(entity.nom)*nomMultiplier
-                    let height = locMutilplier*Float(entity.loc)
-                    entity.transform.scale = [width, 0.15+height, width]
-                    
-                    entity.transform.translation = [x_pos, 0, z_pos]
+                    let entity = generateBuilding(fileBuilding: fileBuilding.value, fileBuildings: fileBuildings)
+
                     content.add(entity)
                 }
                 
