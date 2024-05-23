@@ -47,15 +47,11 @@ func generatePlane() -> (ModelEntity){
     return plane
 }
 
-func generateBuilding(buildingEntity: BuildingEntity, buildingEntities: [String: BuildingEntity]) -> (BuildingEntity){
-    
-    let (locMutilplier, nomMultiplier) = getFilesMetrics(files: buildingEntities)
+func generateBuilding(buildingEntity: BuildingEntity) -> (BuildingEntity) {
     
     let x_pos = (Float.random(in: -4..<4)) * 0.1
     let z_pos = (Float.random(in: -4..<4)) * 0.1
     
-    buildingEntity.width = 0.1+Float(buildingEntity.nom)*nomMultiplier
-    buildingEntity.height = locMutilplier*Float(buildingEntity.loc)
     buildingEntity.transform.scale = [buildingEntity.width, 0.15+buildingEntity.height, buildingEntity.width]
     
     buildingEntity.transform.translation = [x_pos, 0, z_pos]

@@ -34,7 +34,9 @@ struct ContentView : View {
                 let plane = generatePlane()
                 content.add(plane)
                 
-                let fileTree = buildFileTree(files: buildingEntities)
+                let (locMutilplier, nomMultiplier) = getFilesMetrics(files: buildingEntities)
+                
+                let fileTree = buildFileTree(files: buildingEntities, locMultiplier: locMutilplier, nomMultiplier: nomMultiplier)
                 
                 var platformArray : [(String, Int)] = []
                 var auxPlatformArray : [(fileName: String, level: Int)] = []
@@ -62,18 +64,18 @@ struct ContentView : View {
                 platformArray = auxPlatformArray.sorted(by: { $0.level > $1.level })
                 
                 
+                generateBuildingArrangement(buildingEntities: buildingEntities, platformArray: platformArray)
                 
                 /**
                  Creating buildings from file information
                  */
                 for buildingEntity in buildingEntities {
 
-                    let entity = generateBuilding(buildingEntity: buildingEntity.value, buildingEntities: buildingEntities)
+                    let entity = generateBuilding(buildingEntity: buildingEntity.value)
 
                     content.add(entity)
                 }
                 
-                generateBuildingArrangement(buildingEntities: buildingEntities, platformArray: platformArray)
             }
         }
     }

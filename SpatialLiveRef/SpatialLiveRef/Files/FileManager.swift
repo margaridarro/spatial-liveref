@@ -28,12 +28,16 @@ func getFilesMetrics(files: [String:BuildingEntity]) -> (locMultiplier: Float, n
 }
 
 
-func buildFileTree(files: [String : BuildingEntity]) -> Node<String>{
+func buildFileTree(files: [String : BuildingEntity], locMultiplier : Float, nomMultiplier: Float) -> Node<String>{
     
     var path = files[files.keys.startIndex].key.split(separator: "/")
     let fileTree = Node(String(path[0]))
     
     for filePath in files.keys {
+        
+        files[filePath]!.height = locMultiplier * Float(files[filePath]!.loc)
+        files[filePath]!.width = nomMultiplier * Float(files[filePath]!.nom) + 0.1
+        
         path = filePath.split(separator: "/")
         
         var parent = String(path[0])
