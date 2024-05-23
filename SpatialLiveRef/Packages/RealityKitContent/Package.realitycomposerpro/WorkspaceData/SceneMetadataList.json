@@ -16,15 +16,6 @@
       [
         "0AF3A2D3-ECE9-4F94-934E-8C06EDCD2C54",
         "CubeScene",
-        "Cube"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "0AF3A2D3-ECE9-4F94-934E-8C06EDCD2C54",
-        "CubeScene",
         "Cube",
         "DefaultMaterial"
       ],
@@ -34,7 +25,17 @@
       },
       [
         "0AF3A2D3-ECE9-4F94-934E-8C06EDCD2C54",
-        "CubeScene"
+        "CubeScene",
+        "Cube"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "0AF3A2D3-ECE9-4F94-934E-8C06EDCD2C54",
+        "CubeScene",
+        "Material"
       ],
       {
         "isExpanded" : true,
@@ -51,8 +52,7 @@
       },
       [
         "0AF3A2D3-ECE9-4F94-934E-8C06EDCD2C54",
-        "CubeScene",
-        "Material"
+        "CubeScene"
       ],
       {
         "isExpanded" : true,
@@ -65,7 +65,7 @@
       [
         "1D572CEB-057A-41C3-B575-04C37501A3C0",
         "Root",
-        "Sphere_Left"
+        "Sphere_Right"
       ],
       {
         "isExpanded" : true,
@@ -82,7 +82,7 @@
       [
         "1D572CEB-057A-41C3-B575-04C37501A3C0",
         "Root",
-        "Sphere_Right"
+        "Sphere_Left"
       ],
       {
         "isExpanded" : true,
@@ -95,6 +95,16 @@
       [
         "8F3ADBBA-AF47-488B-A1C2-7D8D2A17F883",
         "BuildingScene",
+        "Building",
+        "Cube"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "8F3ADBBA-AF47-488B-A1C2-7D8D2A17F883",
+        "BuildingScene",
         "Building"
       ],
       {
@@ -104,16 +114,6 @@
       [
         "8F3ADBBA-AF47-488B-A1C2-7D8D2A17F883",
         "BuildingScene"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "8F3ADBBA-AF47-488B-A1C2-7D8D2A17F883",
-        "BuildingScene",
-        "Building",
-        "Cube"
       ],
       {
         "isExpanded" : true,
@@ -126,6 +126,16 @@
       [
         "39FE5E83-4BEB-4702-A5AC-3B7FF638CA90",
         "BuildingScene",
+        "Building",
+        "Windows"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "39FE5E83-4BEB-4702-A5AC-3B7FF638CA90",
+        "BuildingScene",
         "Building"
       ],
       {
@@ -135,16 +145,6 @@
       [
         "39FE5E83-4BEB-4702-A5AC-3B7FF638CA90",
         "BuildingScene"
-      ],
-      {
-        "isExpanded" : true,
-        "isLocked" : false
-      },
-      [
-        "39FE5E83-4BEB-4702-A5AC-3B7FF638CA90",
-        "BuildingScene",
-        "Building",
-        "Windows"
       ],
       {
         "isExpanded" : true,
@@ -207,7 +207,7 @@
       [
         "A42655B8-DB9E-4F03-964E-EF1260C4B2B4",
         "BuildingScene",
-        "Building"
+        "Building_copy"
       ],
       {
         "isExpanded" : true,
@@ -233,7 +233,7 @@
       [
         "A42655B8-DB9E-4F03-964E-EF1260C4B2B4",
         "BuildingScene",
-        "Building_copy"
+        "Building"
       ],
       {
         "isExpanded" : true,

@@ -31,9 +31,10 @@ struct ContentView : View {
                 /**
                  Creating plane
                  */
+                /*
                 let plane = generatePlane()
                 content.add(plane)
-                
+                */
                 let (locMutilplier, nomMultiplier) = getFilesMetrics(files: buildingEntities)
                 
                 let fileTree = buildFileTree(files: buildingEntities, locMultiplier: locMutilplier, nomMultiplier: nomMultiplier)
@@ -45,9 +46,10 @@ struct ContentView : View {
                 
                 auxPlatformArray = platformArray
                 platformArray = auxPlatformArray.sorted(by: { $0.level < $1.level })
-                
+
                 var (platformMesh, platformMaterial) = getPlatformProperties()
                 
+                /*
                 var count : Float = 0
                 for _ in platformArray {
                     platformMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .random())
@@ -60,22 +62,56 @@ struct ContentView : View {
                     content.add(platform)
                     count += 1
                 }
-                
+                */
                 platformArray = auxPlatformArray.sorted(by: { $0.level > $1.level })
                 
+                let (_, cityWidth, cityDepth, groupInfo)  = generateBuildingArrangement(buildingEntities: buildingEntities, platformArray: platformArray)
                 
-                generateBuildingArrangement(buildingEntities: buildingEntities, platformArray: platformArray)
+                // TODO error check
+                
+                let plane = generatePlane()
+                content.add(plane)
+
+                var count : Float = 1
+                
+                let platformInfo = getCityCenter(groupInfo: groupInfo, cityWidth: cityWidth, cityDepth: cityDepth)
+                
+                for platform in platformInfo {
+                 
+                    platformMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .random())
+                        
+                    let boxResource = MeshResource.generateBox(size: 0.1)
+                    let myEntity = ModelEntity(mesh: boxResource, materials: [platformMaterial])
+                    
+                    myEntity.transform.translation = [platform.value.locations.first!.1 / cityWidth, 0.001 * count, platform.value.locations.first!.2 / cityDepth]
+                    myEntity.transform.scale = [platform.value.area/cityWidth, 0.1, platform.value.area/cityDepth]
+                    
+                    content.add(myEntity)
+                
+                    
+                    for buildingLocation in platform.value.locations {
+                        
+                        buildingEntities[buildingLocation.0]!.transform.scale = [buildingEntities[buildingLocation.0]!.width, 0.15+buildingEntities[buildingLocation.0]!.height, buildingEntities[buildingLocation.0]!.width]
+                        
+                        buildingEntities[buildingLocation.0]!.transform.translation = [buildingLocation.1/cityWidth, 0, buildingLocation.2/cityDepth]
+          
+                        content.add(buildingEntities[buildingLocation.0]!)
+                    }
+                    count += 1
+                }
+                
                 
                 /**
                  Creating buildings from file information
                  */
+                /*
                 for buildingEntity in buildingEntities {
 
                     let entity = generateBuilding(buildingEntity: buildingEntity.value)
 
                     content.add(entity)
                 }
-                
+                */
             }
         }
     }
