@@ -56,7 +56,7 @@ class BuildingEntity : Entity {
         while !self.children.isEmpty{
             self.removeChild(self.children.first!)
         }
-
+        
         let severity = refactorings.first!.severity
         if (severity < 4.0) {
             resourceName = "BuildingSceneYellow"
@@ -71,6 +71,21 @@ class BuildingEntity : Entity {
             print("Failed to load model entity named \(resourceName)")
         }
     }
+    
+    func setResourceName (newResourceName: String) {
+        resourceName = newResourceName
+        
+        while !self.children.isEmpty{
+            self.removeChild(self.children.first!)
+        }
+        
+        if let modelEntity = try? Entity.load(named: resourceName, in: realityKitContentBundle) {
+            self.addChild(modelEntity)
+        } else {
+            print("Failed to load model entity named \(resourceName)")
+        }
+    }
+    
     
     /*
     // No errors

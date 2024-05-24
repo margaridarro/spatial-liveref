@@ -47,22 +47,8 @@ struct ContentView : View {
                 auxPlatformArray = platformArray
                 platformArray = auxPlatformArray.sorted(by: { $0.level < $1.level })
 
-                var (platformMesh, platformMaterial) = getPlatformProperties()
+                var platformMaterial = getPlatformMaterial()
                 
-                /*
-                var count : Float = 0
-                for _ in platformArray {
-                    platformMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .random())
-                    
-                    let platform = ModelEntity(mesh: platformMesh, materials: [platformMaterial])
-                    
-                    platform.transform.scale = [0.35/count + 0.2, 1, 0.35/count + 0.2]
-                    platform.transform.translation = [0, 0.01*count, 0]
-                    
-                    content.add(platform)
-                    count += 1
-                }
-                */
                 platformArray = auxPlatformArray.sorted(by: { $0.level > $1.level })
                 
                 let (_, cityWidth, cityDepth, groupInfo)  = generateBuildingArrangement(buildingEntities: buildingEntities, platformArray: platformArray)
@@ -74,32 +60,69 @@ struct ContentView : View {
 
                 var count : Float = 1
                 
-                let platformInfo = getCityCenter(groupInfo: groupInfo, cityWidth: cityWidth, cityDepth: cityDepth)
+                let platformInfo = centerPlaformPositions(groupInfo: groupInfo, cityWidth: cityWidth, cityDepth: cityDepth)
+                
                 
                 for platform in platformInfo {
-                 
-                    platformMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .random())
+                   // if(platform.key.contains("operators")) {
+                   // if(platform.key.contains("parallel") || platform.key.contains("operators") ) {
+                        platformMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .random())
                         
-                    let boxResource = MeshResource.generateBox(size: 0.1)
-                    let myEntity = ModelEntity(mesh: boxResource, materials: [platformMaterial])
-                    
-                    myEntity.transform.translation = [platform.value.locations.first!.1 / cityWidth, 0.001 * count, platform.value.locations.first!.2 / cityDepth]
-                    myEntity.transform.scale = [platform.value.area/cityWidth, 0.1, platform.value.area/cityDepth]
-                    
-                    content.add(myEntity)
-                
-                    
-                    for buildingLocation in platform.value.locations {
+                        let boxResource = MeshResource.generateBox(size: 1)
+                        let myEntity = ModelEntity(mesh: boxResource, materials: [platformMaterial])
                         
-                        buildingEntities[buildingLocation.0]!.transform.scale = [buildingEntities[buildingLocation.0]!.width, 0.15+buildingEntities[buildingLocation.0]!.height, buildingEntities[buildingLocation.0]!.width]
+                        let platformCenter = calculateGroupCenter(groupInfo: platform.value)
+                        let (platformWidth, platformDepth) = calculateGroupInfoSideMeasures(groupInfo: platform.value)
                         
-                        buildingEntities[buildingLocation.0]!.transform.translation = [buildingLocation.1/cityWidth, 0, buildingLocation.2/cityDepth]
-          
-                        content.add(buildingEntities[buildingLocation.0]!)
+                        myEntity.transform.translation = [platformCenter.0/cityWidth, 0.001, platformCenter.1/cityDepth]
+                        
+                        print("\nName: ", platform.key)
+                        print("Area: ", platform.value.area)
+                        print("Side: ", platformWidth/cityWidth)
+                        print("Side1: ", platformDepth/cityDepth)
+                        print("Center: ", platformCenter)
+                        
+                        myEntity.transform.scale = [platformWidth/cityWidth, 0.01, platformDepth/cityDepth]
+                        
+                        content.add(myEntity)
+                        
+                    if(platform.key.contains("operators")) {
+                        for buildingLocation in platform.value.locations {
+                            
+                            
+                            buildingEntities[buildingLocation.0]!.transform.translation = [buildingLocation.1/cityWidth, 0, buildingLocation.2/cityDepth]
+                            
+                            buildingEntities[buildingLocation.0]!.transform.scale = [buildingEntities[buildingLocation.0]!.width, 0.15+buildingEntities[buildingLocation.0]!.height, buildingEntities[buildingLocation.0]!.width]
+                            buildingEntities[buildingLocation.0]!.setResourceName(newResourceName: "BuildingSceneOrange")
+                            
+                            content.add(buildingEntities[buildingLocation.0]!)
+                        }
+                    } else if (platform.key.contains("parallel")) {
+                        for buildingLocation in platform.value.locations {
+                            
+                            
+                            buildingEntities[buildingLocation.0]!.transform.translation = [buildingLocation.1/cityWidth, 0, buildingLocation.2/cityDepth]
+                            
+                            buildingEntities[buildingLocation.0]!.transform.scale = [buildingEntities[buildingLocation.0]!.width, 0.15+buildingEntities[buildingLocation.0]!.height, buildingEntities[buildingLocation.0]!.width]
+                            
+                            buildingEntities[buildingLocation.0]!.setResourceName(newResourceName: "BuildingSceneYellow")
+                            content.add(buildingEntities[buildingLocation.0]!)
+                        }
+                    } else {
+                        for buildingLocation in platform.value.locations {
+                            
+                            
+                            buildingEntities[buildingLocation.0]!.transform.translation = [buildingLocation.1/cityWidth, 0, buildingLocation.2/cityDepth]
+                            
+                            buildingEntities[buildingLocation.0]!.transform.scale = [buildingEntities[buildingLocation.0]!.width, 0.15+buildingEntities[buildingLocation.0]!.height, buildingEntities[buildingLocation.0]!.width]
+                            
+                          
+                            content.add(buildingEntities[buildingLocation.0]!)
+                        }
                     }
+                    //}
                     count += 1
                 }
-                
                 
                 /**
                  Creating buildings from file information

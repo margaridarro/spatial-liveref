@@ -27,22 +27,27 @@ extension UIColor {
 }
 
 
-func getPlatformProperties() -> (MeshResource, PhysicallyBasedMaterial) {
+func getPlatformMaterial() -> (PhysicallyBasedMaterial) {
     
-    let platformMesh = MeshResource.generatePlane(width: 1, depth: 1)
+    //let platformMesh = MeshResource.generatePlane(width: 1, depth: 1)
     
     var platformMaterial = PhysicallyBasedMaterial()
     platformMaterial.roughness = PhysicallyBasedMaterial.Roughness(floatLiteral: 1.0)
     platformMaterial.metallic = PhysicallyBasedMaterial.Metallic(floatLiteral: 0.0)
-    return (platformMesh, platformMaterial)
+
+    return platformMaterial
 }
 
 func generatePlane() -> (ModelEntity){
     
-    var (planeMesh, planeMaterial) = getPlatformProperties()
+    var planeMaterial = getPlatformMaterial()
+    //var planeMesh = MeshResource.generatePlane(width: 1, depth: 1)
+    let platformMesh = MeshResource.generateBox(size: 1)
     planeMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .darkGray)
     
-    let plane = ModelEntity(mesh: planeMesh, materials: [planeMaterial])
+    let plane = ModelEntity(mesh: platformMesh, materials: [planeMaterial])
+    
+    plane.transform.scale = [1, 0.01, 1]
     
     return plane
 }
