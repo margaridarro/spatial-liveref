@@ -21,20 +21,21 @@ class Group {
 
 
 struct GroupInfo {
-    var area: Float
+    var area: Int
     var locations: [(String, Float, Float)]  // (filePath, x, y)
 }
 
-func canPlace(grid: inout [[(String, Float)]], x: Float, y: Float, width: Float, cityWidth: Float, cityDepth: Float) -> Bool {
-    if x + width > cityWidth || y + width > cityDepth {
+func canPlace(grid: inout [[(String, String)]], x: Float, y: Float, cityWidth: Float, groupID: String) -> Bool {
+    if x + 1 > cityWidth || y + 1 > cityWidth {
         return false
     }
     let intX = Int(x)
     let intY = Int(y)
-    let intWidth = Int(width)
+    let intWidth = 1
+    
     for i in intX..<intX + intWidth {
         for j in intY..<intY + intWidth {
-            if grid[i][j].1 != 0 {
+            if (grid[i][j].1 != " ") {
                 return false
             }
         }
@@ -42,24 +43,25 @@ func canPlace(grid: inout [[(String, Float)]], x: Float, y: Float, width: Float,
     return true
 }
 
-func placeBuilding(grid: inout [[(String, Float)]], x: Float, y: Float, width: Float, id: String) {
+func placeBuilding(grid: inout [[(String, String)]], x: Float, y: Float, id: String, groupID: String) {
     let intX = Int(x)
     let intY = Int(y)
-    let intWidth = Int(width)
-    for i in intX..<intX + intWidth {
-        for j in intY..<intY + intWidth {
-            grid[i][j] = (id, width)
+
+    for i in intX..<intX + 1 {
+        for j in intY..<intY + 1 {
+            grid[i][j] = (id, groupID)
         }
     }
 }
 
 
-func findPositionForBuilding(grid: inout [[(String, Float)]], width: Float, cityWidth: Float, cityDepth: Float) -> (Float, Float)? {
-    let intCityWidth = Int(cityWidth)
-    let intCityDepth = Int(cityDepth)
-    for x in 0..<intCityWidth {
-        for y in 0..<intCityDepth {
-            if canPlace(grid: &grid, x: Float(x), y: Float(y), width: width, cityWidth: cityWidth, cityDepth: cityDepth) {
+func findPositionForBuilding(grid: inout [[(String, String)]], cityWidth: Float, groupID: String) -> (Float, Float)? {
+    for x in 0..<Int(cityWidth) {
+        for y in 0..<Int(cityWidth) {
+            if (grid[x][y].1 != groupID && grid[x][y].1 != " ") {
+                break
+            }
+            if canPlace(grid: &grid, x: Float(x), y: Float(y), cityWidth: cityWidth, groupID: groupID) {
                 return ( Float(x), Float(y))
             }
         }
@@ -67,11 +69,11 @@ func findPositionForBuilding(grid: inout [[(String, Float)]], width: Float, city
     return nil
 }
 
-func organizeGroup(grid: inout [[(String, Float)]], group: Group, cityWidth: Float, cityDepth: Float, groupInfo: inout [String: GroupInfo]) -> Bool {
+func organizeGroup(grid: inout [[(String, String)]], group: Group, cityWidth: Float, groupInfo: inout [String: GroupInfo]) -> Bool {
     for buildingEntity in group.fileBuildings {
-        if let (x, y) = findPositionForBuilding(grid: &grid, width: /*buildingEntity.value.width **/ Float(1), cityWidth: cityWidth, cityDepth: cityDepth) {
-            placeBuilding(grid: &grid, x: x, y: y, width: /*buildingEntity.value.width **/ Float(1), id: buildingEntity.key)
-            let area = (/*buildingEntity.value.width **/ Float(1)) * (/*buildingEntity.value.width **/ Float(1))
+        if let (x, y) = findPositionForBuilding(grid: &grid, cityWidth: cityWidth, groupID: group.id) {
+            placeBuilding(grid: &grid, x: x, y: y, id: buildingEntity.key, groupID: group.id)
+            let area = 1
             if groupInfo[group.id] == nil {
                 groupInfo[group.id] = GroupInfo(area: 0, locations: [])
             }
@@ -82,35 +84,32 @@ func organizeGroup(grid: inout [[(String, Float)]], group: Group, cityWidth: Flo
         }
     }
     for subgroup in group.subgroups {
-        if !organizeGroup(grid: &grid, group: subgroup, cityWidth: cityWidth, cityDepth: cityDepth, groupInfo: &groupInfo) {
+        if !organizeGroup(grid: &grid, group: subgroup, cityWidth: cityWidth, groupInfo: &groupInfo) {
             return false
         }
     }
     return true
 }
 
-func organizeBuildings(rootGroup: Group, initialCityWidth: Float, initialCityDepth: Float, multiplier: Float) -> ([[(String, Float)]], Float, Float, [String: GroupInfo])? {
+func organizeBuildings(rootGroup: Group, initialCityWidth: Float, multiplier: Float) -> ([[(String, String)]], Float, [String: GroupInfo])? {
     var cityWidth = initialCityWidth
-    var cityDepth = initialCityDepth
     var groupInfo: [String : GroupInfo] = [:]
 
     while true {
-        let intCityWidth = Int(cityWidth)
-        let intCityDepth = Int(cityDepth)
-        var grid = Array(repeating: Array(repeating: ("", 0 as Float), count: intCityDepth), count: intCityWidth)
+
+        var grid = Array(repeating: Array(repeating: (" "," "), count: Int(cityWidth)), count: Int(cityWidth))
         groupInfo = [:]
 
-        if organizeGroup(grid: &grid, group: rootGroup, cityWidth: cityWidth, cityDepth: cityDepth, groupInfo: &groupInfo) {
-            return (grid, cityWidth, cityDepth, groupInfo)
+        if organizeGroup(grid: &grid, group: rootGroup, cityWidth: cityWidth, groupInfo: &groupInfo) {
+            return (grid, cityWidth, groupInfo)
         } else {
             // Increase the city size by the multiplier and try again
             cityWidth *= multiplier
-            cityDepth *= multiplier
         }
     }
 }
 
-func generateBuildingArrangement (buildingEntities : [String : BuildingEntity], platformArray: [(String, Int)]) ->  ([[(String, Float)]], Float, Float, [String: GroupInfo]) {
+func generateBuildingArrangement (buildingEntities : [String : BuildingEntity], platformArray: [(String, Int)]) ->  ([[(String, String)]], Float, [String: GroupInfo]) {
     
     // platform array must be ordered from highest to lowest level
     let rootGroup = Group(id: "ProjectName") // TODO insert project name
@@ -125,13 +124,12 @@ func generateBuildingArrangement (buildingEntities : [String : BuildingEntity], 
         rootGroup.subgroups.append(group)
     }
     
-    let initialCityWidth: Float = sqrtf(Float(buildingEntities.count)) // TODO check values
-    let initialCityDepth: Float = sqrtf(Float(buildingEntities.count)) // TODO check values
-    let multiplier: Float = 1.2
+    let initialCityWidth = sqrtf(Float(buildingEntities.count))
+    let multiplier : Float = 1.2
     
     
-    if let (cityGrid, finalCityWidth, finalCityDepth, groupInfo) = organizeBuildings(rootGroup: rootGroup, initialCityWidth: initialCityWidth, initialCityDepth: initialCityDepth, multiplier: multiplier) {
-        print("City grid (final size \(finalCityWidth) x \(finalCityDepth)):")
+    if let (cityGrid, finalCityWidth, groupInfo) = organizeBuildings(rootGroup: rootGroup, initialCityWidth: initialCityWidth, multiplier: multiplier) {
+        print("City grid (final size \(finalCityWidth) x \(finalCityWidth)):")
         
         printGrid(grid: cityGrid)
         /*
@@ -142,24 +140,24 @@ func generateBuildingArrangement (buildingEntities : [String : BuildingEntity], 
                 print("  Building at (\(x), \(y)) with width \(width)")
             }
         }*/
-        return (cityGrid, finalCityWidth, finalCityDepth, groupInfo)
+        return (cityGrid, Float(finalCityWidth), groupInfo)
     } else {
         print("Failed to organize buildings within the city.")
     }
     
-    return ([[("", 0)]], 0, 0, ["" : GroupInfo(area: 0, locations: [("", 0, 0)])])
+    return ([[(" ", " ")]], 0, ["" : GroupInfo(area: 0, locations: [("", 0, 0)])])
 }
 
-func printGrid(grid: [[(String, Float)]]) {
+func printGrid(grid: [[(String, String)]]) {
     for row in grid {
         var rowString = ""
-        for (id, width) in row {
+        for (id, groupID) in row {
             if id.isEmpty {
                 // Empty space
                 rowString += String(repeating: " ", count: 5) + "(0)"
             } else {
                 // Building or group present
-                let formattedCell = "(\(Int(width)))"/*"\(id)(\(width))"*/
+                let formattedCell = /*\(id.count)*/"(\(groupID))"
                 let padding = String(repeating: " ", count: max(0, 5 - formattedCell.count))
                 rowString += formattedCell + padding + " "
             }
@@ -169,14 +167,15 @@ func printGrid(grid: [[(String, Float)]]) {
 }
 
 
-func centerPlaformPositions(groupInfo: [String: GroupInfo], cityWidth: Float, cityDepth: Float) -> [String: GroupInfo] {
+
+func centerPlaformPositions(groupInfo: [String: GroupInfo], cityWidth: Float) -> [String: GroupInfo] {
     
     var realGroupInfo : [String: GroupInfo] = [:]
     
     for group in groupInfo.keys {
         realGroupInfo[group] = GroupInfo(area: groupInfo[group]!.area, locations: [])
         for location in groupInfo[group]!.locations {
-            realGroupInfo[group]!.locations.append((location.0, location.1 - cityWidth/2 /*+ cityWidth*0.05*/, location.2 - cityDepth/2 /*+ cityDepth*0.05*/))
+            realGroupInfo[group]!.locations.append((location.0, location.1 - cityWidth/2 + cityWidth*0.05, location.2 - cityWidth/2 + cityWidth*0.05))
         }
     }
     for (groupId, info) in realGroupInfo {
@@ -231,9 +230,9 @@ func calculateGroupInfoSideMeasures(groupInfo: GroupInfo) -> (Float, Float) {
             
             if maxDistance > distance {
                 if (distanceX >= distanceY) {
-                    returnValue = (maxDistance + 1, groupInfo.area/maxDistance)
+                    returnValue = (maxDistance + 1, Float(groupInfo.area)/maxDistance)
                 } else {
-                    returnValue = (groupInfo.area/maxDistance, maxDistance + 1)
+                    returnValue = (Float(groupInfo.area)/maxDistance, maxDistance + 1)
                 }
             }
             maxDistance = max(maxDistance, distance)

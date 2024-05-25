@@ -85,37 +85,6 @@ class BuildingEntity : Entity {
             print("Failed to load model entity named \(resourceName)")
         }
     }
-    
-    
-    /*
-    // No errors
-    init(resourceName: String) {
-        super.init()
-                
-                if let modelEntity = try? Entity.load(named: resourceName, in: realityKitContentBundle) {
-                    self.addChild(modelEntity)
-                } else {
-                    print("Failed to load model entity named \(resourceName)")
-                }
-
-    }
-    */
-    
-    /*
-     // Errors present
-    init(entityName: String, fileName : String, filePath : String, loc : Int, nom : Int, numberRefactorings : Int, refactorings : [Refactoring])
-    async throws {
-      
-            try await super.init(named: entityName, in: <#T##Bundle?#>)
-            self.fileName = fileName
-            self.filePath = filePath
-            self.loc = loc
-            self.nom = nom
-            self.numberRefactorings = numberRefactorings
-            self.refactorings = refactorings
-    }*/
-    
-
 }
 
 

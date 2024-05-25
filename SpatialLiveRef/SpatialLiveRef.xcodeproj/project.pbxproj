@@ -17,7 +17,6 @@
 		912E49A82BFDEA3000EEAADA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912E49A72BFDEA3000EEAADA /* Utils.swift */; };
 		912E49AA2BFDFD6100EEAADA /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912E49A92BFDFD6100EEAADA /* FileManager.swift */; };
 		912E49AD2BFE4EBB00EEAADA /* BuildingArrangement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912E49AC2BFE4EBB00EEAADA /* BuildingArrangement.swift */; };
-		913092C22C00EFE7001EE136 /* MyBuildingArrangement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913092C12C00EFE7001EE136 /* MyBuildingArrangement.swift */; };
 		915533D02BFCE5FB00BCFA51 /* ProjectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915533CF2BFCE5FB00BCFA51 /* ProjectNode.swift */; };
 		91633F442BE3AD9A004399E4 /* Prints in Resources */ = {isa = PBXBuildFile; fileRef = 91633F432BE3AD9A004399E4 /* Prints */; };
 		91633F482BE3D850004399E4 /* BuildingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91633F472BE3D850004399E4 /* BuildingView.swift */; };
@@ -38,7 +37,6 @@
 		912E49A72BFDEA3000EEAADA /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		912E49A92BFDFD6100EEAADA /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		912E49AC2BFE4EBB00EEAADA /* BuildingArrangement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingArrangement.swift; sourceTree = "<group>"; };
-		913092C12C00EFE7001EE136 /* MyBuildingArrangement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBuildingArrangement.swift; sourceTree = "<group>"; };
 		915533CF2BFCE5FB00BCFA51 /* ProjectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNode.swift; sourceTree = "<group>"; };
 		91633F432BE3AD9A004399E4 /* Prints */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Prints; path = ../../../../projects/RxJava/Prints; sourceTree = "<group>"; };
 		91633F472BE3D850004399E4 /* BuildingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingView.swift; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 			children = (
 				915533CF2BFCE5FB00BCFA51 /* ProjectNode.swift */,
 				912E49AC2BFE4EBB00EEAADA /* BuildingArrangement.swift */,
-				913092C12C00EFE7001EE136 /* MyBuildingArrangement.swift */,
 			);
 			path = BuildingArrangement;
 			sourceTree = "<group>";
@@ -218,7 +215,6 @@
 				912E49AD2BFE4EBB00EEAADA /* BuildingArrangement.swift in Sources */,
 				9111E42E2B7E0DD7007F9AAC /* ContentView.swift in Sources */,
 				91BDFF082BD95E9900DE33A8 /* TestView.swift in Sources */,
-				913092C22C00EFE7001EE136 /* MyBuildingArrangement.swift in Sources */,
 				912E49AA2BFDFD6100EEAADA /* FileManager.swift in Sources */,
 				9111E42C2B7E0DD7007F9AAC /* SpatialLiveRefApp.swift in Sources */,
 				919A02202BB1CE6F006CA35C /* FileReader.swift in Sources */,

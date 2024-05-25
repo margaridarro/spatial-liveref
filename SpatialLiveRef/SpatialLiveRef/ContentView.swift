@@ -27,14 +27,7 @@ struct ContentView : View {
         VStack {
             
             RealityView { content in
-                
-                /**
-                 Creating plane
-                 */
-                /*
-                let plane = generatePlane()
-                content.add(plane)
-                */
+
                 let (locMutilplier, nomMultiplier) = getFilesMetrics(files: buildingEntities)
                 
                 let fileTree = buildFileTree(files: buildingEntities, locMultiplier: locMutilplier, nomMultiplier: nomMultiplier)
@@ -51,21 +44,20 @@ struct ContentView : View {
                 
                 platformArray = auxPlatformArray.sorted(by: { $0.level > $1.level })
                 
-                let (_, cityWidth, cityDepth, groupInfo)  = generateBuildingArrangement(buildingEntities: buildingEntities, platformArray: platformArray)
+                let (_, cityWidth, groupInfo)  = generateBuildingArrangement(buildingEntities: buildingEntities, platformArray: platformArray)
                 
-                // TODO error check
-                
+                /**
+                 Plane generation
+                 */
                 let plane = generatePlane()
                 content.add(plane)
-
-                var count : Float = 1
                 
-                let platformInfo = centerPlaformPositions(groupInfo: groupInfo, cityWidth: cityWidth, cityDepth: cityDepth)
+                let platformInfo = centerPlaformPositions(groupInfo: groupInfo, cityWidth: cityWidth)
                 
-                
+                /**
+                 Platform generation
+                 */
                 for platform in platformInfo {
-                   // if(platform.key.contains("operators")) {
-                   // if(platform.key.contains("parallel") || platform.key.contains("operators") ) {
                         platformMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .random())
                         
                         let boxResource = MeshResource.generateBox(size: 1)
@@ -74,67 +66,22 @@ struct ContentView : View {
                         let platformCenter = calculateGroupCenter(groupInfo: platform.value)
                         let (platformWidth, platformDepth) = calculateGroupInfoSideMeasures(groupInfo: platform.value)
                         
-                        myEntity.transform.translation = [platformCenter.0/cityWidth, 0.001, platformCenter.1/cityDepth]
+                        myEntity.transform.translation = [platformCenter.0/cityWidth, 0.001, platformCenter.1/cityWidth]
                         
-                        print("\nName: ", platform.key)
-                        print("Area: ", platform.value.area)
-                        print("Side: ", platformWidth/cityWidth)
-                        print("Side1: ", platformDepth/cityDepth)
-                        print("Center: ", platformCenter)
-                        
-                        myEntity.transform.scale = [platformWidth/cityWidth, 0.01, platformDepth/cityDepth]
+                    myEntity.transform.scale = [platformWidth/cityWidth-0.05, 0.01, platformDepth/cityWidth-0.05]
                         
                         content.add(myEntity)
+                    
+                    /**
+                     Building generation
+                     */
+                    for buildingLocation in platform.value.locations {
                         
-                    if(platform.key.contains("operators")) {
-                        for buildingLocation in platform.value.locations {
-                            
-                            
-                            buildingEntities[buildingLocation.0]!.transform.translation = [buildingLocation.1/cityWidth, 0, buildingLocation.2/cityDepth]
-                            
-                            buildingEntities[buildingLocation.0]!.transform.scale = [buildingEntities[buildingLocation.0]!.width, 0.15+buildingEntities[buildingLocation.0]!.height, buildingEntities[buildingLocation.0]!.width]
-                            buildingEntities[buildingLocation.0]!.setResourceName(newResourceName: "BuildingSceneOrange")
-                            
-                            content.add(buildingEntities[buildingLocation.0]!)
-                        }
-                    } else if (platform.key.contains("parallel")) {
-                        for buildingLocation in platform.value.locations {
-                            
-                            
-                            buildingEntities[buildingLocation.0]!.transform.translation = [buildingLocation.1/cityWidth, 0, buildingLocation.2/cityDepth]
-                            
-                            buildingEntities[buildingLocation.0]!.transform.scale = [buildingEntities[buildingLocation.0]!.width, 0.15+buildingEntities[buildingLocation.0]!.height, buildingEntities[buildingLocation.0]!.width]
-                            
-                            buildingEntities[buildingLocation.0]!.setResourceName(newResourceName: "BuildingSceneYellow")
-                            content.add(buildingEntities[buildingLocation.0]!)
-                        }
-                    } else {
-                        for buildingLocation in platform.value.locations {
-                            
-                            
-                            buildingEntities[buildingLocation.0]!.transform.translation = [buildingLocation.1/cityWidth, 0, buildingLocation.2/cityDepth]
-                            
-                            buildingEntities[buildingLocation.0]!.transform.scale = [buildingEntities[buildingLocation.0]!.width, 0.15+buildingEntities[buildingLocation.0]!.height, buildingEntities[buildingLocation.0]!.width]
-                            
-                          
-                            content.add(buildingEntities[buildingLocation.0]!)
-                        }
+                        let entity = generateBuilding(buildingEntity: buildingEntities[buildingLocation.0]!, location: buildingLocation, cityWidth: cityWidth)
+
+                        content.add(buildingEntities[buildingLocation.0]!)
                     }
-                    //}
-                    count += 1
                 }
-                
-                /**
-                 Creating buildings from file information
-                 */
-                /*
-                for buildingEntity in buildingEntities {
-
-                    let entity = generateBuilding(buildingEntity: buildingEntity.value)
-
-                    content.add(entity)
-                }
-                */
             }
         }
     }

@@ -27,9 +27,7 @@ extension UIColor {
 }
 
 
-func getPlatformMaterial() -> (PhysicallyBasedMaterial) {
-    
-    //let platformMesh = MeshResource.generatePlane(width: 1, depth: 1)
+func getPlatformMaterial() -> PhysicallyBasedMaterial {
     
     var platformMaterial = PhysicallyBasedMaterial()
     platformMaterial.roughness = PhysicallyBasedMaterial.Roughness(floatLiteral: 1.0)
@@ -38,10 +36,9 @@ func getPlatformMaterial() -> (PhysicallyBasedMaterial) {
     return platformMaterial
 }
 
-func generatePlane() -> (ModelEntity){
+func generatePlane() -> ModelEntity {
     
     var planeMaterial = getPlatformMaterial()
-    //var planeMesh = MeshResource.generatePlane(width: 1, depth: 1)
     let platformMesh = MeshResource.generateBox(size: 1)
     planeMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .darkGray)
     
@@ -52,14 +49,11 @@ func generatePlane() -> (ModelEntity){
     return plane
 }
 
-func generateBuilding(buildingEntity: BuildingEntity) -> (BuildingEntity) {
+func generateBuilding(buildingEntity: BuildingEntity, location: (String, Float, Float), cityWidth: Float ) -> BuildingEntity {
     
-    let x_pos = (Float.random(in: -4..<4)) * 0.1
-    let z_pos = (Float.random(in: -4..<4)) * 0.1
+    buildingEntity.transform.translation = [location.1/cityWidth, 0, location.2/cityWidth]
     
     buildingEntity.transform.scale = [buildingEntity.width, 0.15+buildingEntity.height, buildingEntity.width]
-    
-    buildingEntity.transform.translation = [x_pos, 0, z_pos]
     
     return buildingEntity
 }
