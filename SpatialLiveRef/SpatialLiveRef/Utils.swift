@@ -57,3 +57,16 @@ func generateBuilding(buildingEntity: BuildingEntity, location: (String, Float, 
     
     return buildingEntity
 }
+
+
+func getPlatformParentFromPath(child: String, filePath: String, platforms: [String]) -> String {
+    var path = filePath.split(separator: "/")
+    path.reverse()
+    path.remove(at: 0)
+    for directory in path {
+        if String(directory) != child && platforms.contains(String(directory)) {
+            return String(directory)
+        }
+    }
+    return ""
+}

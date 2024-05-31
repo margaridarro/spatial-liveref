@@ -1,0 +1,172 @@
+
+module-info.java DONE.
+
+
+ParallelFailureHandling.java DONE.
+
+
+Extract Variable:
+
+Range: LogicalPosition: (113, 15) -> LogicalPosition: (113, 94)
+Method: from
+Node: from(source, Runtime.getRuntime().availableProcessors(), Flowable.bufferSize())
+File:/Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowable.java
+Number of Elements: 79
+Severity: 10.0
+LOC To Be Changed: 1
+
+
+Extract Variable:
+
+Range: LogicalPosition: (1188, 15) -> LogicalPosition: (1188, 88)
+Method: flatMap
+Node: flatMap(mapper, delayError, Flowable.bufferSize(), Flowable.bufferSize())
+File:/Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowable.java
+Number of Elements: 73
+Severity: 9.307692307692308
+LOC To Be Changed: 1
+
+
+Extract Variable:
+
+Range: LogicalPosition: (1157, 15) -> LogicalPosition: (1157, 83)
+Method: flatMap
+Node: flatMap(mapper, false, Flowable.bufferSize(), Flowable.bufferSize())
+File:/Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowable.java
+Number of Elements: 68
+Severity: 8.615384615384615
+LOC To Be Changed: 1
+
+
+Extract Variable:
+
+Range: LogicalPosition: (1222, 15) -> LogicalPosition: (1222, 81)
+Method: flatMap
+Node: flatMap(mapper, delayError, maxConcurrency, Flowable.bufferSize())
+File:/Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowable.java
+Number of Elements: 66
+Severity: 7.923076923076923
+LOC To Be Changed: 1
+
+
+Extract Variable:
+
+Range: LogicalPosition: (138, 15) -> LogicalPosition: (138, 63)
+Method: from
+Node: from(source, parallelism, Flowable.bufferSize())
+File:/Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowable.java
+Number of Elements: 48
+Severity: 7.230769230769231
+LOC To Be Changed: 1
+
+
+Extract Variable:
+
+Range: LogicalPosition: (1422, 15) -> LogicalPosition: (1422, 61)
+Method: flatMapIterable
+Node: flatMapIterable(mapper, Flowable.bufferSize())
+File:/Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowable.java
+Number of Elements: 46
+Severity: 6.538461538461538
+LOC To Be Changed: 1
+
+
+Extract Variable:
+
+Range: LogicalPosition: (1607, 15) -> LogicalPosition: (1607, 59)
+Method: flatMapStream
+Node: flatMapStream(mapper, Flowable.bufferSize())
+File:/Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowable.java
+Number of Elements: 44
+Severity: 5.846153846153846
+LOC To Be Changed: 1
+
+
+Extract Variable:
+
+Range: LogicalPosition: (562, 15) -> LogicalPosition: (562, 58)
+Method: sequentialDelayError
+Node: sequentialDelayError(Flowable.bufferSize())
+File:/Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowable.java
+Number of Elements: 43
+Severity: 5.153846153846154
+LOC To Be Changed: 1
+
+
+Extract Variable:
+
+Range: LogicalPosition: (1353, 15) -> LogicalPosition: (1353, 57)
+Method: concatMapDelayError
+Node: concatMapDelayError(mapper, 2, tillTheEnd)
+File:/Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowable.java
+Number of Elements: 42
+Severity: 4.461538461538462
+LOC To Be Changed: 1
+
+
+Extract Variable:
+
+Range: LogicalPosition: (382, 15) -> LogicalPosition: (382, 54)
+Method: runOn
+Node: runOn(scheduler, Flowable.bufferSize())
+File:/Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowable.java
+Number of Elements: 39
+Severity: 3.769230769230769
+LOC To Be Changed: 1
+
+
+Extract Variable:
+
+Range: LogicalPosition: (505, 15) -> LogicalPosition: (505, 48)
+Method: sequential
+Node: sequential(Flowable.bufferSize())
+File:/Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowable.java
+Number of Elements: 33
+Severity: 3.076923076923077
+LOC To Be Changed: 1
+
+
+Extract Variable:
+
+Range: LogicalPosition: (674, 15) -> LogicalPosition: (674, 43)
+Method: toSortedList
+Node: toSortedList(comparator, 16)
+File:/Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowable.java
+Number of Elements: 28
+Severity: 2.3846153846153846
+LOC To Be Changed: 1
+
+
+Extract Variable:
+
+Range: LogicalPosition: (617, 15) -> LogicalPosition: (617, 37)
+Method: sorted
+Node: sorted(comparator, 16)
+File:/Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowable.java
+Number of Elements: 22
+Severity: 1.6923076923076923
+LOC To Be Changed: 1
+
+
+Extract Variable:
+
+Range: LogicalPosition: (1288, 15) -> LogicalPosition: (1288, 35)
+Method: concatMap
+Node: concatMap(mapper, 2)
+File:/Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowable.java
+Number of Elements: 20
+Severity: 1.0
+LOC To Be Changed: 1
+
+
+ParallelFlowable.java DONE.
+
+
+ParallelTransformer.java DONE.
+
+
+ParallelFlowableConverter.java DONE.
+
+
+SingleOnSubscribe.java DONE.
+

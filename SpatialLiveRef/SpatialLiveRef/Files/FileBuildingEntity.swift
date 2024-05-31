@@ -22,6 +22,7 @@ class BuildingEntity : Entity {
     var refactorings : [Refactoring]
     var width : Float = 0.1
     var height : Float = 1
+    var platforms : [Int] = []
 
     init(fileName : String, filePath : String, loc : Int, nom : Int, numberRefactorings : Int, refactorings : [Refactoring]) {
         self.fileName = fileName
@@ -84,6 +85,17 @@ class BuildingEntity : Entity {
         } else {
             print("Failed to load model entity named \(resourceName)")
         }
+    }
+}
+
+extension BuildingEntity : Comparable {
+    
+    static func == (lhs: BuildingEntity, rhs: BuildingEntity) -> Bool {
+        return lhs.filePath == rhs.filePath
+    }
+    
+    static func < (lhs: BuildingEntity, rhs: BuildingEntity) -> Bool {
+        return lhs.platforms.max()! < rhs.platforms.max()!
     }
 }
 

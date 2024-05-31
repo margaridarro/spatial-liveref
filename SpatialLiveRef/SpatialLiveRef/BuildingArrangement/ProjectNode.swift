@@ -44,17 +44,18 @@ extension Node where String: Equatable {
     }
 }
 
-func getDirectoriesWithFiles(node : Node<String>, directoriesArray : inout [(String, Int)], level: Int) {
+func getDirectoriesWithFiles(node : Node<String>, directoriesArray : inout [(String, Int)], directoriesNameArray : inout [String], level: Int) {
     
     for child in node.children {
         if child.value.contains(".java") {
             directoriesArray.append((node.value, level))
+            directoriesNameArray.append(node.value)
             break
         }
     }
     
     for child in node.children {
-        getDirectoriesWithFiles(node: child, directoriesArray: &directoriesArray, level: level+1)
+        getDirectoriesWithFiles(node: child, directoriesArray: &directoriesArray, directoriesNameArray: &directoriesNameArray, level: level+1)
     }
 }
  

@@ -17,154 +17,188 @@ class Group {
         self.fileBuildings = fileBuildings
         self.subgroups = subgroups
     }
+    
+   
 }
-
 
 struct GroupInfo {
     var area: Int
     var locations: [(String, Float, Float)]  // (filePath, x, y)
 }
 
-func canPlace(grid: inout [[(String, String)]], x: Float, y: Float, cityWidth: Float, groupID: String) -> Bool {
-    if x + 1 > cityWidth || y + 1 > cityWidth {
-        return false
-    }
-    let intX = Int(x)
-    let intY = Int(y)
-    let intWidth = 1
+
+class City {
+    var grid : [[(String, String)]]
+    var width : Float
+    let rootGroup = Group(id: "ProjectName")
     
-    for i in intX..<intX + intWidth {
-        for j in intY..<intY + intWidth {
-            if (grid[i][j].1 != " ") {
+    init(buildingEntities: [String: BuildingEntity] ) {
+        self.grid = [[]]
+        self.width = sqrtf(Float(buildingEntities.count))
+    }
+    
+    func canPlace(x: Float, y: Float, groupID: String) -> Bool {
+        if x + 1 > width || y + 1 > width {
+            return false
+        }
+        let intX = Int(x)
+        let intY = Int(y)
+        let intWidth = 1
+        
+        for i in intX..<intX + intWidth {
+            for j in intY..<intY + intWidth {
+                if (grid[i][j].1 != " ") {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+
+    func placeBuilding(x: Float, y: Float, id: String, groupID: String) {
+        let intX = Int(x)
+        let intY = Int(y)
+
+        for i in intX..<intX + 1 {
+            for j in intY..<intY + 1 {
+                grid[i][j] = (id, groupID)
+            }
+        }
+    }
+
+
+    func findPositionForBuilding(groupID: String) -> (Float, Float)? {
+        for x in 0..<Int(width) {
+            for y in 0..<Int(width) {
+                
+                if (grid[x][y].1 != " ") {
+                    if ((grid[x][y].1 != groupID || !isSubgroup(groupID, of: subgroupWithID(grid[x][y].1, in: rootGroup)!) )) {
+                        break
+                    }
+                }
+                if canPlace(x: Float(x), y: Float(y), groupID: groupID) {
+                    return (Float(x), Float(y))
+                }
+            }
+        }
+        return nil
+    }
+
+    func organizeGroup(group: Group, groupInfo: inout [String: GroupInfo]) -> Bool {
+        for buildingEntity in group.fileBuildings.values.sorted(by: >) {
+            print("\n", buildingEntity.filePath, buildingEntity.platforms.max()!)
+            if let (x, y) = findPositionForBuilding(groupID: group.id) {
+                placeBuilding(x: x, y: y, id: buildingEntity.filePath, groupID: group.id)
+                if groupInfo[group.id] == nil {
+                    groupInfo[group.id] = GroupInfo(area: 0, locations: [])
+                }
+                groupInfo[group.id]?.area += 1
+                groupInfo[group.id]?.locations.append((buildingEntity.filePath, x, y))
+            } else {
                 return false
             }
         }
-    }
-    return true
-}
-
-func placeBuilding(grid: inout [[(String, String)]], x: Float, y: Float, id: String, groupID: String) {
-    let intX = Int(x)
-    let intY = Int(y)
-
-    for i in intX..<intX + 1 {
-        for j in intY..<intY + 1 {
-            grid[i][j] = (id, groupID)
-        }
-    }
-}
-
-
-func findPositionForBuilding(grid: inout [[(String, String)]], cityWidth: Float, groupID: String) -> (Float, Float)? {
-    for x in 0..<Int(cityWidth) {
-        for y in 0..<Int(cityWidth) {
-            if (grid[x][y].1 != groupID && grid[x][y].1 != " ") {
-                break
-            }
-            if canPlace(grid: &grid, x: Float(x), y: Float(y), cityWidth: cityWidth, groupID: groupID) {
-                return ( Float(x), Float(y))
+        for subgroup in group.subgroups {
+            if !organizeGroup(group: subgroup, groupInfo: &groupInfo) {
+                return false
             }
         }
+        return true
     }
-    return nil
-}
 
-func organizeGroup(grid: inout [[(String, String)]], group: Group, cityWidth: Float, groupInfo: inout [String: GroupInfo]) -> Bool {
-    for buildingEntity in group.fileBuildings {
-        if let (x, y) = findPositionForBuilding(grid: &grid, cityWidth: cityWidth, groupID: group.id) {
-            placeBuilding(grid: &grid, x: x, y: y, id: buildingEntity.key, groupID: group.id)
-            let area = 1
-            if groupInfo[group.id] == nil {
-                groupInfo[group.id] = GroupInfo(area: 0, locations: [])
-            }
-            groupInfo[group.id]?.area += area
-            groupInfo[group.id]?.locations.append((buildingEntity.key, x, y))
-        } else {
-            return false
-        }
-    }
-    for subgroup in group.subgroups {
-        if !organizeGroup(grid: &grid, group: subgroup, cityWidth: cityWidth, groupInfo: &groupInfo) {
-            return false
-        }
-    }
-    return true
-}
+    func organizeBuildings(multiplier: Float) -> ([String: GroupInfo])? {
+        var groupInfo: [String : GroupInfo] = [:]
 
-func organizeBuildings(rootGroup: Group, initialCityWidth: Float, multiplier: Float) -> ([[(String, String)]], Float, [String: GroupInfo])? {
-    var cityWidth = initialCityWidth
-    var groupInfo: [String : GroupInfo] = [:]
+        while true {
 
-    while true {
+            grid = Array(repeating: Array(repeating: (" "," "), count: Int(width)), count: Int(width))
+            groupInfo = [:]
 
-        var grid = Array(repeating: Array(repeating: (" "," "), count: Int(cityWidth)), count: Int(cityWidth))
-        groupInfo = [:]
-
-        if organizeGroup(grid: &grid, group: rootGroup, cityWidth: cityWidth, groupInfo: &groupInfo) {
-            return (grid, cityWidth, groupInfo)
-        } else {
-            // Increase the city size by the multiplier and try again
-            cityWidth *= multiplier
-        }
-    }
-}
-
-func generateBuildingArrangement (buildingEntities : [String : BuildingEntity], platformArray: [(String, Int)]) ->  ([[(String, String)]], Float, [String: GroupInfo]) {
-    
-    // platform array must be ordered from highest to lowest level
-    let rootGroup = Group(id: "ProjectName") // TODO insert project name
-    
-    for platform in platformArray {
-        let group = Group(id: platform.0)
-        for building in buildingEntities {
-            if building.key.contains(platform.0) {
-                group.fileBuildings[building.key] = building.value
-            }
-        }
-        rootGroup.subgroups.append(group)
-    }
-    
-    let initialCityWidth = sqrtf(Float(buildingEntities.count))
-    let multiplier : Float = 1.2
-    
-    
-    if let (cityGrid, finalCityWidth, groupInfo) = organizeBuildings(rootGroup: rootGroup, initialCityWidth: initialCityWidth, multiplier: multiplier) {
-        print("City grid (final size \(finalCityWidth) x \(finalCityWidth)):")
-        
-        printGrid(grid: cityGrid)
-        /*
-        for (groupId, info) in groupInfo {
-            print("Group \(groupId):")
-            print("  Area occupied: \(info.area)")
-            for (x, y, width) in info.locations {
-                print("  Building at (\(x), \(y)) with width \(width)")
-            }
-        }*/
-        return (cityGrid, Float(finalCityWidth), groupInfo)
-    } else {
-        print("Failed to organize buildings within the city.")
-    }
-    
-    return ([[(" ", " ")]], 0, ["" : GroupInfo(area: 0, locations: [("", 0, 0)])])
-}
-
-func printGrid(grid: [[(String, String)]]) {
-    for row in grid {
-        var rowString = ""
-        for (id, groupID) in row {
-            if id.isEmpty {
-                // Empty space
-                rowString += String(repeating: " ", count: 5) + "(0)"
+            if organizeGroup(group: rootGroup, groupInfo: &groupInfo) {
+                return groupInfo
             } else {
-                // Building or group present
-                let formattedCell = /*\(id.count)*/"(\(groupID))"
-                let padding = String(repeating: " ", count: max(0, 5 - formattedCell.count))
-                rowString += formattedCell + padding + " "
+                // Increase the city size by the multiplier and try again
+                width *= multiplier
             }
         }
-        print(rowString)
+    }
+
+    func generateBuildingArrangement (buildingEntities : [String : BuildingEntity], platformArray: [(String, Int)]) ->  ([[(String, String)]], Float, [String: GroupInfo]) {
+        
+        for platform in platformArray {
+            let group = Group(id: platform.0)
+            for building in buildingEntities {
+                if building.key.contains(platform.0) {
+                    group.fileBuildings[building.key] = building.value
+                    group.fileBuildings[building.key]!.platforms.append(platform.1)
+                }
+            }
+            rootGroup.subgroups.append(group)
+        }
+        
+        let multiplier : Float = 1.2
+        
+        if let groupInfo = organizeBuildings(multiplier: multiplier) {
+            print("City grid (final size \(width) x \(width)):")
+            
+            printGrid(grid: grid)
+   
+            return (grid, width, groupInfo)
+        } else {
+            print("Failed to organize buildings within the city.")
+        }
+        
+        return ([[(" ", " ")]], 0, ["" : GroupInfo(area: 0, locations: [("", 0, 0)])])
+    }
+
+    func printGrid(grid: [[(String, String)]]) {
+        for row in grid {
+            var rowString = ""
+            for (id, groupID) in row {
+                if id.isEmpty {
+                    // Empty space
+                    rowString += String(repeating: " ", count: 5) + "(0)"
+                } else {
+                    // Building or group present
+                    let formattedCell = /*\(id.count)*/"(\(groupID))"
+                    let padding = String(repeating: " ", count: max(0, 5 - formattedCell.count))
+                    rowString += formattedCell + padding + " "
+                }
+            }
+            print(rowString)
+        }
+    }
+    
+    func isSubgroup(_ potentialSubgroupID: String, of parentGroup: Group) -> Bool {
+        if potentialSubgroupID == parentGroup.id {
+            return true
+        }
+        
+        for subgroup in parentGroup.subgroups {
+            if isSubgroup(potentialSubgroupID, of: subgroup) {
+                return true
+            }
+        }
+        
+        return false
+    }
+
+    func subgroupWithID(_ id: String, in group: Group) -> Group? {
+        if group.id == id {
+            return group
+        }
+        
+        for subgroup in group.subgroups {
+            if let foundSubgroup = subgroupWithID(id, in: subgroup) {
+                return foundSubgroup
+            }
+        }
+        
+        return nil
     }
 }
+
+
 
 
 

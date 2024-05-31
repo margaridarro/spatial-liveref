@@ -1,0 +1,48 @@
+
+
+File: module-info.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/module/module-info.java
+Metrics:
+   LOC: 30
+   NOM: 0
+   Number of Refactorings: 0
+
+
+File: ParallelFailureHandling.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFailureHandling.java
+Metrics:
+   LOC: 41
+   NOM: 3
+   Number of Refactorings: 0
+
+
+File: ParallelFlowable.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowable.java
+Metrics:
+   LOC: 1631
+   NOM: 54
+   Number of Refactorings: 14
+
+
+File: ParallelTransformer.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelTransformer.java
+Metrics:
+   LOC: 32
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: ParallelFlowableConverter.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/parallel/ParallelFlowableConverter.java
+Metrics:
+   LOC: 33
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: SingleOnSubscribe.java
+File Path: /Users/margaridaraposo/Documents/projects/RxJava/src/main/java/io/reactivex/rxjava3/core/SingleOnSubscribe.java
+Metrics:
+   LOC: 30
+   NOM: 1
+   Number of Refactorings: 0
