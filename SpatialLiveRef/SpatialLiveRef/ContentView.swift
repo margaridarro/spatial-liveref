@@ -79,8 +79,6 @@ struct ContentView : View {
                     content.add(plane)
                     
                     let locations = centerPlaformPositions(city: city)
-                    
-                     var count : Float = 0
 
                     /**
                      Platform generation
@@ -102,8 +100,7 @@ struct ContentView : View {
                         myEntity.transform.scale = [(platformWidth+1)/city.width, 0.005, (platformDepth+1)/city.width]
                         
                         content.add(myEntity)
-                        count += Float(1)
-                        
+
                         /**
                          Building generation
                          */
