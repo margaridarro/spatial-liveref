@@ -27,7 +27,8 @@ struct ContentView : View {
         VStack {
             
             RealityView { content in
-
+                
+                /*
                 let (locMutilplier, nomMultiplier) = getFilesMetrics(files: buildingEntities)
                 
                 let fileTree = buildFileTree(files: buildingEntities, locMultiplier: locMutilplier, nomMultiplier: nomMultiplier)
@@ -113,8 +114,10 @@ struct ContentView : View {
                             content.add(entity)
                         }
                     }
-                }
+                }*/
             }
+            
+            FileView()
         }
     }
 }

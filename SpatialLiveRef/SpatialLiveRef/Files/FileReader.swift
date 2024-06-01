@@ -185,7 +185,6 @@ func getProjectFiles () -> ([String : BuildingEntity], [[String]], [[String]]) {
         print("\nRefactorings Error info: \(error)\n")
         return (buildingEntities, file_list, [["1"]])
     }
-    print("AAAAAAAAA Refactorings:", refactorings_list.count)
     return (buildingEntities, file_list, refactorings_list)
 }
 
