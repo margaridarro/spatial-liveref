@@ -7,7 +7,7 @@
 
 import Foundation
 
-func getProjectFiles (file_path : String, refactorings_path : String) -> ([String : BuildingEntity], [[String]], [[String]]) {
+func getProjectFiles () -> ([String : BuildingEntity], [[String]], [[String]]) {
 
     /*
     // LPOO project

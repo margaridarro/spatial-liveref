@@ -53,7 +53,7 @@ struct ContentView : View {
                             group.fileBuildings[building.key] = building.value
                             group.area += 1
                         } else if building.key.contains("/" + platform.0 + "/") {
-                            group.area += 2
+                            group.area += 1
                         }
                         
                     }
@@ -62,7 +62,7 @@ struct ContentView : View {
                     } else {
                         rootGroup.groupWithID(parentID)?.subgroups.append(group)
                     }
-                    group.level = rootGroup.calculateLevel(of:group)!
+                    group.level = Float(rootGroup.calculateLevel(of:group)!)
                 }
                 
                 let city = MyCity(buildingEntities: buildingEntities, rootGroup: rootGroup)
@@ -84,36 +84,32 @@ struct ContentView : View {
                      Platform generation
                      */
                     for platform in locations.keys {
-
-                        platformMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .random())
-                        
-                        let boxResource = MeshResource.generateBox(size: 1)
-                        let myEntity = ModelEntity(mesh: boxResource, materials: [platformMaterial])
-                        
                         let group = rootGroup.groupWithID(platform)!
-                        
-                        let (platformWidth, platformDepth) = calculatePlatformMeasures(groupID: platform , locations: locations[group.id]!, rootGroup: city.rootGroup, city: city)
-                        let platformCenter = calculateGroupCenter(x: platformWidth, y: platformDepth, cityWidth: city.width)
-                        
-                        myEntity.transform.translation = [platformCenter.0/city.width, 0.001+0.001*Float(rootGroup.groupWithID(platform)!.level), platformCenter.1/city.width]
-                        
-                        myEntity.transform.scale = [(platformWidth+1)/city.width, 0.005, (platformDepth+1)/city.width]
-                        
-                        content.add(myEntity)
-
+                       // if (platform.contains("FloorPaint") || platform.contains("elements")) {
+                            platformMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .random())
+                            
+                            let boxResource = MeshResource.generateBox(size: 1)
+                            let myEntity = ModelEntity(mesh: boxResource, materials: [platformMaterial])
+                            
+                            
+                            
+                            let (platformWidth, platformDepth, xSum, ySum) = calculatePlatformMeasures(groupID: platform , locations: locations[group.id]!, rootGroup: city.rootGroup, city: city)
+                            
+                            let platformCenter = calculateGroupCenter(x: xSum, y: ySum, cityWidth: city.width)
+                            
+                            myEntity.transform.translation = [platformCenter.0/city.width, 0.0015+0.001*Float(group.level), platformCenter.1/city.width]
+                            print(platform)
+                            print(0.0015+0.001*Float(group.level))
+                            myEntity.transform.scale = [(platformWidth+0.8)/city.width, 0.005, (platformDepth+0.8)/city.width]
+                            
+                            
+                            content.add(myEntity)
+                       // }
                         /**
                          Building generation
                          */
                         for buildingLocation in locations[platform]! {
                             let entity = generateBuilding(buildingEntity: buildingEntities[buildingLocation.0]!, location: buildingLocation, cityWidth: city.width)
-                            
-                            if platform.contains("FloorPaint"){
-                                entity.setResourceName(newResourceName: "BuildingSceneOrange")
-                            }
-                            if platform.contains("game") {
-                                //entity.setResourceName(newResourceName: "BuildingSceneYellow")
-                            }
-                            
                             content.add(entity)
                         }
                     }
@@ -124,5 +120,5 @@ struct ContentView : View {
 }
 
 #Preview(windowStyle: .volumetric) {
-    ContentView(buildingEntities: getProjectFiles(file_path: "projects/RxJava/AutoPrints/files.txt", refactorings_path: "projects/RxJava/AutoPrints/refactorings.txt").0, file_list: getProjectFiles(file_path: "projects/RxJava/AutoPrints/files.txt", refactorings_path: "projects/RxJava/AutoPrints/refactorings.txt").1, refactoring_list: getProjectFiles(file_path: "projects/RxJava/AutoPrints/files.txt", refactorings_path: "projects/RxJava/AutoPrints/refactorings.txt").2)
+    ContentView(buildingEntities: getProjectFiles().0, file_list: getProjectFiles().1, refactoring_list: getProjectFiles().2)
 }

@@ -15,7 +15,7 @@ class MyGroup {
     var area = 0
     var width = 0
     var depth = 0
-    var level = 0
+    var level : Float = 0
     
     init(id: String, fileBuildings: [String : BuildingEntity] = [:], subgroups: [MyGroup] = []) {
         self.id = id
@@ -104,7 +104,7 @@ class MyCity {
     var width : Float
     var rootGroup : MyGroup
     var groupLocations : [String: [(String, Float, Float)]] = [:] //groupID : locations
-    var levels = 0
+    var levels : Float = 0
     
     init(buildingEntities: [String: BuildingEntity], rootGroup: MyGroup) {
         self.width = sqrtf(Float(buildingEntities.count))
@@ -205,15 +205,9 @@ class MyCity {
         
         var success = false
         if !group.fileBuildings.isEmpty {
-            if !group.subgroups.isEmpty && group.area / Int(width) > 1{
-                while group.area % Int(width) != 0 {
-                    group.area += 1
-                }
-            }
-            
             if placePlatform(group: group) {
                 success = true
-                levels += 1
+                levels += Float(0.7)
             }
         }
         group.level += levels
@@ -285,14 +279,14 @@ func calculateGroupCenter(x: Float, y: Float, cityWidth: Float) -> (Float, Float
 }
 
 
-func calculatePlatformMeasures(groupID: String, locations: [(String, Float, Float)], rootGroup: MyGroup, city: MyCity) -> (Float, Float) {
+func calculatePlatformMeasures(groupID: String, locations: [(String, Float, Float)], rootGroup: MyGroup, city: MyCity) -> (Float, Float, Float, Float) {
     
     var foundFirst = false
     var x : (Int, Int) = (0,0)
     var y : (Int, Int) = (0,0)
     
     if locations.count == 1 {
-        return (1, 1)
+        return (1, 1, locations.first!.1, locations.first!.2)
     }
     
     for i in 0..<Int(city.width){
@@ -322,7 +316,7 @@ func calculatePlatformMeasures(groupID: String, locations: [(String, Float, Floa
         }
     }
     
-    return (Float(x.1-x.0), Float(y.1-y.0))
+    return (Float(x.1 - x.0), Float(y.1-y.0), Float(x.0+x.1), Float(y.0+y.1))
 
 }
 

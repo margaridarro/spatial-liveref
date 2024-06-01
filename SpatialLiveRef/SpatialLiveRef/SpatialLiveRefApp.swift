@@ -10,8 +10,7 @@ import SwiftUI
 @main
 struct SpatialLiveRefApp: App {
     
-    let (fileBuildings, files, refactorings) = getProjectFiles(file_path: "projects/RxJava/AutoPrints/files.txt", refactorings_path: "projects/RxJava/AutoPrints/refactorings.txt")
-    //let (fileBuildings, files, refactorings) = getProjectFiles(file_path: "projects/RxJava/Prints/files.txt", refactorings_path: "projects/RxJava/Prints/refactorings.txt")
+    let (fileBuildings, files, refactorings) = getProjectFiles()
 
     var body: some Scene {
         WindowGroup {

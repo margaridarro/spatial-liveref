@@ -20,8 +20,7 @@
 		915533D02BFCE5FB00BCFA51 /* ProjectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915533CF2BFCE5FB00BCFA51 /* ProjectNode.swift */; };
 		91633F442BE3AD9A004399E4 /* Prints in Resources */ = {isa = PBXBuildFile; fileRef = 91633F432BE3AD9A004399E4 /* Prints */; };
 		91633F482BE3D850004399E4 /* BuildingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91633F472BE3D850004399E4 /* BuildingView.swift */; };
-		917D8CF02C04F07E0006DFB6 /* files.txt in Resources */ = {isa = PBXBuildFile; fileRef = 917D8CEE2C04F07E0006DFB6 /* files.txt */; };
-		917D8CF12C04F07E0006DFB6 /* refactorings.txt in Resources */ = {isa = PBXBuildFile; fileRef = 917D8CEF2C04F07E0006DFB6 /* refactorings.txt */; };
+		917624472C09EC350044610A /* AutoPrints in Resources */ = {isa = PBXBuildFile; fileRef = 917624462C09EC350044610A /* AutoPrints */; };
 		917D8CF32C05E4610006DFB6 /* NewBuildingArrangement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917D8CF22C05E4610006DFB6 /* NewBuildingArrangement.swift */; };
 		919A02202BB1CE6F006CA35C /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A021F2BB1CE6F006CA35C /* FileReader.swift */; };
 		91BDFF082BD95E9900DE33A8 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDFF072BD95E9900DE33A8 /* TestView.swift */; };
@@ -43,13 +42,10 @@
 		915533CF2BFCE5FB00BCFA51 /* ProjectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNode.swift; sourceTree = "<group>"; };
 		91633F432BE3AD9A004399E4 /* Prints */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Prints; path = ../../../../projects/RxJava/Prints; sourceTree = "<group>"; };
 		91633F472BE3D850004399E4 /* BuildingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingView.swift; sourceTree = "<group>"; };
-		917D8CEE2C04F07E0006DFB6 /* files.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = files.txt; sourceTree = "<group>"; };
-		917D8CEF2C04F07E0006DFB6 /* refactorings.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = refactorings.txt; sourceTree = "<group>"; };
+		917624462C09EC350044610A /* AutoPrints */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AutoPrints; sourceTree = "<group>"; };
 		917D8CF22C05E4610006DFB6 /* NewBuildingArrangement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBuildingArrangement.swift; sourceTree = "<group>"; };
 		919A021F2BB1CE6F006CA35C /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
 		91BDFF072BD95E9900DE33A8 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
-		94024558AA5FB95D032F4C90 /* files.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = files.txt; sourceTree = "<group>"; };
-		CAA8CC3D25EF52DD34134F37 /* refactorings.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = refactorings.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +80,7 @@
 		9111E4262B7E0DD7007F9AAC /* SpatialLiveRef */ = {
 			isa = PBXGroup;
 			children = (
-				91D5B8742C0787CC00B9B30A /* AutoPrints */,
+				917624462C09EC350044610A /* AutoPrints */,
 				912E49AF2BFE50DF00EEAADA /* BuildingArrangement */,
 				91633F432BE3AD9A004399E4 /* Prints */,
 				9111E42B2B7E0DD7007F9AAC /* SpatialLiveRefApp.swift */,
@@ -143,25 +139,6 @@
 				91633F472BE3D850004399E4 /* BuildingView.swift */,
 			);
 			path = Archive;
-			sourceTree = "<group>";
-		};
-		917D8CED2C04F0660006DFB6 /* Prints_RXjava */ = {
-			isa = PBXGroup;
-			children = (
-				917D8CEE2C04F07E0006DFB6 /* files.txt */,
-				917D8CEF2C04F07E0006DFB6 /* refactorings.txt */,
-			);
-			path = Prints_RXjava;
-			sourceTree = "<group>";
-		};
-		91D5B8742C0787CC00B9B30A /* AutoPrints */ = {
-			isa = PBXGroup;
-			children = (
-				917D8CED2C04F0660006DFB6 /* Prints_RXjava */,
-				94024558AA5FB95D032F4C90 /* files.txt */,
-				CAA8CC3D25EF52DD34134F37 /* refactorings.txt */,
-			);
-			name = AutoPrints;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,8 +204,7 @@
 			files = (
 				9111E4352B7E0DD8007F9AAC /* Preview Assets.xcassets in Resources */,
 				91633F442BE3AD9A004399E4 /* Prints in Resources */,
-				917D8CF12C04F07E0006DFB6 /* refactorings.txt in Resources */,
-				917D8CF02C04F07E0006DFB6 /* files.txt in Resources */,
+				917624472C09EC350044610A /* AutoPrints in Resources */,
 				9111E4322B7E0DD8007F9AAC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
