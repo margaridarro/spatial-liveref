@@ -10,10 +10,10 @@ import RealityKit
 import RealityKitContent
 
 struct ContentView : View {
+    @ObservedObject var fileViewModel = FileViewModel()
+    @ObservedObject var refactoringViewModel = RefactoringViewModel()
     
-    var buildingEntities: [String : BuildingEntity]
-    var file_list: [[String]]
-    var refactoring_list: [[String]]
+    private let factory = Factory()
     
     @State private var enlarge = false
     @State private var showImmersiveSpace = false
@@ -21,13 +21,33 @@ struct ContentView : View {
 
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
-
+    
     var body: some View {
-        
-        VStack {
+ 
+        RealityView { content in
             
-            RealityView { content in
+            let plane = generatePlane()
+            content.add(plane)
 
+        } update: { content in
+            while !content.entities.isEmpty {
+                content.remove(content.entities.first!)
+            }
+            let plane = generatePlane()
+            content.add(plane)
+            //TODO use factory.buildingEntities, only compute new files
+            var buildingEntities = [String : BuildingEntity]()
+            
+            fileViewModel.files.forEach { file in
+                let buildingEntity = factory.createBuildingEntity(file: file)
+                buildingEntities[buildingEntity.filePath] = buildingEntity
+            }
+            
+            refactoringViewModel.refactorings.forEach { refactoring in
+                buildingEntities[refactoring.filePath]?.addRefactoring(refactoring: refactoring)
+            }
+            
+            if !fileViewModel.files.isEmpty {
                 let (locMutilplier, nomMultiplier) = getFilesMetrics(files: buildingEntities)
                 
                 let fileTree = buildFileTree(files: buildingEntities, locMultiplier: locMutilplier, nomMultiplier: nomMultiplier)
@@ -35,12 +55,12 @@ struct ContentView : View {
                 var platformArray : [(String, Int)] = []
                 var platformNameArray : [String] = []
                 var auxPlatformArray : [(fileName: String, level: Int)] = []
-
+                
                 getDirectoriesWithFiles(node: fileTree, directoriesArray: &platformArray,  directoriesNameArray: &platformNameArray,level: 0)
-
+                
                 auxPlatformArray = platformArray
                 platformArray = auxPlatformArray.sorted(by: { $0.level < $1.level })
-                print(platformArray)
+                
                 var platformMaterial = getPlatformMaterial()
                 
                 let rootGroup = MyGroup(id: "ProjectName")
@@ -69,42 +89,37 @@ struct ContentView : View {
                 
                 let cityGenerationSuccess = city.generateCity(group: rootGroup)
                 
+                /**
+                 City generation
+                 */
                 if cityGenerationSuccess {
                     city.printGrid()
                     
-                    /**
-                     Plane generation
-                     */
-                    let plane = generatePlane()
-                    content.add(plane)
                     
                     let locations = centerPlaformPositions(city: city)
-
+                    
                     /**
                      Platform generation
                      */
                     for platform in locations.keys {
                         let group = rootGroup.groupWithID(platform)!
-                       // if (platform.contains("FloorPaint") || platform.contains("elements")) {
-                            platformMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .random())
-                            
-                            let boxResource = MeshResource.generateBox(size: 1)
-                            let myEntity = ModelEntity(mesh: boxResource, materials: [platformMaterial])
-                            
-                            
-                            
-                            let (platformWidth, platformDepth, xSum, ySum) = calculatePlatformMeasures(groupID: platform , locations: locations[group.id]!, rootGroup: city.rootGroup, city: city)
-                            
-                            let platformCenter = calculateGroupCenter(x: xSum, y: ySum, cityWidth: city.width)
-                            
-                            myEntity.transform.translation = [platformCenter.0/city.width, 0.0015+0.001*Float(group.level), platformCenter.1/city.width]
-                            print(platform)
-                            print(0.0015+0.001*Float(group.level))
-                            myEntity.transform.scale = [(platformWidth+0.8)/city.width, 0.005, (platformDepth+0.8)/city.width]
-                            
-                            
-                            content.add(myEntity)
-                       // }
+                        
+                        platformMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .random())
+                        
+                        let boxResource = MeshResource.generateBox(size: 1)
+                        let myEntity = ModelEntity(mesh: boxResource, materials: [platformMaterial])
+                        
+                        let (platformWidth, platformDepth, xSum, ySum) = calculatePlatformMeasures(groupID: platform , locations: locations[group.id]!, rootGroup: city.rootGroup, city: city)
+                        
+                        let platformCenter = calculateGroupCenter(x: xSum, y: ySum, cityWidth: city.width)
+                        
+                        myEntity.transform.translation = [platformCenter.0/city.width, 0.0015+0.001*Float(group.level), platformCenter.1/city.width]
+                        
+                        myEntity.transform.scale = [(platformWidth+0.8)/city.width, 0.005, (platformDepth+0.8)/city.width]
+                        
+                        
+                        content.add(myEntity)
+                        
                         /**
                          Building generation
                          */
@@ -115,10 +130,22 @@ struct ContentView : View {
                     }
                 }
             }
+            
+        }.task {
+            let query = fileViewModel.query(filePath: nil, nRefactorings: nil, sortOption: nil)
+            fileViewModel.subscribe(to: query)
+    
+            refactoringViewModel.subscribe()
         }
+        /*.onAppear() {
+            let query = fileViewModel.query(filePath: nil, nRefactorings: nil, sortOption: nil)
+            fileViewModel.subscribe(to: query)
+        }.onDisappear(){
+            fileViewModel.unsubscribe()
+        }*/
     }
 }
 
 #Preview(windowStyle: .volumetric) {
-    ContentView(buildingEntities: getProjectFiles().0, file_list: getProjectFiles().1, refactoring_list: getProjectFiles().2)
+    ContentView()
 }

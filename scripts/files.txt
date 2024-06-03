@@ -1,0 +1,312 @@
+
+
+File: Application.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/Application.java
+Metrics:
+   LOC: 13
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: Game.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/Game.java
+Metrics:
+   LOC: 16
+   NOM: 3
+   Number of Refactorings: 1
+
+
+File: MenuState.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/controller/states/MenuState.java
+Metrics:
+   LOC: 113
+   NOM: 8
+   Number of Refactorings: 26
+
+
+File: LosingState.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/controller/states/LosingState.java
+Metrics:
+   LOC: 28
+   NOM: 4
+   Number of Refactorings: 8
+
+
+File: WinningState.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/controller/states/WinningState.java
+Metrics:
+   LOC: 33
+   NOM: 4
+   Number of Refactorings: 10
+
+
+File: PlayingState.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/controller/states/PlayingState.java
+Metrics:
+   LOC: 87
+   NOM: 6
+   Number of Refactorings: 21
+
+
+File: State.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/controller/states/State.java
+Metrics:
+   LOC: 10
+   NOM: 4
+   Number of Refactorings: 0
+
+
+File: StateController.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/controller/command/StateController.java
+Metrics:
+   LOC: 57
+   NOM: 11
+   Number of Refactorings: 8
+
+
+File: PlayerController.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/controller/command/PlayerController.java
+Metrics:
+   LOC: 66
+   NOM: 10
+   Number of Refactorings: 56
+
+
+File: PlayerViewer.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/viewer/game/PlayerViewer.java
+Metrics:
+   LOC: 8
+   NOM: 1
+   Number of Refactorings: 2
+
+
+File: LevelViewer.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/viewer/game/LevelViewer.java
+Metrics:
+   LOC: 57
+   NOM: 6
+   Number of Refactorings: 16
+
+
+File: LetterViewer.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/viewer/game/LetterViewer.java
+Metrics:
+   LOC: 8
+   NOM: 1
+   Number of Refactorings: 2
+
+
+File: WinViewer.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/viewer/game/WinViewer.java
+Metrics:
+   LOC: 26
+   NOM: 3
+   Number of Refactorings: 0
+
+
+File: FloorViewer.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/viewer/game/FloorViewer.java
+Metrics:
+   LOC: 9
+   NOM: 1
+   Number of Refactorings: 2
+
+
+File: ElementViewer.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/viewer/game/ElementViewer.java
+Metrics:
+   LOC: 6
+   NOM: 1
+   Number of Refactorings: 0
+
+
+File: WallViewer.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/viewer/game/WallViewer.java
+Metrics:
+   LOC: 8
+   NOM: 1
+   Number of Refactorings: 2
+
+
+File: LoseViewer.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/viewer/game/LoseViewer.java
+Metrics:
+   LOC: 19
+   NOM: 3
+   Number of Refactorings: 0
+
+
+File: GreenFloorPaintViewer.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/viewer/game/FloorPaint/GreenFloorPaintViewer.java
+Metrics:
+   LOC: 10
+   NOM: 1
+   Number of Refactorings: 2
+
+
+File: FloorPaintViewer.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/viewer/game/FloorPaint/FloorPaintViewer.java
+Metrics:
+   LOC: 10
+   NOM: 1
+   Number of Refactorings: 2
+
+
+File: BrownFloorPaintViewer.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/viewer/game/FloorPaint/BrownFloorPaintViewer.java
+Metrics:
+   LOC: 10
+   NOM: 1
+   Number of Refactorings: 2
+
+
+File: YellowFloorPaintViewer.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/viewer/game/FloorPaint/YellowFloorPaintViewer.java
+Metrics:
+   LOC: 10
+   NOM: 1
+   Number of Refactorings: 2
+
+
+File: CyanFloorPaintViewer.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/viewer/game/FloorPaint/CyanFloorPaintViewer.java
+Metrics:
+   LOC: 10
+   NOM: 1
+   Number of Refactorings: 2
+
+
+File: MenuViewer.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/viewer/menu/MenuViewer.java
+Metrics:
+   LOC: 33
+   NOM: 3
+   Number of Refactorings: 4
+
+
+File: LanternaGUI.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/viewer/gui/LanternaGUI.java
+Metrics:
+   LOC: 135
+   NOM: 22
+   Number of Refactorings: 15
+
+
+File: GUI.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/viewer/gui/GUI.java
+Metrics:
+   LOC: 22
+   NOM: 16
+   Number of Refactorings: 0
+
+
+File: Mode.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/model/mode/Mode.java
+Metrics:
+   LOC: 11
+   NOM: 4
+   Number of Refactorings: 0
+
+
+File: NormalMode.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/model/mode/NormalMode.java
+Metrics:
+   LOC: 19
+   NOM: 4
+   Number of Refactorings: 3
+
+
+File: InvisibleMode.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/model/mode/InvisibleMode.java
+Metrics:
+   LOC: 19
+   NOM: 4
+   Number of Refactorings: 3
+
+
+File: NoRepeatMode.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/model/mode/NoRepeatMode.java
+Metrics:
+   LOC: 24
+   NOM: 4
+   Number of Refactorings: 3
+
+
+File: Element.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/model/elements/Element.java
+Metrics:
+   LOC: 13
+   NOM: 4
+   Number of Refactorings: 2
+
+
+File: Letter.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/model/elements/Letter.java
+Metrics:
+   LOC: 6
+   NOM: 2
+   Number of Refactorings: 0
+
+
+File: Position.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/model/elements/Position.java
+Metrics:
+   LOC: 34
+   NOM: 9
+   Number of Refactorings: 3
+
+
+File: Player.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/model/elements/Player.java
+Metrics:
+   LOC: 6
+   NOM: 2
+   Number of Refactorings: 0
+
+
+File: Wall.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/model/elements/Wall.java
+Metrics:
+   LOC: 6
+   NOM: 2
+   Number of Refactorings: 0
+
+
+File: Floor.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/model/elements/Floor.java
+Metrics:
+   LOC: 6
+   NOM: 2
+   Number of Refactorings: 0
+
+
+File: FloorPaint.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/model/elements/FloorPaint.java
+Metrics:
+   LOC: 6
+   NOM: 2
+   Number of Refactorings: 0
+
+
+File: Menu.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/model/menu/Menu.java
+Metrics:
+   LOC: 44
+   NOM: 8
+   Number of Refactorings: 0
+
+
+File: LevelCreator.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/model/level/LevelCreator.java
+Metrics:
+   LOC: 68
+   NOM: 7
+   Number of Refactorings: 5
+
+
+File: Level.java
+File Path: /Users/margaridaraposo/Documents/projects/feup-lpoo/proj/src/main/java/com/g74/rollersplat/model/level/Level.java
+Metrics:
+   LOC: 58
+   NOM: 14
+   Number of Refactorings: 14

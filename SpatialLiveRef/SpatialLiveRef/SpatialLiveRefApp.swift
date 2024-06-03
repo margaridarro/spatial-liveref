@@ -6,15 +6,21 @@
 //
 
 import SwiftUI
+import FirebaseCore
+import FirebaseFirestore
 
 @main
 struct SpatialLiveRefApp: App {
     
-    let (fileBuildings, files, refactorings) = getProjectFiles()
+    init() {
+        FirebaseApp.configure()
+    }
+    
+   // let (fileBuildings, files, refactorings) = getProjectFiles()
 
     var body: some Scene {
         WindowGroup {
-            ContentView(buildingEntities: fileBuildings, file_list: files, refactoring_list: refactorings)
+            ContentView()
         }.windowStyle(.volumetric)
 
         ImmersiveSpace(id: "ImmersiveSpace") {

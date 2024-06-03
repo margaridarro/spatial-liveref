@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+/*
 func getProjectFiles () -> ([String : BuildingEntity], [[String]], [[String]]) {
 
     /*
@@ -18,7 +18,7 @@ func getProjectFiles () -> ([String : BuildingEntity], [[String]], [[String]]) {
     var file_list: [[String]] = []
     var refactorings_list: [[String]] = []
   
-    let fileURL = Bundle.main.url(forResource: "Prints/files", withExtension: "txt")
+    let fileURL = Bundle.main.url(forResource: "AutoPrints/files", withExtension: "txt")
    
     do {
         let text = try String(contentsOf: fileURL!, encoding: .utf8)
@@ -39,7 +39,7 @@ func getProjectFiles () -> ([String : BuildingEntity], [[String]], [[String]]) {
                 let n_refactorings : Int! = Int(n_refactorings_string)
                 
                 file_list.append([file_name, file_path, loc_string, nom_string, n_refactorings_string])
-                buildingEntities[file_path] = BuildingEntity(fileName: file_name, filePath: file_path, loc: loc, nom: nom, numberRefactorings: n_refactorings, refactorings: [])
+                buildingEntities[file_path] = BuildingEntity(fileName: file_name, filePath: file_path, loc: loc, nom: nom, numberRefactorings: n_refactorings)
             }
         }
     } catch {
@@ -47,7 +47,7 @@ func getProjectFiles () -> ([String : BuildingEntity], [[String]], [[String]]) {
         return ([:], [["0"]], [["0"]])
     }
     
-    let refactoringsURL = Bundle.main.url(forResource: "Prints/refactorings", withExtension: "txt")
+    let refactoringsURL = Bundle.main.url(forResource: "AutoPrints/refactorings", withExtension: "txt")
 
     do {
         let text_refactorings = try String(contentsOf: refactoringsURL!, encoding: .utf8)
@@ -185,9 +185,8 @@ func getProjectFiles () -> ([String : BuildingEntity], [[String]], [[String]]) {
         print("\nRefactorings Error info: \(error)\n")
         return (buildingEntities, file_list, [["1"]])
     }
-    print("AAAAAAAAA Refactorings:", refactorings_list.count)
     return (buildingEntities, file_list, refactorings_list)
 }
 
-
+*/
 
