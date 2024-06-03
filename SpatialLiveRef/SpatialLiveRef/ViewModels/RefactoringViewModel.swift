@@ -10,7 +10,7 @@ import FirebaseFirestore
 import SwiftUI
 
 class RefactoringViewModel : ObservableObject {
-    @Published var refactorings = [RefactoringModel]()
+    @Published var refactorings = [Refactoring]()
     private let db = Firestore.firestore()
     private var listener: ListenerRegistration? = nil
     private let baseQuery: Query = Firestore.firestore().collection("refactorings")
@@ -27,7 +27,7 @@ class RefactoringViewModel : ObservableObject {
      }
 
     func subscribe() {
-        
+        self.refactorings.removeAll()
         if listener == nil {
             
             listener = baseQuery.addSnapshotListener { [weak self] querySnapshot, error in
@@ -41,7 +41,8 @@ class RefactoringViewModel : ObservableObject {
                 
                 self.refactorings = documents.compactMap { document in
                     do {
-                        var refactoring = try document.data(as: RefactoringModel.self)
+                        var refactoring = try document.data(as: Refactoring.self)
+                        print("Refactoring fetched: \(refactoring.filePath)")
                         refactoring.reference = document.reference
                         return refactoring
                     } catch {

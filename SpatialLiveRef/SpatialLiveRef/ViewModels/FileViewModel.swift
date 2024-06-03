@@ -28,6 +28,8 @@ class FileViewModel : ObservableObject {
 
     func subscribe(to query: Query) {
         
+        self.files.removeAll()
+        
         if listener == nil {
             
             listener = query.addSnapshotListener { [weak self] querySnapshot, error in
@@ -42,6 +44,7 @@ class FileViewModel : ObservableObject {
                 self.files = documents.compactMap { document in
                     do {
                         var file = try document.data(as: File.self)
+                        print("Fetched: ", file.fileName)
                         file.reference = document.reference
                         return file
                     } catch {
@@ -86,13 +89,13 @@ class FileViewModel : ObservableObject {
         return filteredQuery
     }
     
-    /*
+    
     func getFiles() async {
         files.removeAll()
         do {
             let querySnapshot = try await db.collection("files").getDocuments()
             for document in querySnapshot.documents {
-                print("\(document.documentID) => \(document.data())")
+                //print("\(document.documentID) => \(document.data())")
                 try files.append(document.data(as: File.self))
             }
         } catch {
@@ -100,6 +103,7 @@ class FileViewModel : ObservableObject {
         }
     }
     
+    /*
     func fetchFiles() {
         
         files.removeAll()

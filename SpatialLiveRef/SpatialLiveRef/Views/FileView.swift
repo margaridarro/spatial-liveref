@@ -6,9 +6,7 @@
 //
 
 import Foundation
-import FirebaseFirestore
 import SwiftUI
-import RealityKit
 
 struct FileView: View {
     @ObservedObject var model = FileViewModel()

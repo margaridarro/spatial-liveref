@@ -6,9 +6,7 @@
 //
 
 import Foundation
-import FirebaseFirestore
 import SwiftUI
-import RealityKit
 
 struct RefactoringView: View {
     @ObservedObject var model = RefactoringViewModel()

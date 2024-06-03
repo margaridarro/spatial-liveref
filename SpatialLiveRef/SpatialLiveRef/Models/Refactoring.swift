@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 
 
-struct RefactoringModel : Identifiable, Codable {
+struct Refactoring : Identifiable, Codable {
     var id: String = UUID().uuidString
     var reference: DocumentReference?
     
@@ -33,13 +33,13 @@ struct RefactoringModel : Identifiable, Codable {
     }
 }
 
-extension RefactoringModel : Comparable {
+extension Refactoring : Comparable {
     
-    static func == (lhs: RefactoringModel, rhs: RefactoringModel) -> Bool {
+    static func == (lhs: Refactoring, rhs: Refactoring) -> Bool {
         return lhs.refactoringType == rhs.refactoringType && lhs.methodName == rhs.methodName && lhs.elements == rhs.elements && lhs.severity == rhs.severity && lhs.locToChange == rhs.locToChange && lhs.className == rhs.className
     }
     
-    static func < (lhs: RefactoringModel, rhs: RefactoringModel) -> Bool {
+    static func < (lhs: Refactoring, rhs: Refactoring) -> Bool {
         return lhs.severity < rhs.severity
     }
 }
@@ -54,6 +54,7 @@ enum RefactoringType : String, Codable {
  delete below
  convert above RefactoringModel to Refactoring
 */
+/*
 class Refactoring {
     
     var refactoringType: RefactoringType
@@ -87,3 +88,4 @@ extension Refactoring : Comparable {
     }
 }
 
+*/

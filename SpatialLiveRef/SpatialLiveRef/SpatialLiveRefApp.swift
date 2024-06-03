@@ -16,11 +16,11 @@ struct SpatialLiveRefApp: App {
         FirebaseApp.configure()
     }
     
-    let (fileBuildings, files, refactorings) = getProjectFiles()
+   // let (fileBuildings, files, refactorings) = getProjectFiles()
 
     var body: some Scene {
         WindowGroup {
-            ContentView(buildingEntities: fileBuildings, file_list: files, refactoring_list: refactorings)
+            ContentView()
         }.windowStyle(.volumetric)
 
         ImmersiveSpace(id: "ImmersiveSpace") {

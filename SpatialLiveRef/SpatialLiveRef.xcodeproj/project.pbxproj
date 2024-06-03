@@ -27,6 +27,7 @@
 		91633F442BE3AD9A004399E4 /* Prints in Resources */ = {isa = PBXBuildFile; fileRef = 91633F432BE3AD9A004399E4 /* Prints */; };
 		91633F482BE3D850004399E4 /* BuildingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91633F472BE3D850004399E4 /* BuildingView.swift */; };
 		917624472C09EC350044610A /* AutoPrints in Resources */ = {isa = PBXBuildFile; fileRef = 917624462C09EC350044610A /* AutoPrints */; };
+		91781F352C0DE63A00BF9C5C /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91781F342C0DE63A00BF9C5C /* Factory.swift */; };
 		917D8CF32C05E4610006DFB6 /* NewBuildingArrangement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917D8CF22C05E4610006DFB6 /* NewBuildingArrangement.swift */; };
 		919A02202BB1CE6F006CA35C /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919A021F2BB1CE6F006CA35C /* FileReader.swift */; };
 		91BDFF082BD95E9900DE33A8 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDFF072BD95E9900DE33A8 /* TestView.swift */; };
@@ -56,6 +57,7 @@
 		91633F432BE3AD9A004399E4 /* Prints */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Prints; path = ../../../../projects/RxJava/Prints; sourceTree = "<group>"; };
 		91633F472BE3D850004399E4 /* BuildingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingView.swift; sourceTree = "<group>"; };
 		917624462C09EC350044610A /* AutoPrints */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AutoPrints; sourceTree = "<group>"; };
+		91781F342C0DE63A00BF9C5C /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 		917D8CF22C05E4610006DFB6 /* NewBuildingArrangement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBuildingArrangement.swift; sourceTree = "<group>"; };
 		919A021F2BB1CE6F006CA35C /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
 		91BDFF072BD95E9900DE33A8 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
@@ -110,15 +112,16 @@
 				9111E42B2B7E0DD7007F9AAC /* SpatialLiveRefApp.swift */,
 				9111E42D2B7E0DD7007F9AAC /* ContentView.swift */,
 				9111E42F2B7E0DD7007F9AAC /* ImmersiveView.swift */,
+				91781F342C0DE63A00BF9C5C /* Factory.swift */,
 				910D3B3D2C0B694700548F46 /* Models */,
 				91D89D032C0B7C5000A2D4F5 /* ViewModels */,
 				91D89D062C0B80FF00A2D4F5 /* Views */,
 				913C6CA82C0DCEEE0002F220 /* Entities */,
 				912E49AF2BFE50DF00EEAADA /* BuildingArrangement */,
 				912E49AB2BFDFE0D00EEAADA /* Files */,
+				912E49A72BFDEA3000EEAADA /* Utils.swift */,
 				917624462C09EC350044610A /* AutoPrints */,
 				91633F432BE3AD9A004399E4 /* Prints */,
-				912E49A72BFDEA3000EEAADA /* Utils.swift */,
 				9111E4312B7E0DD8007F9AAC /* Assets.xcassets */,
 				910D3B402C0B6BDB00548F46 /* GoogleService-Info.plist */,
 				91D89D0C2C0C634900A2D4F5 /* Info.plist */,
@@ -296,6 +299,7 @@
 				910D3B3F2C0B696500548F46 /* File.swift in Sources */,
 				913C6CAC2C0DD33B0002F220 /* RefactoringViewModel.swift in Sources */,
 				91633F482BE3D850004399E4 /* BuildingView.swift in Sources */,
+				91781F352C0DE63A00BF9C5C /* Factory.swift in Sources */,
 				9111E4302B7E0DD7007F9AAC /* ImmersiveView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
