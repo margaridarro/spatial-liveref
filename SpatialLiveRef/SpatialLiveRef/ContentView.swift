@@ -35,7 +35,7 @@ struct ContentView : View {
             }
             let plane = generatePlane()
             content.add(plane)
-            //TODO use facctory.buildingEntities, only compute new files
+            //TODO use factory.buildingEntities, only compute new files
             var buildingEntities = [String : BuildingEntity]()
             
             fileViewModel.files.forEach { file in

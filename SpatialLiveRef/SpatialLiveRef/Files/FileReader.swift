@@ -186,7 +186,7 @@ func getProjectFiles () -> ([String : BuildingEntity], [[String]], [[String]]) {
         return (buildingEntities, file_list, [["1"]])
     }
     return (buildingEntities, file_list, refactorings_list)
-}*/
+}
 
-
+*/
 
