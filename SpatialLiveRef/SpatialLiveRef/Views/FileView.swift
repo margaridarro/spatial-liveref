@@ -9,30 +9,26 @@ import Foundation
 import FirebaseFirestore
 import SwiftUI
 import RealityKit
-import RealityKitContent
 
 struct FileView: View {
-    @ObservedObject var fileViewModel = FileViewModel()
+    @ObservedObject var model = FileViewModel()
     @State var showFilterView = false
     @State var selectedFilePath: String? = nil
     @State var minimumNRefactorings: Int? = nil
     @State var selectedSortOption: String? = nil
     
     var body: some View {
-        NavigationStack{
-            List(fileViewModel.files){ file in
-                VStack {
-                    Text("fileName: \(file.fileName)")
-                    Text("nRefact: \(file.nRefactorings)")
-                }
+        List(model.files){ file in
+            VStack {
+                Text("fileName: \(file.fileName)")
+                Text("nRefact: \(file.nRefactorings)")
             }
         }.onAppear {
-            let query = fileViewModel.query(filePath: selectedFilePath, nRefactorings: minimumNRefactorings, sortOption: selectedSortOption)
-            fileViewModel.subscribe(to: query)
- 
+            let query = model.query(filePath: selectedFilePath, nRefactorings: minimumNRefactorings, sortOption: selectedSortOption)
+            model.subscribe(to: query)
         }
         .onDisappear {
-            fileViewModel.unsubscribe()
+            model.unsubscribe()
         }
     }
 }

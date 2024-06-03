@@ -46,7 +46,7 @@ extension RefactoringModel : Comparable {
 
 
 enum RefactoringType : String, Codable {
-    case ExtractVariable, ExtractMethod, ExtractClass, IntroduceParameterObject
+    case MoveMethod, ExtractVariable, ExtractMethod, ExtractClass, IntroduceParameterObject
 }
 
 /** 

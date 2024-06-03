@@ -24,10 +24,13 @@ struct ContentView : View {
 
     var body: some View {
         
-        ZStack {
-            FileView()
+        HStack {
+            VStack (alignment: .leading) {
+                FileView()
+                RefactoringView()
+                Spacer()
+            }
             RealityView { content in
-                
                 
                 let (locMutilplier, nomMultiplier) = getFilesMetrics(files: buildingEntities)
                 
@@ -41,7 +44,7 @@ struct ContentView : View {
 
                 auxPlatformArray = platformArray
                 platformArray = auxPlatformArray.sorted(by: { $0.level < $1.level })
-                print(platformArray)
+                
                 var platformMaterial = getPlatformMaterial()
                 
                 let rootGroup = MyGroup(id: "ProjectName")
@@ -86,26 +89,23 @@ struct ContentView : View {
                      */
                     for platform in locations.keys {
                         let group = rootGroup.groupWithID(platform)!
-                       // if (platform.contains("FloorPaint") || platform.contains("elements")) {
+
                             platformMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .random())
                             
                             let boxResource = MeshResource.generateBox(size: 1)
                             let myEntity = ModelEntity(mesh: boxResource, materials: [platformMaterial])
-                            
-                            
-                            
+
                             let (platformWidth, platformDepth, xSum, ySum) = calculatePlatformMeasures(groupID: platform , locations: locations[group.id]!, rootGroup: city.rootGroup, city: city)
                             
                             let platformCenter = calculateGroupCenter(x: xSum, y: ySum, cityWidth: city.width)
                             
                             myEntity.transform.translation = [platformCenter.0/city.width, 0.0015+0.001*Float(group.level), platformCenter.1/city.width]
-                            print(platform)
-                            print(0.0015+0.001*Float(group.level))
+
                             myEntity.transform.scale = [(platformWidth+0.8)/city.width, 0.005, (platformDepth+0.8)/city.width]
                             
                             
                             content.add(myEntity)
-                       // }
+
                         /**
                          Building generation
                          */

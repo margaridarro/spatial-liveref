@@ -228,7 +228,7 @@ class MyCity {
         rootGroup = group
         while !generateCityLayout(group: group) {
             width = width * 1.2
-            print("\nGENERATE CITY: ", width)
+            //print("\nGENERATE CITY: ", width)
             if width > 15 {
                 print("timeout on city generation")
                 return false

@@ -18,7 +18,7 @@ class BuildingEntity : Entity {
     var loc : Int
     var nom : Int
     var numberRefactorings : Int
-    var resourceName = "BuildingScene"
+    var resourceName = ResourceName.BuildingScene
     var refactorings  = [Refactoring]()
     var width : Float = 0.1
     var height : Float = 1
@@ -32,7 +32,7 @@ class BuildingEntity : Entity {
         self.numberRefactorings = numberRefactorings
         super.init()
         
-        if let modelEntity = try? Entity.load(named: resourceName, in: realityKitContentBundle) {
+        if let modelEntity = try? Entity.load(named: resourceName.rawValue, in: realityKitContentBundle) {
             self.addChild(modelEntity)
         } else {
             print("Failed to load model entity named \(resourceName) for \(self.fileName)")
@@ -45,34 +45,35 @@ class BuildingEntity : Entity {
         self.loc = 0
         self.nom = 0
         self.numberRefactorings = 0
-        self.refactorings = [Refactoring(refactoringType: RefactoringType.ExtractVariable, methodName: "", elements: 0, severity: 0, locToChange: 0, className: "")]
         super.init()
     }
     
     func addRefactoring(refactoring: Refactoring) {
         refactorings.append(refactoring)
         refactorings.sort(by: >)
-        
+       
         while !self.children.isEmpty{
             self.removeChild(self.children.first!)
         }
         
         let severity = refactorings.first!.severity
-        if (severity < 4.0) {
-            resourceName = "BuildingSceneYellow"
-        } else if (severity < 7.0) {
-            resourceName = "BuildingSceneOrange"
+        if (severity < 5.0) {
+            resourceName = ResourceName.BuildingSceneYellow
+        } else if (severity < 8.0) {
+            resourceName = ResourceName.BuildingSceneOrange
         } else {
-            resourceName = "BuildingSceneRed"
+            resourceName = ResourceName.BuildingSceneRed
         }
-        if let modelEntity = try? Entity.load(named: resourceName, in: realityKitContentBundle) {
+        if let modelEntity = try? Entity.load(named: resourceName.rawValue, in: realityKitContentBundle) {
             self.addChild(modelEntity)
         } else {
             print("Failed to load model entity named \(resourceName) for \(fileName)")
         }
     }
     
-    func setResourceName (newResourceName: String) {
+    // TODO implement removeRefactoring
+    
+    /*func setResourceName (newResourceName: String) {
         resourceName = newResourceName
         
         while !self.children.isEmpty{
@@ -84,7 +85,7 @@ class BuildingEntity : Entity {
         } else {
             print("Failed to load model entity named \(resourceName)")
         }
-    }
+    }*/
 }
 
 extension BuildingEntity : Comparable {
@@ -99,6 +100,6 @@ extension BuildingEntity : Comparable {
 }
 
 
-enum ResourceName {
-    case BuildingSceneGreen, BuildingSceneYellow, BuildingSceneRed
+enum ResourceName : String {
+    case BuildingScene, BuildingSceneGreen, BuildingSceneYellow, BuildingSceneOrange, BuildingSceneRed
 }

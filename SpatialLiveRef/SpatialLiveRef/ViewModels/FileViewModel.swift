@@ -42,7 +42,6 @@ class FileViewModel : ObservableObject {
                 self.files = documents.compactMap { document in
                     do {
                         var file = try document.data(as: File.self)
-                        print("file:", file)
                         file.reference = document.reference
                         return file
                     } catch {
@@ -50,7 +49,6 @@ class FileViewModel : ObservableObject {
                         return nil
                     }
                 }
-                print("files: ", self.files)
             }
         }
     }
