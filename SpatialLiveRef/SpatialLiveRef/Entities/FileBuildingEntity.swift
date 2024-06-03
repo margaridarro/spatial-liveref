@@ -19,24 +19,23 @@ class BuildingEntity : Entity {
     var nom : Int
     var numberRefactorings : Int
     var resourceName = "BuildingScene"
-    var refactorings : [Refactoring]
+    var refactorings  = [Refactoring]()
     var width : Float = 0.1
     var height : Float = 1
     var platforms : [Int] = []
 
-    init(fileName : String, filePath : String, loc : Int, nom : Int, numberRefactorings : Int, refactorings : [Refactoring]) {
+    init(fileName : String, filePath : String, loc : Int, nom : Int, numberRefactorings : Int) {
         self.fileName = fileName
         self.filePath = filePath
         self.loc = loc
         self.nom = nom
         self.numberRefactorings = numberRefactorings
-        self.refactorings = refactorings
         super.init()
         
         if let modelEntity = try? Entity.load(named: resourceName, in: realityKitContentBundle) {
             self.addChild(modelEntity)
         } else {
-            print("Failed to load model entity named \(resourceName)")
+            print("Failed to load model entity named \(resourceName) for \(self.fileName)")
         }
     }
     
@@ -69,7 +68,7 @@ class BuildingEntity : Entity {
         if let modelEntity = try? Entity.load(named: resourceName, in: realityKitContentBundle) {
             self.addChild(modelEntity)
         } else {
-            print("Failed to load model entity named \(resourceName)")
+            print("Failed to load model entity named \(resourceName) for \(fileName)")
         }
     }
     
@@ -99,44 +98,6 @@ extension BuildingEntity : Comparable {
     }
 }
 
-
-class Refactoring {
-    
-    var refactoringType: RefactoringType
-    var methodName: String
-    //let filePath : String
-    var elements : Int
-    var severity : Float
-    var locToChange : Int
-    var className : String
-    
-    init(refactoringType: RefactoringType, methodName: String, /*filePath : String,*/ elements : Int, severity : Float, locToChange : Int, className : String) {
-        self.refactoringType = refactoringType
-        self.methodName = methodName
-        //self.filePath = filePath
-        self.elements = elements
-        self.severity = severity
-        self.locToChange = locToChange
-        self.className = className // only applicable to ExtractClass
-    }
-    
-}
-
-extension Refactoring : Comparable {
-    
-    static func == (lhs: Refactoring, rhs: Refactoring) -> Bool {
-        return lhs.refactoringType == rhs.refactoringType && lhs.methodName == rhs.methodName && lhs.elements == rhs.elements && lhs.severity == rhs.severity && lhs.locToChange == rhs.locToChange && lhs.className == rhs.className
-    }
-    
-    static func < (lhs: Refactoring, rhs: Refactoring) -> Bool {
-        return lhs.severity < rhs.severity
-    }
-}
-
-enum RefactoringType {
-    case ExtractVariable, ExtractMethod, ExtractClass, IntroduceParameterObject
-    
-}
 
 enum ResourceName {
     case BuildingSceneGreen, BuildingSceneYellow, BuildingSceneRed

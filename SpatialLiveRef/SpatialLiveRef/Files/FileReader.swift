@@ -39,7 +39,7 @@ func getProjectFiles () -> ([String : BuildingEntity], [[String]], [[String]]) {
                 let n_refactorings : Int! = Int(n_refactorings_string)
                 
                 file_list.append([file_name, file_path, loc_string, nom_string, n_refactorings_string])
-                buildingEntities[file_path] = BuildingEntity(fileName: file_name, filePath: file_path, loc: loc, nom: nom, numberRefactorings: n_refactorings, refactorings: [])
+                buildingEntities[file_path] = BuildingEntity(fileName: file_name, filePath: file_path, loc: loc, nom: nom, numberRefactorings: n_refactorings)
             }
         }
     } catch {

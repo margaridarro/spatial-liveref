@@ -10,7 +10,6 @@
 		910D3B3A2C0B67FA00548F46 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 910D3B392C0B67FA00548F46 /* FirebaseFirestore */; };
 		910D3B3C2C0B67FA00548F46 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 910D3B3B2C0B67FA00548F46 /* FirebaseFirestoreSwift */; };
 		910D3B3F2C0B696500548F46 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910D3B3E2C0B696500548F46 /* File.swift */; };
-		910D3B412C0B6BDB00548F46 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 910D3B402C0B6BDB00548F46 /* GoogleService-Info.plist */; };
 		9110B3442BF4C32D0082036B /* FileBuildingEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9110B3432BF4C32D0082036B /* FileBuildingEntity.swift */; };
 		9111E42A2B7E0DD7007F9AAC /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 9111E4292B7E0DD7007F9AAC /* RealityKitContent */; };
 		9111E42C2B7E0DD7007F9AAC /* SpatialLiveRefApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9111E42B2B7E0DD7007F9AAC /* SpatialLiveRefApp.swift */; };
@@ -21,6 +20,7 @@
 		912E49A82BFDEA3000EEAADA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912E49A72BFDEA3000EEAADA /* Utils.swift */; };
 		912E49AA2BFDFD6100EEAADA /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912E49A92BFDFD6100EEAADA /* FileManager.swift */; };
 		912E49AD2BFE4EBB00EEAADA /* BuildingArrangement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912E49AC2BFE4EBB00EEAADA /* BuildingArrangement.swift */; };
+		913C6CAA2C0DCF300002F220 /* Refactoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C6CA92C0DCF300002F220 /* Refactoring.swift */; };
 		915533D02BFCE5FB00BCFA51 /* ProjectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915533CF2BFCE5FB00BCFA51 /* ProjectNode.swift */; };
 		91633F442BE3AD9A004399E4 /* Prints in Resources */ = {isa = PBXBuildFile; fileRef = 91633F432BE3AD9A004399E4 /* Prints */; };
 		91633F482BE3D850004399E4 /* BuildingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91633F472BE3D850004399E4 /* BuildingView.swift */; };
@@ -30,6 +30,7 @@
 		91BDFF082BD95E9900DE33A8 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDFF072BD95E9900DE33A8 /* TestView.swift */; };
 		91D89D052C0B7C6F00A2D4F5 /* FileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D89D042C0B7C6F00A2D4F5 /* FileViewModel.swift */; };
 		91D89D082C0B812400A2D4F5 /* FileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D89D072C0B812400A2D4F5 /* FileView.swift */; };
+		91D89D0B2C0C62FA00A2D4F5 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 910D3B402C0B6BDB00548F46 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,10 +44,10 @@
 		9111E42F2B7E0DD7007F9AAC /* ImmersiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmersiveView.swift; sourceTree = "<group>"; };
 		9111E4312B7E0DD8007F9AAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9111E4342B7E0DD8007F9AAC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		9111E4362B7E0DD8007F9AAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		912E49A72BFDEA3000EEAADA /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		912E49A92BFDFD6100EEAADA /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		912E49AC2BFE4EBB00EEAADA /* BuildingArrangement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingArrangement.swift; sourceTree = "<group>"; };
+		913C6CA92C0DCF300002F220 /* Refactoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refactoring.swift; sourceTree = "<group>"; };
 		915533CF2BFCE5FB00BCFA51 /* ProjectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNode.swift; sourceTree = "<group>"; };
 		91633F432BE3AD9A004399E4 /* Prints */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Prints; path = ../../../../projects/RxJava/Prints; sourceTree = "<group>"; };
 		91633F472BE3D850004399E4 /* BuildingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingView.swift; sourceTree = "<group>"; };
@@ -56,6 +57,7 @@
 		91BDFF072BD95E9900DE33A8 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		91D89D042C0B7C6F00A2D4F5 /* FileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewModel.swift; sourceTree = "<group>"; };
 		91D89D072C0B812400A2D4F5 /* FileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileView.swift; sourceTree = "<group>"; };
+		91D89D0C2C0C634900A2D4F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				910D3B3E2C0B696500548F46 /* File.swift */,
+				913C6CA92C0DCF300002F220 /* Refactoring.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -106,14 +109,15 @@
 				910D3B3D2C0B694700548F46 /* Models */,
 				91D89D032C0B7C5000A2D4F5 /* ViewModels */,
 				91D89D062C0B80FF00A2D4F5 /* Views */,
+				913C6CA82C0DCEEE0002F220 /* Entities */,
 				912E49AF2BFE50DF00EEAADA /* BuildingArrangement */,
 				912E49AB2BFDFE0D00EEAADA /* Files */,
 				917624462C09EC350044610A /* AutoPrints */,
 				91633F432BE3AD9A004399E4 /* Prints */,
 				912E49A72BFDEA3000EEAADA /* Utils.swift */,
 				9111E4312B7E0DD8007F9AAC /* Assets.xcassets */,
-				9111E4362B7E0DD8007F9AAC /* Info.plist */,
 				910D3B402C0B6BDB00548F46 /* GoogleService-Info.plist */,
+				91D89D0C2C0C634900A2D4F5 /* Info.plist */,
 				9111E4332B7E0DD8007F9AAC /* Preview Content */,
 				91633F4B2BE41098004399E4 /* Archive */,
 			);
@@ -140,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				912E49A92BFDFD6100EEAADA /* FileManager.swift */,
-				9110B3432BF4C32D0082036B /* FileBuildingEntity.swift */,
 				919A021F2BB1CE6F006CA35C /* FileReader.swift */,
 			);
 			path = Files;
@@ -154,6 +157,14 @@
 				912E49AC2BFE4EBB00EEAADA /* BuildingArrangement.swift */,
 			);
 			path = BuildingArrangement;
+			sourceTree = "<group>";
+		};
+		913C6CA82C0DCEEE0002F220 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				9110B3432BF4C32D0082036B /* FileBuildingEntity.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		91633F4B2BE41098004399E4 /* Archive */ = {
@@ -249,7 +260,6 @@
 			files = (
 				9111E4352B7E0DD8007F9AAC /* Preview Assets.xcassets in Resources */,
 				91633F442BE3AD9A004399E4 /* Prints in Resources */,
-				910D3B412C0B6BDB00548F46 /* GoogleService-Info.plist in Resources */,
 				917624472C09EC350044610A /* AutoPrints in Resources */,
 				9111E4322B7E0DD8007F9AAC /* Assets.xcassets in Resources */,
 			);
@@ -262,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91D89D0B2C0C62FA00A2D4F5 /* GoogleService-Info.plist in Sources */,
 				9110B3442BF4C32D0082036B /* FileBuildingEntity.swift in Sources */,
 				915533D02BFCE5FB00BCFA51 /* ProjectNode.swift in Sources */,
 				912E49A82BFDEA3000EEAADA /* Utils.swift in Sources */,
@@ -274,6 +285,7 @@
 				91D89D052C0B7C6F00A2D4F5 /* FileViewModel.swift in Sources */,
 				9111E42C2B7E0DD7007F9AAC /* SpatialLiveRefApp.swift in Sources */,
 				919A02202BB1CE6F006CA35C /* FileReader.swift in Sources */,
+				913C6CAA2C0DCF300002F220 /* Refactoring.swift in Sources */,
 				910D3B3F2C0B696500548F46 /* File.swift in Sources */,
 				91633F482BE3D850004399E4 /* BuildingView.swift in Sources */,
 				9111E4302B7E0DD7007F9AAC /* ImmersiveView.swift in Sources */,
