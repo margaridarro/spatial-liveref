@@ -20,6 +20,21 @@ struct ContentView : View {
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
+    var tap: some Gesture {
+        SpatialTapGesture()
+            .targetedToAnyEntity()
+            .onEnded { value in
+                // Access the tapped entity here.
+                let b = value.entity.parent!.parent!.parent!.parent! as! BuildingEntity
+                if b.isHighlighted {
+                    b.removeHighlight()
+                } else {
+                    b.highlight()
+                    print(b.filePath)
+                }
+            }
+    }
+    
     var body: some View {
  
         RealityView { content in
@@ -80,9 +95,18 @@ struct ContentView : View {
                          Generate buildings
                          */
                         for location in locations[platform]! {
-                            let entity = generateBuilding(buildingEntity: buildingEntities[location.0]!, location: location, cityWidth: city.width)
-                            content.add(entity)
+                            let buildingEntity = generateBuilding(buildingEntity: buildingEntities[location.0]!, location: location, cityWidth: city.width)
+                            
+                             // Generates collision shapes for the sphere based on its geometry.
+                            buildingEntity.generateCollisionShapes(recursive: false)
+
+                            // Give the sphere an InputTargetComponent.
+                            buildingEntity.components.set(InputTargetComponent())
+                            
+                            content.add(buildingEntity)
                         }
+                        
+                        
                     }
                 }
             }
@@ -90,7 +114,7 @@ struct ContentView : View {
             let query = fileViewModel.query(filePath: nil, nRefactorings: nil, sortOption: nil)
             fileViewModel.subscribe(to: query)
             refactoringViewModel.subscribe()
-        }
+        }.gesture(tap)
     }
 }
 

@@ -23,6 +23,7 @@ class BuildingEntity : Entity {
     var width : Float = 0.1
     var height : Float = 1
     var platforms : [Int] = []
+    var isHighlighted = false
 
     init(fileName : String, filePath : String, loc : Int, nom : Int, numberRefactorings : Int) {
         self.fileName = fileName
@@ -48,6 +49,12 @@ class BuildingEntity : Entity {
         super.init()
     }
     
+    func handleTap(sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            print("Conseguimos")
+        }
+    }
+    
     func addRefactoring(refactoring: Refactoring) {
         refactorings.append(refactoring)
         refactorings.sort(by: >)
@@ -71,21 +78,28 @@ class BuildingEntity : Entity {
         }
     }
     
-    // TODO implement removeRefactoring
-    
-    /*func setResourceName (newResourceName: String) {
-        resourceName = newResourceName
+    func setResourceName (newResourceName: String) {
         
         while !self.children.isEmpty{
             self.removeChild(self.children.first!)
         }
         
-        if let modelEntity = try? Entity.load(named: resourceName, in: realityKitContentBundle) {
+        if let modelEntity = try? Entity.load(named: newResourceName, in: realityKitContentBundle) {
             self.addChild(modelEntity)
         } else {
             print("Failed to load model entity named \(resourceName)")
         }
-    }*/
+    }
+    
+    func highlight() {
+        setResourceName(newResourceName: ResourceName.BuildingSceneBlue.rawValue)
+        isHighlighted = true
+    }
+    
+    func removeHighlight() {
+        setResourceName(newResourceName: resourceName.rawValue)
+        isHighlighted = false
+    }
 }
 
 extension BuildingEntity : Comparable {
@@ -101,5 +115,5 @@ extension BuildingEntity : Comparable {
 
 
 enum ResourceName : String {
-    case BuildingScene, BuildingSceneGreen, BuildingSceneYellow, BuildingSceneOrange, BuildingSceneRed
+    case BuildingScene, BuildingSceneGreen, BuildingSceneYellow, BuildingSceneOrange, BuildingSceneRed, BuildingSceneBlue
 }

@@ -7,7 +7,8 @@
     "BuildingSceneYellow.usda",
     "BuildingSceneRed.usda",
     "BuildingSceneOrange.usda",
-    "Floor.usda"
+    "Floor.usda",
+    "BuildingSceneBlue.usda"
   ],
   "recentIdentifiers" : {
     "0AF3A2D3-ECE9-4F94-934E-8C06EDCD2C54" : [
@@ -546,6 +547,30 @@
           0.008349745,
           0.09224972,
           0.26467928,
+          1
+        ]
+      }
+    ],
+    "5390B02A-9141-4001-9204-D29D78C49689" : [
+      {
+        "date" : 739223217.806935,
+        "title" : "Untitled",
+        "transform" : [
+          1,
+          0,
+          -0,
+          0,
+          -0,
+          0.8731296,
+          -0.48748815,
+          0,
+          0,
+          0.48748815,
+          0.8731296,
+          0,
+          -3.2708049e-06,
+          0.507007,
+          0.74875826,
           1
         ]
       }
@@ -1557,5 +1582,5 @@
       }
     ]
   },
-  "selectedSceneRelativePath" : "BuildingScene.usda"
+  "selectedSceneRelativePath" : "BuildingSceneBlue.usda"
 }
