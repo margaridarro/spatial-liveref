@@ -211,7 +211,7 @@ class MyCity {
             }
         }
         group.level += levels
-        // Recursively place sub-groups
+        // Recursively place subgroups
         for subgroup in group.subgroups.sorted(by: >) {
             success = generateCityLayout(group: subgroup)
             if !success {
@@ -281,7 +281,7 @@ func calculateGroupCenter(x: Float, y: Float, cityWidth: Float) -> (Float, Float
 
 func calculatePlatformMeasures(groupID: String, locations: [(String, Float, Float)], rootGroup: MyGroup, city: MyCity) -> (Float, Float, Float, Float) {
     
-    var foundFirst = false
+    var foundFirstPosition = false
     var x : (Int, Int) = (0,0)
     var y : (Int, Int) = (0,0)
     
@@ -294,7 +294,7 @@ func calculatePlatformMeasures(groupID: String, locations: [(String, Float, Floa
             if city.grid[i][j].1.isEmpty {
                 continue
             } else if city.grid[i][j].1.last == groupID || rootGroup.isSubgroup(ofParentWithID: groupID, potentialSubgroup: rootGroup.groupWithID(city.grid[i][j].1.last!)!) {
-                if foundFirst {
+                if foundFirstPosition {
                     if x.0 > i {
                         x.0 = i
                     }
@@ -310,7 +310,7 @@ func calculatePlatformMeasures(groupID: String, locations: [(String, Float, Floa
                 } else {
                     x = (i, i)
                     y = (j, j)
-                    foundFirst = true
+                    foundFirstPosition = true
                 }
             }
         }

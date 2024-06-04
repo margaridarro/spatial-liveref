@@ -56,7 +56,7 @@ struct ContentView : View {
                 var platformNameArray : [String] = []
                 var auxPlatformArray : [(fileName: String, level: Int)] = []
                 
-                getDirectoriesWithFiles(node: fileTree, directoriesArray: &platformArray,  directoriesNameArray: &platformNameArray,level: 0)
+                getDirectoriesWithFiles(directory: fileTree, directoriesArray: &platformArray,  directoriesNameArray: &platformNameArray,level: 0)
                 
                 auxPlatformArray = platformArray
                 platformArray = auxPlatformArray.sorted(by: { $0.level < $1.level })
@@ -104,21 +104,16 @@ struct ContentView : View {
                     for platform in locations.keys {
                         let group = rootGroup.groupWithID(platform)!
                         
-                        platformMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .random())
-                        
-                        let boxResource = MeshResource.generateBox(size: 1)
-                        let myEntity = ModelEntity(mesh: boxResource, materials: [platformMaterial])
                         
                         let (platformWidth, platformDepth, xSum, ySum) = calculatePlatformMeasures(groupID: platform , locations: locations[group.id]!, rootGroup: city.rootGroup, city: city)
                         
                         let platformCenter = calculateGroupCenter(x: xSum, y: ySum, cityWidth: city.width)
                         
-                        myEntity.transform.translation = [platformCenter.0/city.width, 0.0015+0.001*Float(group.level), platformCenter.1/city.width]
+                        var platformEntity = PlatformEntity(directoryName: platform, width: platformWidth, depth: platformDepth, center: platformCenter, level: group.level)
                         
-                        myEntity.transform.scale = [(platformWidth+0.8)/city.width, 0.005, (platformDepth+0.8)/city.width]
+                        platformEntity.transform(cityWidth: city.width)
                         
-                        
-                        content.add(myEntity)
+                        content.add(platformEntity)
                         
                         /**
                          Building generation

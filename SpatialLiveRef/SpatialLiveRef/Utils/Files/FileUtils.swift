@@ -24,14 +24,14 @@ func getFilesMetrics(files: [String:BuildingEntity]) -> (locMultiplier: Float, n
 
     let nomMultiplier = 0.2/noms.first!
     
-    return (locMultiplier, nomMultiplier) // height = loc * locmultiplier && width = base + nom*nommultiplier
+    return (locMultiplier, nomMultiplier)
 }
 
 
-func buildFileTree(files: [String : BuildingEntity], locMultiplier : Float, nomMultiplier: Float) -> Node<String>{
+func buildFileTree(files: [String : BuildingEntity], locMultiplier : Float, nomMultiplier: Float) -> Directory<String>{
     
     var path = files[files.keys.startIndex].key.split(separator: "/")
-    let fileTree = Node(String(path[0]))
+    let fileTree = Directory(String(path[0]))
     
     for filePath in files.keys {
         
@@ -47,11 +47,27 @@ func buildFileTree(files: [String : BuildingEntity], locMultiplier : Float, nomM
             if fileTree.find(dir) == nil {
                 let parentNode = fileTree.find(parent)
               
-                parentNode!.add(child: Node(dir))
+                parentNode!.add(child: Directory(dir))
             }
             parent = dir
         }
     }
     
     return fileTree
+}
+
+
+func getDirectoriesWithFiles(directory : Directory<String>, directoriesArray : inout [(String, Int)], directoriesNameArray : inout [String], level: Int) {
+    
+    for child in directory.children {
+        if child.name.contains(".java") {
+            directoriesArray.append((directory.name, level))
+            directoriesNameArray.append(directory.name)
+            break
+        }
+    }
+    
+    for child in directory.children {
+        getDirectoriesWithFiles(directory: child, directoriesArray: &directoriesArray, directoriesNameArray: &directoriesNameArray, level: level+1)
+    }
 }
