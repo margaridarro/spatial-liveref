@@ -93,12 +93,52 @@ class BuildingEntity : Entity {
     
     func highlight() {
         setResourceName(newResourceName: ResourceName.BuildingSceneBlue.rawValue)
+        attachText()
         isHighlighted = true
     }
     
     func removeHighlight() {
-        setResourceName(newResourceName: resourceName.rawValue)
+        resetEntity()
         isHighlighted = false
+    }
+    
+    func attachText() {
+        let text : String
+        if refactorings.isEmpty {
+            text = "\(fileName)\n\(filePath)\nNo refactoring candidates"
+        } else {
+            text = "\(fileName)\n\(filePath)\nRefactorings: \(numberRefactorings)\nHighest Refactoring Severity: \(refactorings.first!.severity)"
+        }
+       
+        let textEntity = ModelEntity(
+                    mesh: .generateText(
+                        text,
+                        extrusionDepth: 0.001,
+                        font: .systemFont(ofSize: 0.017, weight: .bold),
+                        containerFrame: CGRect(x: -0.19/2.0, y: 0, width: 0.25, height: 0.25),
+                        alignment: .left,
+                        lineBreakMode: .byWordWrapping
+                    ),
+                    materials: [SimpleMaterial(
+                        color: .blue,
+                        isMetallic: false)
+                    ]
+                )
+        textEntity.transform.translation = [0, 0.2+height*0.0001, 0]
+        textEntity.transform.scale = [1/width, 1/(height+0.2), 1/width]
+        self.addChild(textEntity)
+    }
+    
+    func resetEntity() {
+        while !self.children.isEmpty{
+            self.removeChild(self.children.first!)
+        }
+        
+        if let modelEntity = try? Entity.load(named: resourceName.rawValue, in: realityKitContentBundle) {
+            self.addChild(modelEntity)
+        } else {
+            print("Failed to load model entity named \(resourceName)")
+        }
     }
 }
 
