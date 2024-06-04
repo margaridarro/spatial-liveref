@@ -20,20 +20,6 @@ struct ContentView : View {
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
-    var tap: some Gesture {
-        SpatialTapGesture()
-            .targetedToAnyEntity()
-            .onEnded { value in
-                // Access the tapped entity here.
-                let b = value.entity.parent!.parent!.parent!.parent! as! BuildingEntity
-                if b.isHighlighted {
-                    b.removeHighlight()
-                } else {
-                    b.highlight()
-                    print(b.filePath)
-                }
-            }
-    }
     
     var body: some View {
  
@@ -96,13 +82,7 @@ struct ContentView : View {
                          */
                         for location in locations[platform]! {
                             let buildingEntity = generateBuilding(buildingEntity: buildingEntities[location.0]!, location: location, cityWidth: city.width)
-                            
-                             // Generates collision shapes for the sphere based on its geometry.
-                            buildingEntity.generateCollisionShapes(recursive: false)
-
-                            // Give the sphere an InputTargetComponent.
-                            buildingEntity.components.set(InputTargetComponent())
-                            
+          
                             content.add(buildingEntity)
                         }
                         
@@ -115,6 +95,22 @@ struct ContentView : View {
             fileViewModel.subscribe(to: query)
             refactoringViewModel.subscribe()
         }.gesture(tap)
+    }
+    
+    var tap: some Gesture {
+        SpatialTapGesture()
+            .targetedToAnyEntity()
+            .onEnded { value in
+
+                let buildingEntity = getBuildingEntityFromEntity(entity: value.entity)
+                
+                if buildingEntity.isHighlighted {
+                    buildingEntity.removeHighlight()
+                } else {
+                    buildingEntity.highlight()
+                    print(buildingEntity.filePath)
+                }
+            }
     }
 }
 

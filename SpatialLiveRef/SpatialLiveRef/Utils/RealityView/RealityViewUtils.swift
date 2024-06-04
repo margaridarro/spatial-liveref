@@ -54,9 +54,14 @@ func generateBuilding(buildingEntity: BuildingEntity, location: (String, Float, 
     buildingEntity.transform.translation = [location.1/cityWidth, 0, location.2/cityWidth]
     
     buildingEntity.transform.scale = [buildingEntity.width, 0.15+buildingEntity.height, buildingEntity.width]
+
+    buildingEntity.generateCollisionShapes(recursive: false)
+
+    buildingEntity.components.set(InputTargetComponent())
     
     return buildingEntity
 }
 
-
-
+func getBuildingEntityFromEntity(entity: Entity) -> BuildingEntity {
+    return entity.parent!.parent!.parent!.parent! as! BuildingEntity
+}
