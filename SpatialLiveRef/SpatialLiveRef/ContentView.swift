@@ -20,77 +20,96 @@ struct ContentView : View {
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
+    
     var body: some View {
- 
-        RealityView { content in
-            
-            /**
-             Generate base plane
-             */
-            let planeEntity = generatePlane()
-            content.add(planeEntity)
-
-        } update: { content in
-            
-            while !content.entities.isEmpty {
-                content.remove(content.entities.first!)
-            }
-            
-            /**
-             Regenerate base plane
-             */
-            let planeEntity = generatePlane()
-            content.add(planeEntity)
-            
-            /**
-             Get files and refactorings
-             */
-            var buildingEntities = [String : BuildingEntity]()
-            
-            fileViewModel.files.forEach { file in
-                buildingEntities[file.filePath] = BuildingEntity(fileName: file.fileName, filePath: file.filePath, loc: file.loc, nom: file.nom, numberRefactorings: file.nRefactorings)
-            }
-            refactoringViewModel.refactorings.forEach { refactoring in
-                buildingEntities[refactoring.filePath]?.addRefactoring(refactoring: refactoring)
-            }
-            
-            if !fileViewModel.files.isEmpty {
-
-                /**
-                 Generate city
-                 */
-                let city = City(buildingEntities: buildingEntities)
+        ZStack {
+            RealityView { content in
                 
-                if city.generateCity() {
-                    
-                    let locations = city.centerPositions()
+                /**
+                 Generate base plane
+                 */
+                let planeEntity = generatePlane()
+                content.add(planeEntity)
+                
+            } update: { content in
+                
+                while !content.entities.isEmpty {
+                    content.remove(content.entities.first!)
+                }
+                
+                /**
+                 Regenerate base plane
+                 */
+                let planeEntity = generatePlane()
+                content.add(planeEntity)
+                
+                /**
+                 Get files and refactorings
+                 */
+                var buildingEntities = [String : BuildingEntity]()
+                
+                fileViewModel.files.forEach { file in
+                    buildingEntities[file.filePath] = BuildingEntity(fileName: file.fileName, filePath: file.filePath, loc: file.loc, nom: file.nom, numberRefactorings: file.nRefactorings)
+                }
+                refactoringViewModel.refactorings.forEach { refactoring in
+                    buildingEntities[refactoring.filePath]?.addRefactoring(refactoring: refactoring)
+                }
+                
+                if !fileViewModel.files.isEmpty {
                     
                     /**
-                     Generate directory platforms
+                     Generate city
                      */
-                    for platform in locations.keys {
-
-                        let platformEntity = PlatformEntity(directoryName: platform, rootPlatform: city.rootPlatform)
-                        platformEntity.setMeasures(platformID: platform , locations: locations[platform]!, rootPlatform: city.rootPlatform, city: city)
-                        platformEntity.transform(cityWidth: city.width)
+                    let city = City(buildingEntities: buildingEntities)
+                    
+                    if city.generateCity() {
                         
-                        content.add(platformEntity)
+                        let locations = city.centerPositions()
                         
                         /**
-                         Generate buildings
+                         Generate directory platforms
                          */
-                        for location in locations[platform]! {
-                            let entity = generateBuilding(buildingEntity: buildingEntities[location.0]!, location: location, cityWidth: city.width)
-                            content.add(entity)
+                        for platform in locations.keys {
+                            
+                            let platformEntity = PlatformEntity(directoryName: platform, rootPlatform: city.rootPlatform)
+                            platformEntity.setMeasures(platformID: platform , locations: locations[platform]!, rootPlatform: city.rootPlatform, city: city)
+                            platformEntity.transform(cityWidth: city.width)
+                            
+                            content.add(platformEntity)
+                            
+                            /**
+                             Generate buildings
+                             */
+                            for location in locations[platform]! {
+                                let buildingEntity = generateBuilding(buildingEntity: buildingEntities[location.0]!, location: location, cityWidth: city.width)
+                                
+                                content.add(buildingEntity)
+                            }
+                            
                         }
                     }
                 }
-            }
-        }.task {
-            let query = fileViewModel.query(filePath: nil, nRefactorings: nil, sortOption: nil)
-            fileViewModel.subscribe(to: query)
-            refactoringViewModel.subscribe()
+            }.task {
+                let query = fileViewModel.query(filePath: nil, nRefactorings: nil, sortOption: nil)
+                fileViewModel.subscribe(to: query)
+                refactoringViewModel.subscribe()
+            }.gesture(tap)
         }
+    }
+    
+    var tap: some Gesture {
+        SpatialTapGesture()
+            .targetedToAnyEntity()
+            .onEnded { value in
+
+                let buildingEntity = getBuildingEntityFromEntity(entity: value.entity)
+                
+                if buildingEntity.isHighlighted {
+                    buildingEntity.removeHighlight()
+                } else {
+                    buildingEntity.highlight()
+                }
+            }
     }
 }
 
