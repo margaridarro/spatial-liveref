@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+/*
 class Group {
     let id: String
     var fileBuildings: [String : BuildingEntity]
@@ -279,3 +279,4 @@ func calculateGroupInfoSideMeasures(groupInfo: GroupInfo) -> (Float, Float) {
     
     return returnValue
 }
+*/

@@ -14,38 +14,26 @@ import RealityKitContent
 class PlatformEntity : Entity {
     
     let directoryName : String
-    let meshResource : MeshResource
-    var material : PhysicallyBasedMaterial
-    var width : Float
-    var depth : Float
-    let center : (Float, Float)
+    let meshResource = MeshResource.generateBox(size: 1)
+    var material = getPlatformMaterial()
+    var width : Float = 0
+    var depth : Float = 0
+    var center : (Float, Float) = (0, 0)
     var level : Float
 
 
-    init(directoryName: String, width: Float, depth: Float, center: (Float, Float), level: Float) {
+    init(directoryName: String, rootPlatform: Platform) {
         self.directoryName = directoryName
-        self.meshResource = MeshResource.generateBox(size: 1)
-        self.material = getPlatformMaterial()
         self.material.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .random())
-        self.width = width
-        self.depth = depth
-        self.center = center
-        self.level = level
+        self.level = rootPlatform.platformWithID(directoryName)!.level
         super.init()
         
         let modelEntity = ModelEntity(mesh: meshResource, materials: [self.material])
         self.addChild(modelEntity)
-        
-        
     }
     
     required init(){
         self.directoryName = ""
-        self.meshResource = MeshResource.generateBox(size: 1)
-        self.material = getPlatformMaterial()
-        self.width = 0
-        self.depth = 0
-        self.center = (0, 0)
         self.level = 0
         super.init()
     }
@@ -55,17 +43,55 @@ class PlatformEntity : Entity {
         self.transform.scale = [(width+0.8)/cityWidth, 0.005, (depth+0.8)/cityWidth]
     }
     
-}
+    func setMeasures(platformID: String, locations: [(String, Float, Float)], rootPlatform: Platform, city: City) {
+        
+        var foundFirstPosition = false
+        var x : (Int, Int) = (0,0)
+        var y : (Int, Int) = (0,0)
+        
+        if locations.count == 1 {
+            width = 1
+            depth = 1
+            let centerX = locations.first!.1 / 2 - city.width/2 + city.width*0.05
+            let centerY = locations.first!.2 / 2 - city.width/2 + city.width*0.05
+            center = (centerX, centerY)
+            return
+        }
+        
+        for i in 0..<Int(city.width){
+            for j in 0..<Int(city.width) {
+                if city.grid[i][j].1.isEmpty {
+                    continue
+                } else if city.grid[i][j].1.last == platformID || rootPlatform.isSubplatform(ofParentWithID: platformID, potentialSubplatform: rootPlatform.platformWithID(city.grid[i][j].1.last!)!) {
+                    if foundFirstPosition {
+                        if x.0 > i {
+                            x.0 = i
+                        }
+                        if x.1 < i {
+                            x.1 = i
+                        }
+                        if y.0 > j {
+                            y.0 = j
+                        }
+                        if y.1 < j {
+                            y.1 = j
+                        }
+                    } else {
+                        x = (i, i)
+                        y = (j, j)
+                        foundFirstPosition = true
+                    }
+                }
+            }
+        }
+        
+        width = Float(x.1 - x.0)
+        depth = Float(y.1 - y.0)
+        let centerX = Float(x.0 + x.1) / 2 - city.width/2 + city.width*0.05
+        let centerY = Float(y.0 + y.1) / 2 - city.width/2 + city.width*0.05
+        center = (centerX, centerY)
 
-extension PlatformEntity : Comparable {
-    
-    static func == (lhs: PlatformEntity, rhs: PlatformEntity) -> Bool {
-        return lhs.directoryName == rhs.directoryName
     }
+
     
-    static func < (lhs: PlatformEntity, rhs: PlatformEntity) -> Bool {
-        return lhs.level < rhs.level
-    }
 }
-
-

@@ -57,17 +57,32 @@ func buildFileTree(files: [String : BuildingEntity], locMultiplier : Float, nomM
 }
 
 
-func getDirectoriesWithFiles(directory : Directory<String>, directoriesArray : inout [(String, Int)], directoriesNameArray : inout [String], level: Int) {
+func getDirectoriesWithFiles(directory : Directory<String>, directoriesArray : inout [(String, level: Int)], level: Int) {
     
     for child in directory.children {
         if child.name.contains(".java") {
             directoriesArray.append((directory.name, level))
-            directoriesNameArray.append(directory.name)
             break
         }
     }
     
     for child in directory.children {
-        getDirectoriesWithFiles(directory: child, directoriesArray: &directoriesArray, directoriesNameArray: &directoriesNameArray, level: level+1)
+        getDirectoriesWithFiles(directory: child, directoriesArray: &directoriesArray, level: level+1)
     }
+}
+
+func getDirectoryParentFromPath(child: String, filePath: String, platforms: [(String, level: Int)]) -> String {
+    var path = filePath.split(separator: "/")
+    path.reverse()
+    path.remove(at: 0)
+    for directory in path {
+        if String(directory) != child {
+            for (platformName, _) in platforms {
+                if platformName.contains(String(directory)) {
+                    return String(directory)
+                }
+            } 
+        }
+    }
+    return ""
 }
