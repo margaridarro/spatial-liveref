@@ -4,3 +4,4 @@ SpatialLiveRef/SpatialLiveRef.xcodeproj/xcuserdata/margaridaraposo.xcuserdatad/
 SpatialLiveRef/.DS_Store
 SpatialLiveRef/SpatialLiveRef/.DS_Store
 scripts/spatial-liveref-firebase-adminsdk-60cy8-515e58503f.json
+scripts/.venv/lib/python3.12/site-packages/requests/__pycache__/

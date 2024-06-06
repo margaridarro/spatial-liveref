@@ -44,7 +44,7 @@ class FileViewModel : ObservableObject {
                 self.files = documents.compactMap { document in
                     do {
                         var file = try document.data(as: File.self)
-                        print("Fetched: ", file.fileName)
+                       // print("Fetched: ", file.filePath)
                         file.reference = document.reference
                         return file
                     } catch {

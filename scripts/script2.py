@@ -14,7 +14,7 @@ os.system("cp " + folder_path + "/Prints/files.txt /Users/margaridaraposo/Docume
 
 os.system("cp " + folder_path + "/Prints/refactorings.txt /Users/margaridaraposo/Documents/tese/spatial-liveref/scripts")
 
-os.system("rm -r " + folder_path + "/Prints")
+# os.system("rm -r " + folder_path + "/Prints")
 
 # Firebase initializer
 cred = credentials.Certificate("spatial-liveref-firebase-adminsdk-60cy8-515e58503f.json")
@@ -37,9 +37,9 @@ files_lines = files.readlines()
 for id, line in enumerate(files_lines):
 
     if "File: " in line:
-        fileName = line.replace("File: ", "")
+        fileName = line.replace("File: ", "").replace("\n", "")
         fileID = files_lines[id+1].replace("File Path: ", "").replace(folder_path, "").replace("\n", "").replace("/", "")
-        filePath = files_lines[id+1].replace("File Path: ", "").replace(folder_path, "").replace("\n", "")
+        filePath = files_lines[id+1].replace("File Path: ", "").replace(folder_path, "").replace("\n", "").replace(" ", "").replace("File:", "")
         loc = int(files_lines[id+3].replace("   LOC: ", ""))
         nom = int(files_lines[id+4].replace("   NOM: ", ""))
         nRefactorings = int(files_lines[id+5].replace("   Number of Refactorings: ", ""))
@@ -68,7 +68,7 @@ for id, line in enumerate(refactorings_lines):
         severity = float(refactorings_lines[next_line+1].replace("Severity: ", ""))
         locToChange = int(refactorings_lines[next_line+2].replace("LOC To Be Changed: ", ""))
 
-        db.collection("refactorings").document(fileID).set({"refactoringType" : "ExtractVariable", "methodName" : methodName, "filePath" : filePath, "locToChange" : locToChange, "elemnts": elements, "severity": severity, "className": ""})
+        db.collection("refactorings").document(fileID).set({"refactoringType" : "ExtractVariable", "methodName" : methodName, "filePath" : filePath, "locToChange" : locToChange, "elements": elements, "severity": severity, "className": ""})
 
     elif "Extract Method:" in line:
         methodName = refactorings_lines[id+2].replace("Method: ", "")
@@ -104,7 +104,7 @@ for id, line in enumerate(refactorings_lines):
     elif "Move Method:" in line:
         methodName = refactorings_lines[id+2].replace("Method: ", "")
         fileID = refactorings_lines[id+3].replace("File Path: ", "").replace(folder_path, "").replace("\n", "").replace("/", "").replace(" ", "").replace("File:", "") + str(counter)
-        filePath = refactorings_lines[id+3].replace("File: ", "").replace(folder_path, "").replace("\n", "")
+        filePath = refactorings_lines[id+3].replace("File: ", "").replace(folder_path, "").replace("\n", "").replace(" ", "").replace("File:", "")
         elements = int(refactorings_lines[id+6].replace("Number of Elements: ", ""))
         severity = float(refactorings_lines[id+7].replace("Severity: ", "").replace("\n", ""))
         locToChange = int(refactorings_lines[id+8].replace("LOC To Be Changed: ", ""))

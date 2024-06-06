@@ -54,7 +54,8 @@ struct ContentView : View {
                 refactoringViewModel.refactorings.forEach { refactoring in
                     buildingEntities[refactoring.filePath]?.addRefactoring(refactoring: refactoring)
                 }
-                
+                print("files: ", fileViewModel.files.count)
+                print("refs: ", refactoringViewModel.refactorings.count)
                 if !fileViewModel.files.isEmpty {
                     
                     /**
@@ -63,7 +64,7 @@ struct ContentView : View {
                     let city = City(buildingEntities: buildingEntities)
                     
                     if city.generateCity() {
-                        
+                        city.printGrid()
                         let locations = city.centerPositions()
                         
                         /**

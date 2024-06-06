@@ -27,8 +27,6 @@ class BuildingEntity : Entity {
 
     init(fileName : String, filePath : String, loc : Int, nom : Int, numberRefactorings : Int) {
         self.fileName = fileName
-        
-        var pathList = filePath.components(separatedBy: "/")
         /*
         for dir in pathList {
             if dir
@@ -115,7 +113,7 @@ class BuildingEntity : Entity {
         if refactorings.isEmpty {
             text = "\(fileName)\n\(filePath)\nNo refactoring candidates"
         } else {
-            text = "\(fileName)\n\(filePath)\nRefactorings: \(numberRefactorings)\nHighest Refactoring Severity: \(refactorings.first!.severity)"
+            text = "\(fileName)\n\(filePath)\nRefactorings: \(numberRefactorings)\n1st \(refactorings.first!.refactoringType) - \(refactorings.first!.severity)"
         }
        
         let textEntity = ModelEntity(
