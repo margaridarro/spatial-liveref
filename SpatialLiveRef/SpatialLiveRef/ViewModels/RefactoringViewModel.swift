@@ -42,7 +42,6 @@ class RefactoringViewModel : ObservableObject {
                 self.refactorings = documents.compactMap { document in
                     do {
                         var refactoring = try document.data(as: Refactoring.self)
-                        //print("Refactoring fetched: \(refactoring.filePath)")
                         refactoring.reference = document.reference
                         return refactoring
                     } catch {

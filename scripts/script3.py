@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 import json
 import firebase_admin
 from firebase_admin import credentials
@@ -18,7 +19,7 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 while(True):
-    sleep(2)
+    time.sleep(2)
     os.system("cp " + folder_path + "/Prints/files.txt /Users/margaridaraposo/Documents/tese/spatial-liveref/scripts")
     os.system("cp " + folder_path + "/Prints/refactorings.txt /Users/margaridaraposo/Documents/tese/spatial-liveref/scripts")
     updatedFilePaths = []

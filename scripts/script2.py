@@ -37,7 +37,7 @@ files_lines = files.readlines()
 for id, line in enumerate(files_lines):
 
     if "File: " in line:
-        fileName = line.replace("File: ", "").replace("\n", "")
+        fileName = line.replace("File: ", "").replace("\n", "").replace(" ", "")
         fileID = files_lines[id+1].replace("File Path: ", "").replace(folder_path, "").replace("\n", "").replace("/", "")
         filePath = files_lines[id+1].replace("File Path: ", "").replace(folder_path, "").replace("\n", "").replace(" ", "").replace("File:", "")
         loc = int(files_lines[id+3].replace("   LOC: ", ""))

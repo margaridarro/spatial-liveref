@@ -64,7 +64,7 @@ struct ContentView : View {
                     let city = City(buildingEntities: buildingEntities)
                     
                     if city.generateCity() {
-                        city.printGrid()
+
                         let locations = city.centerPositions()
                         
                         /**
