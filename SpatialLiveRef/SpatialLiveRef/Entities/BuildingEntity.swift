@@ -27,6 +27,14 @@ class BuildingEntity : Entity {
 
     init(fileName : String, filePath : String, loc : Int, nom : Int, numberRefactorings : Int) {
         self.fileName = fileName
+        
+        var pathList = filePath.components(separatedBy: "/")
+        /*
+        for dir in pathList {
+            if dir
+            self.filePath += dir
+        }
+        */
         self.filePath = filePath
         self.loc = loc
         self.nom = nom
