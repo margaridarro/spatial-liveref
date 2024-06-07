@@ -16,13 +16,34 @@ struct ContentView : View {
     @State private var enlarge = false
     @State private var showImmersiveSpace = false
     @State private var immersiveSpaceIsShown = false
-
+    
+    @State private var selectedBuildingEntities = [BuildingEntity]()
+    
+    private var cache = CacheViewModel()
+    
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
     
     var body: some View {
         ZStack {
+            VStack {
+                List() {
+                    ForEach(selectedBuildingEntities) { building in
+                        let text1 : String = building.fileName + "\n" + "\tPath: " + building.filePath + "\n"
+                        let text2 : String = "\t\(building.refactorings.count) refactoring candidates"
+                        
+                        if !building.refactorings.isEmpty {
+                            let text3_1 : String = "\n\tMost severe: \(building.refactorings.first!.refactoringType)"
+                            let text3_2 : String = " in \(building.refactorings.first!.methodName)"
+                            Text(text1 + text2 + text3_1 + text3_2).font(.system(size: 30, weight: .bold, design: .monospaced))
+                        } else {
+                            Text(text1 + text2).font(.system(size: 30, weight: .bold, design: .monospaced))
+                        }
+                    }
+                }
+            }//.padding(.bottom, 500)
+            
             RealityView { content in
                 
                 /**
@@ -33,62 +54,67 @@ struct ContentView : View {
                 
             } update: { content in
                 
-                while !content.entities.isEmpty {
-                    content.remove(content.entities.first!)
-                }
-                
-                /**
-                 Regenerate base plane
-                 */
-                let planeEntity = generatePlane()
-                content.add(planeEntity)
-                
-                /**
-                 Get files and refactorings
-                 */
-                var buildingEntities = [String : BuildingEntity]()
-                
-                fileViewModel.files.forEach { file in
-                    buildingEntities[file.filePath] = BuildingEntity(fileName: file.fileName, filePath: file.filePath, loc: file.loc, nom: file.nom, numberRefactorings: file.nRefactorings)
-                }
-                refactoringViewModel.refactorings.forEach { refactoring in
-                    buildingEntities[refactoring.filePath]?.addRefactoring(refactoring: refactoring)
-                }
-                print("files: ", fileViewModel.files.count)
-                print("refs: ", refactoringViewModel.refactorings.count)
-                if !fileViewModel.files.isEmpty {
+                if cache.previousBuildingEntitiesCount != fileViewModel.files.count || cache.previousRefactoringsCount != refactoringViewModel.refactorings.count {
+    
+                    while !content.entities.isEmpty {
+                        content.remove(content.entities.first!)
+                    }
                     
                     /**
-                     Generate city
+                     Regenerate base plane
                      */
-                    let city = City(buildingEntities: buildingEntities)
+                    let planeEntity = generatePlane()
+                    content.add(planeEntity)
                     
-                    if city.generateCity() {
-
-                        let locations = city.centerPositions()
+                    /**
+                     Get files and refactorings
+                     */
+                    var buildingEntities = [String : BuildingEntity]()
+                    
+                    fileViewModel.files.forEach { file in
+                        buildingEntities[file.filePath] = BuildingEntity(fileName: file.fileName, filePath: file.filePath, loc: file.loc, nom: file.nom, numberRefactorings: file.nRefactorings)
+                    }
+                    refactoringViewModel.refactorings.forEach { refactoring in
+                        buildingEntities[refactoring.filePath]?.addRefactoring(refactoring: refactoring)
+                    }
+                    print("files: ", fileViewModel.files.count)
+                    print("refs: ", refactoringViewModel.refactorings.count)
+                    if !fileViewModel.files.isEmpty {
                         
                         /**
-                         Generate directory platforms
+                         Generate city
                          */
-                        for platform in locations.keys {
-                            
-                            let platformEntity = PlatformEntity(directoryName: platform, rootPlatform: city.rootPlatform)
-                            platformEntity.setMeasures(platformID: platform , locations: locations[platform]!, rootPlatform: city.rootPlatform, city: city)
-                            platformEntity.transform(cityWidth: city.width)
-                            
-                            content.add(platformEntity)
+                        let city = City(buildingEntities: buildingEntities)
+                        
+                        if city.generateCity() {
+
+                            let locations = city.centerPositions()
                             
                             /**
-                             Generate buildings
+                             Generate directory platforms
                              */
-                            for location in locations[platform]! {
-                                let buildingEntity = generateBuilding(buildingEntity: buildingEntities[location.0]!, location: location, cityWidth: city.width)
+                            for platform in locations.keys {
                                 
-                                content.add(buildingEntity)
+                                let platformEntity = PlatformEntity(directoryName: platform, rootPlatform: city.rootPlatform)
+                                platformEntity.setMeasures(platformID: platform , locations: locations[platform]!, rootPlatform: city.rootPlatform, city: city)
+                                platformEntity.transform(cityWidth: city.width)
+                                
+                                content.add(platformEntity)
+                                
+                                /**
+                                 Generate buildings
+                                 */
+                                for location in locations[platform]! {
+                                    let buildingEntity = generateBuilding(buildingEntity: buildingEntities[location.0]!, location: location, cityWidth: city.width)
+                                    
+                                    content.add(buildingEntity)
+                                }
+                                
                             }
-                            
                         }
                     }
+                    cache.previousBuildingEntitiesCount = fileViewModel.files.count
+                    cache.previousRefactoringsCount = refactoringViewModel.refactorings.count
                 }
             }.task {
                 let query = fileViewModel.query(filePath: nil, nRefactorings: nil, sortOption: nil)
@@ -107,11 +133,23 @@ struct ContentView : View {
                 
                 if buildingEntity.isHighlighted {
                     buildingEntity.removeHighlight()
+                    selectedBuildingEntities.remove(at: 0)
                 } else {
                     buildingEntity.highlight()
+                    selectedBuildingEntities.append(buildingEntity)
+                    if selectedBuildingEntities.count > 1 {
+                        selectedBuildingEntities[0].removeHighlight()
+                        selectedBuildingEntities.remove(at: 0)
+                    }
                 }
             }
     }
+}
+
+
+class CacheViewModel {
+    var previousBuildingEntitiesCount : Int = 0
+    var previousRefactoringsCount : Int = 0
 }
 
 #Preview(windowStyle: .volumetric) {

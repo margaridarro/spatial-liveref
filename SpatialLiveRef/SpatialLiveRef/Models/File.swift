@@ -27,3 +27,9 @@ struct File: Identifiable, Codable {
         case nom
     }
 }
+
+extension File: Equatable {
+    static func == (lhs: File, rhs: File) -> Bool {
+        return lhs.filePath == rhs.filePath
+    }
+}

@@ -99,7 +99,7 @@ class BuildingEntity : Entity {
     
     func highlight() {
         setResourceName(newResourceName: ResourceName.BuildingSceneBlue.rawValue)
-        attachText()
+        //attachText()
         isHighlighted = true
     }
     
@@ -107,7 +107,7 @@ class BuildingEntity : Entity {
         resetEntity()
         isHighlighted = false
     }
-    
+    /*
     func attachText() {
         let text : String
         if refactorings.isEmpty {
@@ -133,7 +133,7 @@ class BuildingEntity : Entity {
         textEntity.transform.translation = [0, 0.2+height*0.0001, 0]
         textEntity.transform.scale = [1/width, 1/(height+0.2), 1/width]
         self.addChild(textEntity)
-    }
+    }*/
     
     func resetEntity() {
         while !self.children.isEmpty{

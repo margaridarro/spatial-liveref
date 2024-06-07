@@ -55,7 +55,6 @@ class FileViewModel : ObservableObject {
         }
     }
     
-    
     func filter(query: Query) {
         unsubscribe()
         subscribe(to: query)
