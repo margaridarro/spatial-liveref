@@ -1,6 +1,7 @@
 import os
 import sys
 import os.path
+import glob
 import time
 import json
 import firebase_admin
@@ -13,17 +14,43 @@ folder_path = sys.argv[1] #diretório onde está o projeto a ser analisado (via 
 os.system("rm files.txt")
 os.system("rm refactorings.txt")
 
+
 # Firebase initializer
 cred = credentials.Certificate("spatial-liveref-firebase-adminsdk-60cy8-515e58503f.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
+files_documents = db.collection("files").get()
+java_files = []
+for file_doc in files_documents:
+    java_files.append(file_doc.to_dict()["filePath"])
+
+time_counter = 0
+
 while(True):
     time.sleep(1)
+    time_counter += 1
     os.system("cp " + folder_path + "/Prints/files.txt /Users/margaridaraposo/Documents/tese/spatial-liveref/scripts")
     os.system("cp " + folder_path + "/Prints/refactorings.txt /Users/margaridaraposo/Documents/tese/spatial-liveref/scripts")
     os.system("rm -r " + folder_path + "/Prints")
     updatedFilePaths = []
+    
+    if time_counter % 10 == 0:
+        subfolders = [f.path for f in os.scandir(folder_path) if f.is_dir()]
+        new_java_files = []
+        for curr_folder_path in subfolders:
+            new_java_files += glob.glob(curr_folder_path + "/**/*.java", recursive=True)
+            
+        new_java_files1 = [file.replace(folder_path, "") for file in new_java_files if "/src/" in file and "/test/" not in file]
+        
+        files_diff = [file for file in java_files if file not in new_java_files1]
+        print("\nDIFF:\n", files_diff)
+        time_counter += 1
+        for deleted_file_path in files_diff:
+            # Delete removed files
+            docs = db.collection("files").where(filter=FieldFilter("filePath", "==", deleted_file_path)).get()
+            for doc in docs:
+                doc.reference.delete()
     
     if os.path.isfile("files.txt"):
         
@@ -124,6 +151,7 @@ while(True):
             counter += 1
         os.system("rm files.txt")
         os.system("rm refactorings.txt")
+
 
 
 
