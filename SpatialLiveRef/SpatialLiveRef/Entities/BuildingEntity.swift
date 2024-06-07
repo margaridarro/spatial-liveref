@@ -27,12 +27,6 @@ class BuildingEntity : Entity {
 
     init(fileName : String, filePath : String, loc : Int, nom : Int, numberRefactorings : Int) {
         self.fileName = fileName
-        /*
-        for dir in pathList {
-            if dir
-            self.filePath += dir
-        }
-        */
         self.filePath = filePath
         self.loc = loc
         self.nom = nom
@@ -53,12 +47,6 @@ class BuildingEntity : Entity {
         self.nom = 0
         self.numberRefactorings = 0
         super.init()
-    }
-    
-    func handleTap(sender: UITapGestureRecognizer) {
-        if sender.state == .ended {
-            print("Conseguimos")
-        }
     }
     
     func addRefactoring(refactoring: Refactoring) {
@@ -99,7 +87,6 @@ class BuildingEntity : Entity {
     
     func highlight() {
         setResourceName(newResourceName: ResourceName.BuildingSceneBlue.rawValue)
-        //attachText()
         isHighlighted = true
     }
     
@@ -107,33 +94,6 @@ class BuildingEntity : Entity {
         resetEntity()
         isHighlighted = false
     }
-    /*
-    func attachText() {
-        let text : String
-        if refactorings.isEmpty {
-            text = "\(fileName)\n\(filePath)\nNo refactoring candidates"
-        } else {
-            text = "\(fileName)\n\(filePath)\nRefactorings: \(numberRefactorings)\n1st \(refactorings.first!.refactoringType) - \(refactorings.first!.severity)"
-        }
-       
-        let textEntity = ModelEntity(
-                    mesh: .generateText(
-                        text,
-                        extrusionDepth: 0.001,
-                        font: .systemFont(ofSize: 0.017, weight: .bold),
-                        containerFrame: CGRect(x: -0.19/2.0, y: 0, width: 0.25, height: 0.25),
-                        alignment: .left,
-                        lineBreakMode: .byWordWrapping
-                    ),
-                    materials: [SimpleMaterial(
-                        color: .blue,
-                        isMetallic: false)
-                    ]
-                )
-        textEntity.transform.translation = [0, 0.2+height*0.0001, 0]
-        textEntity.transform.scale = [1/width, 1/(height+0.2), 1/width]
-        self.addChild(textEntity)
-    }*/
     
     func resetEntity() {
         while !self.children.isEmpty{
