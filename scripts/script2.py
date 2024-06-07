@@ -14,7 +14,7 @@ os.system("cp " + folder_path + "/Prints/files.txt /Users/margaridaraposo/Docume
 
 os.system("cp " + folder_path + "/Prints/refactorings.txt /Users/margaridaraposo/Documents/tese/spatial-liveref/scripts")
 
-# os.system("rm -r " + folder_path + "/Prints")
+ os.system("rm -r " + folder_path + "/Prints")
 
 # Firebase initializer
 cred = credentials.Certificate("spatial-liveref-firebase-adminsdk-60cy8-515e58503f.json")
