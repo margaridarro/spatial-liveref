@@ -23,7 +23,17 @@ struct ContentView : View {
     
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
-    
+    /*var body: some View {
+        RealityView { content in
+            
+            let planeEntity = generatePlane()
+            content.add(planeEntity)
+            
+            // width = fileBuilding width (alterada em buildFileTree)
+            let floorEntity = FloorEntity(filePath: "filepath.java", width: 3, numberRefactorings: 2)
+            
+            content.add(floorEntity)
+    }*/
     
     var body: some View {
         ZStack {
@@ -99,15 +109,16 @@ struct ContentView : View {
                                 platformEntity.setMeasures(platformID: platform , locations: locations[platform]!, rootPlatform: city.rootPlatform, city: city)
                                 platformEntity.transform(cityWidth: city.width)
                                 
-                                content.add(platformEntity)
+                               content.add(platformEntity)
                                 
                                 /**
                                  Generate buildings
                                  */
                                 for location in locations[platform]! {
-                                    let buildingEntity = generateBuilding(buildingEntity: buildingEntities[location.0]!, location: location, cityWidth: city.width)
+                                    let buildingFloorsEntity = generateBuildingFloors(buildingEntity: buildingEntities[location.0]!, location: location, cityWidth: city.width)
+                                    //let buildingEntity = generateBuilding(buildingEntity: buildingEntities[location.0]!, location: location, cityWidth: city.width)
                                     
-                                    content.add(buildingEntity)
+                                    content.add(buildingFloorsEntity)
                                 }
                                 
                             }

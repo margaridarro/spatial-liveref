@@ -28,6 +28,8 @@
 		913C6CAE2C0DD4370002F220 /* RefactoringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C6CAD2C0DD4370002F220 /* RefactoringView.swift */; };
 		915533D02BFCE5FB00BCFA51 /* DirectoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915533CF2BFCE5FB00BCFA51 /* DirectoryNode.swift */; };
 		91633F482BE3D850004399E4 /* BuildingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91633F472BE3D850004399E4 /* BuildingView.swift */; };
+		91ADF0302C1365B0007918DF /* FloorEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ADF02F2C1365B0007918DF /* FloorEntity.swift */; };
+		91ADF0322C137205007918DF /* BuildingFloorsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ADF0312C137205007918DF /* BuildingFloorsEntity.swift */; };
 		91BDFF082BD95E9900DE33A8 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDFF072BD95E9900DE33A8 /* TestView.swift */; };
 		91D89D052C0B7C6F00A2D4F5 /* FileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D89D042C0B7C6F00A2D4F5 /* FileViewModel.swift */; };
 		91D89D082C0B812400A2D4F5 /* FileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D89D072C0B812400A2D4F5 /* FileView.swift */; };
@@ -56,6 +58,8 @@
 		913C6CAD2C0DD4370002F220 /* RefactoringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefactoringView.swift; sourceTree = "<group>"; };
 		915533CF2BFCE5FB00BCFA51 /* DirectoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryNode.swift; sourceTree = "<group>"; };
 		91633F472BE3D850004399E4 /* BuildingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingView.swift; sourceTree = "<group>"; };
+		91ADF02F2C1365B0007918DF /* FloorEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorEntity.swift; sourceTree = "<group>"; };
+		91ADF0312C137205007918DF /* BuildingFloorsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingFloorsEntity.swift; sourceTree = "<group>"; };
 		91BDFF072BD95E9900DE33A8 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		91D89D042C0B7C6F00A2D4F5 /* FileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewModel.swift; sourceTree = "<group>"; };
 		91D89D072C0B812400A2D4F5 /* FileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileView.swift; sourceTree = "<group>"; };
@@ -188,6 +192,8 @@
 			children = (
 				9110B3432BF4C32D0082036B /* BuildingEntity.swift */,
 				912E16D82C0F0A16007C15E1 /* PlatformEntity.swift */,
+				91ADF02F2C1365B0007918DF /* FloorEntity.swift */,
+				91ADF0312C137205007918DF /* BuildingFloorsEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -304,6 +310,7 @@
 				915533D02BFCE5FB00BCFA51 /* DirectoryNode.swift in Sources */,
 				912E49A82BFDEA3000EEAADA /* RealityViewUtils.swift in Sources */,
 				91D89D082C0B812400A2D4F5 /* FileView.swift in Sources */,
+				91ADF0322C137205007918DF /* BuildingFloorsEntity.swift in Sources */,
 				912E16DD2C0F3228007C15E1 /* City.swift in Sources */,
 				913C6CAE2C0DD4370002F220 /* RefactoringView.swift in Sources */,
 				912E49AD2BFE4EBB00EEAADA /* BuildingLayout1.swift in Sources */,
@@ -313,6 +320,7 @@
 				91D89D052C0B7C6F00A2D4F5 /* FileViewModel.swift in Sources */,
 				9111E42C2B7E0DD7007F9AAC /* SpatialLiveRefApp.swift in Sources */,
 				913C6CAA2C0DCF300002F220 /* Refactoring.swift in Sources */,
+				91ADF0302C1365B0007918DF /* FloorEntity.swift in Sources */,
 				910D3B3F2C0B696500548F46 /* File.swift in Sources */,
 				913C6CAC2C0DD33B0002F220 /* RefactoringViewModel.swift in Sources */,
 				91633F482BE3D850004399E4 /* BuildingView.swift in Sources */,
