@@ -13,19 +13,16 @@ import RealityKitContent
 
 class FloorEntity : Entity {
     
-    var filePath : String
     var color = FloorColor.gray
     var width : Float = 0.1
     var height : Float = 0
     var thickness : Float = 1
 
-    init(filePath : String, width: Float, thickness : Float, height : Float, color: FloorColor) {
+    init(width: Float, thickness : Float, height : Float, color: FloorColor) {
         
-        self.filePath = filePath
         self.width = width*2
         self.thickness = thickness
         self.height = self.thickness/2 + height
-        //self.numberRefactorings = numberRefactorings
         super.init()
         
         var floorMaterial = getPlatformMaterial()
@@ -39,7 +36,9 @@ class FloorEntity : Entity {
         case .red:
             floorMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .red)
         case .gray:
-            floorMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .green)
+            floorMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .lightGray)
+        case .blue:
+            floorMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .blue)
         }
 
         let floorMesh = MeshResource.generateBox(size: 1)
@@ -52,32 +51,12 @@ class FloorEntity : Entity {
     }
     
     required init(){
-        self.filePath = ""
         self.width = 0
-        //self.numberRefactorings = 0
         super.init()
     }
-    
-    /*
-    func addRefactoring() {
-        numberRefactorings += 1
-        while !self.children.isEmpty {
-            self.removeChild(self.children.first!)
-        }
-        
-        var floorMaterial = getPlatformMaterial()
-        floorMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .red)
-        let floorMesh = MeshResource.generateBox(size: 0.01)
-        let floorEntity = ModelEntity(mesh: floorMesh, materials: [floorMaterial])
-        
-        floorEntity.transform.translation = [0, self.thickness*0.01, 0]
-        floorEntity.transform.scale = [self.width, self.thickness, self.width]
-        
-        self.addChild(floorEntity)
-    }*/
 }
 
 enum FloorColor : String {
-    case gray, yellow, orange, red
+    case gray, yellow, orange, red, blue
 }
 

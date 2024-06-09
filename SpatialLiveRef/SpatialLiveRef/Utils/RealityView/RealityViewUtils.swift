@@ -49,60 +49,35 @@ func generatePlane() -> ModelEntity {
     return plane
 }
 
-func generateBuilding(buildingEntity: BuildingEntity, location: (String, Float, Float), cityWidth: Float ) -> BuildingEntity {
-    
-    buildingEntity.transform.translation = [location.1/cityWidth, 0, location.2/cityWidth]
-    
-    buildingEntity.transform.scale = [buildingEntity.width, 0.15+buildingEntity.height, buildingEntity.width]
-
-    buildingEntity.generateCollisionShapes(recursive: false)
-
-    buildingEntity.components.set(InputTargetComponent())
-    
-    return buildingEntity
-}
-
 func generateBuildingFloors(buildingEntity: BuildingEntity, location: (String, Float, Float), cityWidth: Float ) -> Entity {
     
-    let buildingFloors = BuildingFloorsEntity()
+    let buildingFloors = BuildingFloorsEntity(buildingEntity: buildingEntity, fileName: buildingEntity.fileName, filePath: buildingEntity.filePath, width: buildingEntity.width, height: buildingEntity.height, loc: buildingEntity.loc, nom: buildingEntity.nom)
     
     buildingFloors.transform.translation = [location.1/cityWidth, 0, location.2/cityWidth]
     
     if buildingEntity.refactorings.isEmpty {
-       
-        let grayFloor = FloorEntity(filePath: buildingEntity.filePath, width: buildingEntity.width/cityWidth, thickness: 0.015 + buildingEntity.height*0.3, height: 0, color: FloorColor.gray)
+        let grayThickness = 0.015 + buildingEntity.height*0.3
+        let grayFloor = FloorEntity(width: buildingEntity.width/cityWidth, thickness: grayThickness, height: 0, color: FloorColor.gray)
         buildingFloors.addChild(grayFloor)
+        buildingFloors.floors.append(grayFloor)
+        buildingFloors.thickness = grayThickness
         
-        buildingFloors.generateCollisionShapes(recursive: false)
-
+        buildingFloors.generateCollisionShapes(recursive: true)
         buildingFloors.components.set(InputTargetComponent())
         
         return buildingFloors
     }
-    buildingFloors.transform.translation = [location.1/cityWidth, 0, location.2/cityWidth]
     
-    buildingFloors.addFloor(buildingEntity: buildingEntity, cityWidth: cityWidth)
+    buildingFloors.addFloors(refactorings: buildingEntity.refactorings, cityWidth: cityWidth)
     
-    buildingFloors.generateCollisionShapes(recursive: false)
+    buildingFloors.generateCollisionShapes(recursive: true)
 
     buildingFloors.components.set(InputTargetComponent())
     
     return buildingFloors
 }
 
-
-func getBuildingEntityFromEntity(entity: Entity) -> BuildingEntity {
-/*
-    let buildingEntity = entity.parent!.parent!.parent!.parent! as! BuildingEntity
-    print(buildingEntity.filePath)
-*/
-    return entity.parent!.parent!.parent!.parent! as! BuildingEntity
-}
-
 func getBuildingFloorsEntityFromEntity(entity: Entity) -> BuildingFloorsEntity {
 
-    let cuildingFloorsEntity = entity.parent!.parent!.parent!.parent! as! BuildingFloorsEntity
-    print(cuildingFloorsEntity.filePath)
-
-    return entity.parent!.parent!.parent!.parent! as! BuildingFloorsEntity
+    return entity.parent!.parent! as! BuildingFloorsEntity
 }

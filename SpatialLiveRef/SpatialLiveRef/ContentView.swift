@@ -17,29 +17,20 @@ struct ContentView : View {
     @State private var showImmersiveSpace = false
     @State private var immersiveSpaceIsShown = false
     
-    @State private var selectedBuildingEntities = [BuildingEntity]()
+    @State private var selectedBuildingEntities = [BuildingFloorsEntity]()
     
     private var cache = CacheViewModel()
     
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
-    /*var body: some View {
-        RealityView { content in
-            
-            let planeEntity = generatePlane()
-            content.add(planeEntity)
-            
-            // width = fileBuilding width (alterada em buildFileTree)
-            let floorEntity = FloorEntity(filePath: "filepath.java", width: 3, numberRefactorings: 2)
-            
-            content.add(floorEntity)
-    }*/
     
     var body: some View {
         ZStack {
             VStack {
                 List() {
-                    ForEach(selectedBuildingEntities) { building in
+                    ForEach(selectedBuildingEntities) { buildingFloor in
+                        
+                        let building = buildingFloor.buildingEntity
                         let text1 : String = building.fileName + "\n" + "\tPath: " + building.filePath + "\n"
                         let text2 : String = "\t\(building.refactorings.count) refactoring candidates"
                         
@@ -52,7 +43,7 @@ struct ContentView : View {
                         }
                     }
                 }
-            }//.padding(.bottom, 500)
+            }
             
             RealityView { content in
                 
@@ -116,7 +107,6 @@ struct ContentView : View {
                                  */
                                 for location in locations[platform]! {
                                     let buildingFloorsEntity = generateBuildingFloors(buildingEntity: buildingEntities[location.0]!, location: location, cityWidth: city.width)
-                                    //let buildingEntity = generateBuilding(buildingEntity: buildingEntities[location.0]!, location: location, cityWidth: city.width)
                                     
                                     content.add(buildingFloorsEntity)
                                 }
@@ -139,15 +129,18 @@ struct ContentView : View {
         SpatialTapGesture()
             .targetedToAnyEntity()
             .onEnded { value in
-
-                let buildingEntity = getBuildingEntityFromEntity(entity: value.entity)
                 
-                if buildingEntity.isHighlighted {
-                    buildingEntity.removeHighlight()
+                
+                let buildingFloorsEntity = getBuildingFloorsEntityFromEntity(entity: value.entity)
+                print(buildingFloorsEntity.fileName)
+                print(buildingFloorsEntity.isHighlighted)
+                if buildingFloorsEntity.isHighlighted {
+                    buildingFloorsEntity.removeHighlight()
                     selectedBuildingEntities.remove(at: 0)
                 } else {
-                    buildingEntity.highlight()
-                    selectedBuildingEntities.append(buildingEntity)
+                    buildingFloorsEntity.highlight()
+                    
+                    selectedBuildingEntities.append(buildingFloorsEntity)
                     if selectedBuildingEntities.count > 1 {
                         selectedBuildingEntities[0].removeHighlight()
                         selectedBuildingEntities.remove(at: 0)
