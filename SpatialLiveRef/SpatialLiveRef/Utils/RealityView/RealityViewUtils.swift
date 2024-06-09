@@ -49,15 +49,15 @@ func generatePlane() -> ModelEntity {
     return plane
 }
 
-func generateBuildingFloors(buildingEntity: BuildingEntity, location: (String, Float, Float), cityWidth: Float ) -> Entity {
+func generateBuildingFloors(building: Building, location: (String, Float, Float), cityWidth: Float ) -> Entity {
     
-    let buildingFloors = BuildingFloorsEntity(buildingEntity: buildingEntity, fileName: buildingEntity.fileName, filePath: buildingEntity.filePath, width: buildingEntity.width, height: buildingEntity.height, loc: buildingEntity.loc, nom: buildingEntity.nom)
+    let buildingFloors = BuildingFloorsEntity(building: building)
     
     buildingFloors.transform.translation = [location.1/cityWidth, 0, location.2/cityWidth]
     
-    if buildingEntity.refactorings.isEmpty {
-        let grayThickness = 0.015 + buildingEntity.height*0.3
-        let grayFloor = FloorEntity(width: buildingEntity.width/cityWidth, thickness: grayThickness, height: 0, color: FloorColor.gray)
+    if building.refactorings.isEmpty {
+        let grayThickness = 0.015 + building.height*0.3
+        let grayFloor = FloorEntity(width: building.width/cityWidth, thickness: grayThickness, height: 0, color: FloorColor.gray)
         buildingFloors.addChild(grayFloor)
         buildingFloors.floors.append(grayFloor)
         buildingFloors.thickness = grayThickness
@@ -68,7 +68,7 @@ func generateBuildingFloors(buildingEntity: BuildingEntity, location: (String, F
         return buildingFloors
     }
     
-    buildingFloors.addFloors(refactorings: buildingEntity.refactorings, cityWidth: cityWidth)
+    buildingFloors.addFloors(refactorings: building.refactorings, cityWidth: cityWidth)
     
     buildingFloors.generateCollisionShapes(recursive: true)
 

@@ -13,34 +13,18 @@ import RealityKitContent
 
 class BuildingFloorsEntity : Entity {
     
-    var buildingEntity: BuildingEntity
-    var fileName : String
-    var filePath : String
-    var loc : Int
-    var nom : Int
-    var width : Float = 0.1
+    var building: Building
     var thickness : Float = 0
-    var height : Float = 1
     var floors = [FloorEntity]()
     var isHighlighted = false
 
-    init(buildingEntity: BuildingEntity, fileName : String, filePath : String, width: Float, height: Float, loc : Int, nom : Int) {
-        self.buildingEntity = buildingEntity
-        self.fileName = fileName
-        self.filePath = filePath
-        self.width = width
-        self.height = height
-        self.loc = loc
-        self.nom = nom
+    init(building: Building) {
+        self.building = building
         super.init()
     }
     
     required init(){
-        self.buildingEntity = BuildingEntity()
-        self.fileName = ""
-        self.filePath = ""
-        self.loc = 0
-        self.nom = 0
+        self.building = Building(fileName: "", filePath: "", loc: 0, nom: 0, numberRefactorings: 0)
         super.init()
     }
     
@@ -68,30 +52,30 @@ class BuildingFloorsEntity : Entity {
 
         var previousHeight : Float = 0
         
-        if refactoringSeverities.0.1 + refactoringSeverities.1.1 + refactoringSeverities.2.1 < loc {
-            let grayThickness = Float(refactoringSeverities.0.1 + refactoringSeverities.1.1 + refactoringSeverities.2.1)/Float(loc)*height*0.3 + 0.015
-            let grayFloor = FloorEntity(width: width/cityWidth, thickness: grayThickness, height: 0, color: FloorColor.gray)
+        if refactoringSeverities.0.1 + refactoringSeverities.1.1 + refactoringSeverities.2.1 < building.loc {
+            let grayThickness = Float(refactoringSeverities.0.1 + refactoringSeverities.1.1 + refactoringSeverities.2.1)/Float(building.loc)*building.height*0.3 + 0.015
+            let grayFloor = FloorEntity(width: building.width/cityWidth, thickness: grayThickness, height: 0, color: FloorColor.gray)
             self.addChild(grayFloor)
             floors.append(grayFloor)
             previousHeight = grayThickness
         }
         if refactoringSeverities.0.0 > 0 {
-            let yellowThickness = Float(refactoringSeverities.0.1)/Float(loc)*height*0.3 + 0.015
-            let yellowFloor = FloorEntity(width: width/cityWidth, thickness: yellowThickness, height: previousHeight, color: FloorColor.yellow)
+            let yellowThickness = Float(refactoringSeverities.0.1)/Float(building.loc)*building.height*0.3 + 0.015
+            let yellowFloor = FloorEntity(width: building.width/cityWidth, thickness: yellowThickness, height: previousHeight, color: FloorColor.yellow)
             self.addChild(yellowFloor)
             floors.append(yellowFloor)
             previousHeight += yellowThickness
         }
         if refactoringSeverities.1.0 > 0 {
-            let orangeThickness = Float(refactoringSeverities.1.1)/Float(loc)*height*0.3 + 0.015
-            let orangeFloor = FloorEntity(width: width/cityWidth, thickness: orangeThickness, height: previousHeight, color: FloorColor.orange)
+            let orangeThickness = Float(refactoringSeverities.1.1)/Float(building.loc)*building.height*0.3 + 0.015
+            let orangeFloor = FloorEntity(width: building.width/cityWidth, thickness: orangeThickness, height: previousHeight, color: FloorColor.orange)
             self.addChild(orangeFloor)
             floors.append(orangeFloor)
             previousHeight += orangeThickness
         }
         if refactoringSeverities.2.0 > 0 {
-            let redThickness = Float(refactoringSeverities.2.1)/Float(loc)*height*0.3 + 0.015
-            let redFloor = FloorEntity(width: width/cityWidth, thickness: redThickness, height: previousHeight, color: FloorColor.red)
+            let redThickness = Float(refactoringSeverities.2.1)/Float(building.loc)*building.height*0.3 + 0.015
+            let redFloor = FloorEntity(width: building.width/cityWidth, thickness: redThickness, height: previousHeight, color: FloorColor.red)
             self.addChild(redFloor)
             floors.append(redFloor)
             thickness += previousHeight + redThickness

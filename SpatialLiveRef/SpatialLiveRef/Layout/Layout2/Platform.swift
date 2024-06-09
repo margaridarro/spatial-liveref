@@ -9,7 +9,7 @@ import Foundation
 
 class Platform {
     let id: String
-    var buildingsEntities: [String : BuildingEntity]
+    var buildings: [String : Building]
     var subplatforms: [Platform]
     var locations: [(String, Float, Float)] = [] // (filePath, x, y)
     var area = 0
@@ -17,9 +17,9 @@ class Platform {
     var depth = 0
     var level : Float = 0
     
-    init(id: String, buildingEntitites: [String : BuildingEntity] = [:], subplatforms: [Platform] = []) {
+    init(id: String, buildings: [String : Building] = [:], subplatforms: [Platform] = []) {
         self.id = id
-        self.buildingsEntities = buildingEntitites
+        self.buildings = buildings
         self.subplatforms = subplatforms
     }
     

@@ -14,18 +14,18 @@ class City {
     var platformsLocations : [String: [(String, Float, Float)]] = [:] //platformID : locations
     var levels : Float = 0
     
-    init(buildingEntities: [String: BuildingEntity]) {
-        self.width = sqrtf(Float(buildingEntities.count))
+    init(buildings: [String: Building]) {
+        self.width = sqrtf(Float(buildings.count))
         self.grid = Array(repeating: Array(repeating: ("", []), count: Int(width)), count: Int(width))
         self.rootPlatform = Platform(id: "ProjectName")
         
-        buildGroupTree(buildingEntities: buildingEntities)
+        buildGroupTree(buildings: buildings)
     }
     
-    func buildGroupTree(buildingEntities: [String: BuildingEntity]) {
+    func buildGroupTree(buildings: [String: Building]) {
 
-        let (locMutilplier, nomMultiplier) = getFilesMetrics(files: buildingEntities)
-        let fileTree = buildFileTree(files: buildingEntities, locMultiplier: locMutilplier, nomMultiplier: nomMultiplier)
+        let (locMutilplier, nomMultiplier) = getFilesMetrics(files: buildings)
+        let fileTree = buildFileTree(files: buildings, locMultiplier: locMutilplier, nomMultiplier: nomMultiplier)
         
         var platformLevels : [(String, level: Int)] = []
         
@@ -36,10 +36,10 @@ class City {
         for platformLevel in platformLevels {
             let platform = Platform(id: platformLevel.0)
             var parentID = ""
-            for building in buildingEntities {
+            for building in buildings {
                 if building.key.contains("/" + platformLevel.0 + "/" + building.value.fileName) {
                     parentID = getDirectoryParentFromPath(child: platformLevel.0, filePath: building.key, platforms: platformLevels)
-                    platform.buildingsEntities[building.key] = building.value
+                    platform.buildings[building.key] = building.value
                     platform.area += 1
                 } else if building.key.contains("/" + platformLevel.0 + "/") {
                     platform.area += 1
@@ -57,7 +57,7 @@ class City {
     }
 
     
-    func canPlacePlatform(gridCopy: inout [[(String, [String])]], x: Int, y: Int, platform: Platform, locations: inout [(String, Float, Float)], buildingEntitiesKeys: inout [String] ) -> Bool {
+    func canPlacePlatform(gridCopy: inout [[(String, [String])]], x: Int, y: Int, platform: Platform, locations: inout [(String, Float, Float)], buildingsKeys: inout [String] ) -> Bool {
         if gridCopy[x][y].0 == "" { // no Building in position
             
             if gridCopy[x][y].1.isEmpty { // no platform in position
@@ -65,10 +65,10 @@ class City {
                 if rootPlatform.isBottomPlatform(platform: platform) { // platform does not have a platform parent
                     gridCopy[x][y].1.append(platform.id)
                     
-                    if buildingEntitiesKeys.count > 0 {
-                        gridCopy[x][y].0 = buildingEntitiesKeys.first!
-                        locations.append((buildingEntitiesKeys.first!, Float(x), Float(y)))
-                        buildingEntitiesKeys.remove(at: 0)
+                    if buildingsKeys.count > 0 {
+                        gridCopy[x][y].0 = buildingsKeys.first!
+                        locations.append((buildingsKeys.first!, Float(x), Float(y)))
+                        buildingsKeys.remove(at: 0)
                     } else {
                         locations.append(("", Float(x), Float(y)))
                     }
@@ -79,11 +79,11 @@ class City {
 
                 gridCopy[x][y].1.append(platform.id)
   
-                if buildingEntitiesKeys.count > 0 {
+                if buildingsKeys.count > 0 {
 
-                    gridCopy[x][y].0 = buildingEntitiesKeys.first!
-                    locations.append((buildingEntitiesKeys.first!, Float(x), Float(y)))
-                    buildingEntitiesKeys.remove(at: 0)
+                    gridCopy[x][y].0 = buildingsKeys.first!
+                    locations.append((buildingsKeys.first!, Float(x), Float(y)))
+                    buildingsKeys.remove(at: 0)
                 } else {
                     locations.append(("", Float(x), Float(y)))
                 }
@@ -98,11 +98,11 @@ class City {
         
         var gridCopy = grid
         var locations : [(String, Float, Float)] = [] // location = (filePath, x, y)
-        var buildingEntitiesKeys : [String] = [] // [filepath]
+        var buildingsKeys : [String] = [] // [filepath]
 
-        for buildingEntity in platform.buildingsEntities {
+        for buildingEntity in platform.buildings {
             
-            buildingEntitiesKeys.append(buildingEntity.key)
+            buildingsKeys.append(buildingEntity.key)
         }
         
         /*var placed = false
@@ -120,7 +120,7 @@ class City {
                     }
                 }
                 */
-                if /*neighbor && */canPlacePlatform(gridCopy: &gridCopy, x: i, y: j, platform: platform, locations: &locations, buildingEntitiesKeys: &buildingEntitiesKeys) {
+                if /*neighbor && */canPlacePlatform(gridCopy: &gridCopy, x: i, y: j, platform: platform, locations: &locations, buildingsKeys: &buildingsKeys) {
                     /*placed = true
                     neighbor = false*/
                     if locations.count == platform.area {
@@ -132,9 +132,9 @@ class City {
                 } else {
                     locations = []
                     gridCopy = grid
-                    buildingEntitiesKeys = []
-                    for buildingEntity in platform.buildingsEntities {
-                        buildingEntitiesKeys.append(buildingEntity.key)
+                    buildingsKeys = []
+                    for buildingEntity in platform.buildings {
+                        buildingsKeys.append(buildingEntity.key)
                     }
                     /*placed = false
                     neighbor = true*/
@@ -149,7 +149,7 @@ class City {
     func generateCityLayout(platform: Platform) -> Bool {
         
         var success = false
-        if !platform.buildingsEntities.isEmpty {
+        if !platform.buildings.isEmpty {
             if placePlatform(platform: platform) {
                 success = true
                 levels += Float(0.7)

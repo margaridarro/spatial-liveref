@@ -30,7 +30,7 @@ struct ContentView : View {
                 List() {
                     ForEach(selectedBuildingEntities) { buildingFloor in
                         
-                        let building = buildingFloor.buildingEntity
+                        let building = buildingFloor.building
                         let text1 : String = building.fileName + "\n" + "\tPath: " + building.filePath + "\n"
                         let text2 : String = "\t\(building.refactorings.count) refactoring candidates"
                         
@@ -70,13 +70,13 @@ struct ContentView : View {
                     /**
                      Get files and refactorings
                      */
-                    var buildingEntities = [String : BuildingEntity]()
+                    var buildings = [String : Building]()
                     
                     fileViewModel.files.forEach { file in
-                        buildingEntities[file.filePath] = BuildingEntity(fileName: file.fileName, filePath: file.filePath, loc: file.loc, nom: file.nom, numberRefactorings: file.nRefactorings)
+                        buildings[file.filePath] = Building(fileName: file.fileName, filePath: file.filePath, loc: file.loc, nom: file.nom, numberRefactorings: file.nRefactorings)
                     }
                     refactoringViewModel.refactorings.forEach { refactoring in
-                        buildingEntities[refactoring.filePath]?.addRefactoring(refactoring: refactoring)
+                        buildings[refactoring.filePath]?.addRefactoring(refactoring: refactoring)
                     }
                     print("files: ", fileViewModel.files.count)
                     print("refs: ", refactoringViewModel.refactorings.count)
@@ -85,7 +85,7 @@ struct ContentView : View {
                         /**
                          Generate city
                          */
-                        let city = City(buildingEntities: buildingEntities)
+                        let city = City(buildings: buildings)
                         
                         if city.generateCity() {
 
@@ -106,7 +106,7 @@ struct ContentView : View {
                                  Generate buildings
                                  */
                                 for location in locations[platform]! {
-                                    let buildingFloorsEntity = generateBuildingFloors(buildingEntity: buildingEntities[location.0]!, location: location, cityWidth: city.width)
+                                    let buildingFloorsEntity = generateBuildingFloors(building: buildings[location.0]!, location: location, cityWidth: city.width)
                                     
                                     content.add(buildingFloorsEntity)
                                 }
@@ -132,8 +132,7 @@ struct ContentView : View {
                 
                 
                 let buildingFloorsEntity = getBuildingFloorsEntityFromEntity(entity: value.entity)
-                print(buildingFloorsEntity.fileName)
-                print(buildingFloorsEntity.isHighlighted)
+
                 if buildingFloorsEntity.isHighlighted {
                     buildingFloorsEntity.removeHighlight()
                     selectedBuildingEntities.remove(at: 0)
