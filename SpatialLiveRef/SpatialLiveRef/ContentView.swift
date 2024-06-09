@@ -17,19 +17,20 @@ struct ContentView : View {
     @State private var showImmersiveSpace = false
     @State private var immersiveSpaceIsShown = false
     
-    @State private var selectedBuildingEntities = [BuildingEntity]()
+    @State private var selectedBuildingEntities = [BuildingFloorsEntity]()
     
     private var cache = CacheViewModel()
     
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
     
-    
     var body: some View {
         ZStack {
             VStack {
                 List() {
-                    ForEach(selectedBuildingEntities) { building in
+                    ForEach(selectedBuildingEntities) { buildingFloor in
+                        
+                        let building = buildingFloor.building
                         let text1 : String = building.fileName + "\n" + "\tPath: " + building.filePath + "\n"
                         let text2 : String = "\t\(building.refactorings.count) refactoring candidates"
                         
@@ -42,7 +43,7 @@ struct ContentView : View {
                         }
                     }
                 }
-            }//.padding(.bottom, 500)
+            }
             
             RealityView { content in
                 
@@ -69,13 +70,13 @@ struct ContentView : View {
                     /**
                      Get files and refactorings
                      */
-                    var buildingEntities = [String : BuildingEntity]()
+                    var buildings = [String : Building]()
                     
                     fileViewModel.files.forEach { file in
-                        buildingEntities[file.filePath] = BuildingEntity(fileName: file.fileName, filePath: file.filePath, loc: file.loc, nom: file.nom, numberRefactorings: file.nRefactorings)
+                        buildings[file.filePath] = Building(fileName: file.fileName, filePath: file.filePath, loc: file.loc, nom: file.nom, numberRefactorings: file.nRefactorings)
                     }
                     refactoringViewModel.refactorings.forEach { refactoring in
-                        buildingEntities[refactoring.filePath]?.addRefactoring(refactoring: refactoring)
+                        buildings[refactoring.filePath]?.addRefactoring(refactoring: refactoring)
                     }
                     print("files: ", fileViewModel.files.count)
                     print("refs: ", refactoringViewModel.refactorings.count)
@@ -84,7 +85,7 @@ struct ContentView : View {
                         /**
                          Generate city
                          */
-                        let city = City(buildingEntities: buildingEntities)
+                        let city = City(buildings: buildings)
                         
                         if city.generateCity() {
 
@@ -99,15 +100,15 @@ struct ContentView : View {
                                 platformEntity.setMeasures(platformID: platform , locations: locations[platform]!, rootPlatform: city.rootPlatform, city: city)
                                 platformEntity.transform(cityWidth: city.width)
                                 
-                                content.add(platformEntity)
+                               content.add(platformEntity)
                                 
                                 /**
                                  Generate buildings
                                  */
                                 for location in locations[platform]! {
-                                    let buildingEntity = generateBuilding(buildingEntity: buildingEntities[location.0]!, location: location, cityWidth: city.width)
+                                    let buildingFloorsEntity = generateBuildingFloors(building: buildings[location.0]!, location: location, cityWidth: city.width)
                                     
-                                    content.add(buildingEntity)
+                                    content.add(buildingFloorsEntity)
                                 }
                                 
                             }
@@ -128,15 +129,17 @@ struct ContentView : View {
         SpatialTapGesture()
             .targetedToAnyEntity()
             .onEnded { value in
-
-                let buildingEntity = getBuildingEntityFromEntity(entity: value.entity)
                 
-                if buildingEntity.isHighlighted {
-                    buildingEntity.removeHighlight()
+                
+                let buildingFloorsEntity = getBuildingFloorsEntityFromEntity(entity: value.entity)
+
+                if buildingFloorsEntity.isHighlighted {
+                    buildingFloorsEntity.removeHighlight()
                     selectedBuildingEntities.remove(at: 0)
                 } else {
-                    buildingEntity.highlight()
-                    selectedBuildingEntities.append(buildingEntity)
+                    buildingFloorsEntity.highlight()
+                    
+                    selectedBuildingEntities.append(buildingFloorsEntity)
                     if selectedBuildingEntities.count > 1 {
                         selectedBuildingEntities[0].removeHighlight()
                         selectedBuildingEntities.remove(at: 0)

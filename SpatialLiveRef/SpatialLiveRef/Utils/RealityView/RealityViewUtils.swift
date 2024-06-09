@@ -49,19 +49,35 @@ func generatePlane() -> ModelEntity {
     return plane
 }
 
-func generateBuilding(buildingEntity: BuildingEntity, location: (String, Float, Float), cityWidth: Float ) -> BuildingEntity {
+func generateBuildingFloors(building: Building, location: (String, Float, Float), cityWidth: Float ) -> Entity {
     
-    buildingEntity.transform.translation = [location.1/cityWidth, 0, location.2/cityWidth]
+    let buildingFloors = BuildingFloorsEntity(building: building)
     
-    buildingEntity.transform.scale = [buildingEntity.width, 0.15+buildingEntity.height, buildingEntity.width]
+    buildingFloors.transform.translation = [location.1/cityWidth, 0, location.2/cityWidth]
+    
+    if building.refactorings.isEmpty {
+        let grayThickness = 0.015 + building.height*0.3
+        let grayFloor = FloorEntity(width: building.width/cityWidth, thickness: grayThickness, height: 0, color: FloorColor.gray)
+        buildingFloors.addChild(grayFloor)
+        buildingFloors.floors.append(grayFloor)
+        buildingFloors.thickness = grayThickness
+        
+        buildingFloors.generateCollisionShapes(recursive: true)
+        buildingFloors.components.set(InputTargetComponent())
+        
+        return buildingFloors
+    }
+    
+    buildingFloors.addFloors(refactorings: building.refactorings, cityWidth: cityWidth)
+    
+    buildingFloors.generateCollisionShapes(recursive: true)
 
-    buildingEntity.generateCollisionShapes(recursive: false)
-
-    buildingEntity.components.set(InputTargetComponent())
+    buildingFloors.components.set(InputTargetComponent())
     
-    return buildingEntity
+    return buildingFloors
 }
 
-func getBuildingEntityFromEntity(entity: Entity) -> BuildingEntity {
-    return entity.parent!.parent!.parent!.parent! as! BuildingEntity
+func getBuildingFloorsEntityFromEntity(entity: Entity) -> BuildingFloorsEntity {
+
+    return entity.parent!.parent! as! BuildingFloorsEntity
 }
