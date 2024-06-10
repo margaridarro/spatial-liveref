@@ -88,9 +88,32 @@ class BuildingFloorsEntity : Entity {
         while !self.children.isEmpty{
             self.removeChild(self.children.first!)
         }
-
-        let blueFloor = FloorEntity(width: floors.first!.width/2, thickness: thickness, height: 0, color: FloorColor.blue)
-        self.addChild(blueFloor)
+        
+        var previousHeight : Float = 0
+        for floor in floors {
+            switch floor.color{
+            case .gray:
+                self.addChild(FloorEntity(width: floors.first!.width/2, thickness: floor.thickness, height: 0, color: FloorColor.translucidGray))
+                previousHeight += floor.thickness
+            case .yellow:
+                self.addChild(FloorEntity(width: floors.first!.width/2, thickness: floor.thickness, height: previousHeight, color: FloorColor.translucidYellow))
+                previousHeight += floor.thickness
+            case .orange:
+                self.addChild(FloorEntity(width: floors.first!.width/2, thickness: floor.thickness, height: previousHeight, color: FloorColor.translucidOrange))
+                previousHeight += floor.thickness
+            case .red:
+                self.addChild(FloorEntity(width: floors.first!.width/2, thickness: floor.thickness, height: previousHeight, color: FloorColor.translucidRed))
+            default:
+                print("Wrong floor color")
+            }
+        }
+        
+        /**
+        Uncomment below to make building translucent white
+         */
+        //let whiteFloor = FloorEntity(width: floors.first!.width/2, thickness: thickness, height: 0, color: FloorColor.white)
+        //self.addChild(whiteFloor)
+        
         self.generateCollisionShapes(recursive: true)
         self.components.set(InputTargetComponent())
         
@@ -103,11 +126,9 @@ class BuildingFloorsEntity : Entity {
     }
     
     func resetEntity() {
-        print("reset")
         while !self.children.isEmpty{
             self.removeChild(self.children.first!)
         }
-        print(floors.count)
         for floor in floors{
             self.addChild(floor)
         }

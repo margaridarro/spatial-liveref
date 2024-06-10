@@ -23,10 +23,11 @@ class FloorEntity : Entity {
         self.width = width*2
         self.thickness = thickness
         self.height = self.thickness/2 + height
+        self.color = color
         super.init()
         
         var floorMaterial = getPlatformMaterial()
-        
+        floorMaterial.blending = .transparent(opacity: .init(floatLiteral: 1))
         
         switch color {
         case .yellow:
@@ -37,8 +38,21 @@ class FloorEntity : Entity {
             floorMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .red)
         case .gray:
             floorMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .lightGray)
-        case .blue:
-            floorMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .blue)
+        case .white:
+            floorMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .white)
+            floorMaterial.blending = .transparent(opacity: .init(floatLiteral: 0.8))
+        case .translucidGray:
+            floorMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .gray)
+            floorMaterial.blending = .transparent(opacity: .init(floatLiteral: 0.8))
+        case .translucidYellow:
+            floorMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .yellow)
+            floorMaterial.blending = .transparent(opacity: .init(floatLiteral: 0.8))
+        case .translucidOrange:
+            floorMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .orange)
+            floorMaterial.blending = .transparent(opacity: .init(floatLiteral: 0.8))
+        case .translucidRed:
+            floorMaterial.baseColor = PhysicallyBasedMaterial.BaseColor(tint: .red)
+            floorMaterial.blending = .transparent(opacity: .init(floatLiteral: 0.8))
         }
 
         let floorMesh = MeshResource.generateBox(size: 1)
@@ -57,6 +71,6 @@ class FloorEntity : Entity {
 }
 
 enum FloorColor : String {
-    case gray, yellow, orange, red, blue
+    case gray, yellow, orange, red, white, translucidGray, translucidYellow, translucidOrange, translucidRed
 }
 

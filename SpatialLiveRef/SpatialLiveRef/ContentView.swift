@@ -26,20 +26,42 @@ struct ContentView : View {
     
     var body: some View {
         ZStack {
-            VStack {
-                List() {
-                    ForEach(selectedBuildingEntities) { buildingFloor in
+            HStack {
+                VStack {
+                    List(){
+                        //Text("Project: \(projectName)")
+                        Text("**Platforms**: Packages\n**Buildings**: Java files\n\t**Height**: Lines of Code (LOC)\n\t**Width**: Number of methods\n\t**Floors**: LOC affected by \trefactoring suggestions").font(.system(size: 30, design: .monospaced))
                         
-                        let building = buildingFloor.building
-                        let text1 : String = building.fileName + "\n" + "\tPath: " + building.filePath + "\n"
-                        let text2 : String = "\t\(building.refactorings.count) refactoring candidates"
-                        
-                        if !building.refactorings.isEmpty {
-                            let text3_1 : String = "\n\tMost severe: \(building.refactorings.first!.refactoringType)"
-                            let text3_2 : String = " in \(building.refactorings.first!.methodName)"
-                            Text(text1 + text2 + text3_1 + text3_2).font(.system(size: 30, weight: .bold, design: .monospaced))
-                        } else {
-                            Text(text1 + text2).font(.system(size: 30, weight: .bold, design: .monospaced))
+                        VStack (alignment: .leading) {
+                            Text("**Refactoring Severity**").font(.system(size: 30, design: .monospaced))
+                            HStack {
+                                Rectangle().fill(.gray).frame(width: 20, height: 20)
+                                Text("0 \t").font(.system(size: 30, design: .monospaced))
+                                Rectangle().fill(.yellow).frame(width: 20, height: 20)
+                                Text("1-4 \t").font(.system(size: 30, design: .monospaced))
+                                Rectangle().fill(.orange).frame(width: 20, height: 20)
+                                Text("5-7 \t").font(.system(size: 30, design: .monospaced))
+                                Rectangle().fill(.red).frame(width: 20, height: 20)
+                                Text("8-10").font(.system(size: 30, design: .monospaced))
+                            }
+                        }
+                    }
+                }
+                VStack {
+                    List() {
+                        ForEach(selectedBuildingEntities) { buildingFloor in
+                            
+                            let building = buildingFloor.building
+                            let text1 : String = building.fileName + "\n" + "\tPath: " + building.filePath + "\n"
+                            let text2 : String = "\t\(building.refactorings.count) refactoring candidates"
+                            
+                            if !building.refactorings.isEmpty {
+                                let text3_1 : String = "\n\tMost severe: \(building.refactorings.first!.refactoringType)"
+                                let text3_2 : String = " in \(building.refactorings.first!.methodName)"
+                                Text(text1 + text2 + text3_1 + text3_2).font(.system(size: 30, weight: .bold, design: .monospaced))
+                            } else {
+                                Text(text1 + text2).font(.system(size: 30, weight: .bold, design: .monospaced))
+                            }
                         }
                     }
                 }
@@ -129,7 +151,6 @@ struct ContentView : View {
         SpatialTapGesture()
             .targetedToAnyEntity()
             .onEnded { value in
-                
                 
                 let buildingFloorsEntity = getBuildingFloorsEntityFromEntity(entity: value.entity)
 
