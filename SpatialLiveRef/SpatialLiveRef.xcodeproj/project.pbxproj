@@ -22,17 +22,12 @@
 		912E16DF2C0F3243007C15E1 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912E16DE2C0F3243007C15E1 /* Platform.swift */; };
 		912E49A82BFDEA3000EEAADA /* RealityViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912E49A72BFDEA3000EEAADA /* RealityViewUtils.swift */; };
 		912E49AA2BFDFD6100EEAADA /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912E49A92BFDFD6100EEAADA /* FileUtils.swift */; };
-		912E49AD2BFE4EBB00EEAADA /* BuildingLayout1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912E49AC2BFE4EBB00EEAADA /* BuildingLayout1.swift */; };
 		913C6CAA2C0DCF300002F220 /* Refactoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C6CA92C0DCF300002F220 /* Refactoring.swift */; };
 		913C6CAC2C0DD33B0002F220 /* RefactoringViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C6CAB2C0DD33B0002F220 /* RefactoringViewModel.swift */; };
-		913C6CAE2C0DD4370002F220 /* RefactoringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913C6CAD2C0DD4370002F220 /* RefactoringView.swift */; };
 		915533D02BFCE5FB00BCFA51 /* DirectoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915533CF2BFCE5FB00BCFA51 /* DirectoryNode.swift */; };
-		91633F482BE3D850004399E4 /* BuildingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91633F472BE3D850004399E4 /* BuildingView.swift */; };
 		91ADF0302C1365B0007918DF /* FloorEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ADF02F2C1365B0007918DF /* FloorEntity.swift */; };
 		91ADF0322C137205007918DF /* BuildingFloorsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91ADF0312C137205007918DF /* BuildingFloorsEntity.swift */; };
-		91BDFF082BD95E9900DE33A8 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91BDFF072BD95E9900DE33A8 /* TestView.swift */; };
 		91D89D052C0B7C6F00A2D4F5 /* FileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D89D042C0B7C6F00A2D4F5 /* FileViewModel.swift */; };
-		91D89D082C0B812400A2D4F5 /* FileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D89D072C0B812400A2D4F5 /* FileView.swift */; };
 		91D89D0B2C0C62FA00A2D4F5 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 910D3B402C0B6BDB00548F46 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -52,17 +47,12 @@
 		912E16DE2C0F3243007C15E1 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		912E49A72BFDEA3000EEAADA /* RealityViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealityViewUtils.swift; sourceTree = "<group>"; };
 		912E49A92BFDFD6100EEAADA /* FileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
-		912E49AC2BFE4EBB00EEAADA /* BuildingLayout1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingLayout1.swift; sourceTree = "<group>"; };
 		913C6CA92C0DCF300002F220 /* Refactoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refactoring.swift; sourceTree = "<group>"; };
 		913C6CAB2C0DD33B0002F220 /* RefactoringViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefactoringViewModel.swift; sourceTree = "<group>"; };
-		913C6CAD2C0DD4370002F220 /* RefactoringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefactoringView.swift; sourceTree = "<group>"; };
 		915533CF2BFCE5FB00BCFA51 /* DirectoryNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryNode.swift; sourceTree = "<group>"; };
-		91633F472BE3D850004399E4 /* BuildingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingView.swift; sourceTree = "<group>"; };
 		91ADF02F2C1365B0007918DF /* FloorEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorEntity.swift; sourceTree = "<group>"; };
 		91ADF0312C137205007918DF /* BuildingFloorsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingFloorsEntity.swift; sourceTree = "<group>"; };
-		91BDFF072BD95E9900DE33A8 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		91D89D042C0B7C6F00A2D4F5 /* FileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewModel.swift; sourceTree = "<group>"; };
-		91D89D072C0B812400A2D4F5 /* FileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileView.swift; sourceTree = "<group>"; };
 		91D89D0C2C0C634900A2D4F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,7 +104,6 @@
 				9111E42F2B7E0DD7007F9AAC /* ImmersiveView.swift */,
 				910D3B3D2C0B694700548F46 /* Models */,
 				91D89D032C0B7C5000A2D4F5 /* ViewModels */,
-				91D89D062C0B80FF00A2D4F5 /* Views */,
 				913C6CA82C0DCEEE0002F220 /* Entities */,
 				912E49AF2BFE50DF00EEAADA /* Layout */,
 				912E16D62C0F08B4007C15E1 /* Utils */,
@@ -122,7 +111,6 @@
 				910D3B402C0B6BDB00548F46 /* GoogleService-Info.plist */,
 				91D89D0C2C0C634900A2D4F5 /* Info.plist */,
 				9111E4332B7E0DD8007F9AAC /* Preview Content */,
-				91633F4B2BE41098004399E4 /* Archive */,
 			);
 			path = SpatialLiveRef;
 			sourceTree = "<group>";
@@ -160,15 +148,6 @@
 			path = RealityView;
 			sourceTree = "<group>";
 		};
-		912E16E22C0F3281007C15E1 /* Layout2 */ = {
-			isa = PBXGroup;
-			children = (
-				912E16DC2C0F3228007C15E1 /* City.swift */,
-				912E16DE2C0F3243007C15E1 /* Platform.swift */,
-			);
-			path = Layout2;
-			sourceTree = "<group>";
-		};
 		912E49AB2BFDFE0D00EEAADA /* Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,8 +160,8 @@
 		912E49AF2BFE50DF00EEAADA /* Layout */ = {
 			isa = PBXGroup;
 			children = (
-				912E16E22C0F3281007C15E1 /* Layout2 */,
-				912E49AC2BFE4EBB00EEAADA /* BuildingLayout1.swift */,
+				912E16DC2C0F3228007C15E1 /* City.swift */,
+				912E16DE2C0F3243007C15E1 /* Platform.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -198,15 +177,6 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		91633F4B2BE41098004399E4 /* Archive */ = {
-			isa = PBXGroup;
-			children = (
-				91BDFF072BD95E9900DE33A8 /* TestView.swift */,
-				91633F472BE3D850004399E4 /* BuildingView.swift */,
-			);
-			path = Archive;
-			sourceTree = "<group>";
-		};
 		91D89D032C0B7C5000A2D4F5 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,15 +184,6 @@
 				913C6CAB2C0DD33B0002F220 /* RefactoringViewModel.swift */,
 			);
 			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		91D89D062C0B80FF00A2D4F5 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				91D89D072C0B812400A2D4F5 /* FileView.swift */,
-				913C6CAD2C0DD4370002F220 /* RefactoringView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,13 +270,9 @@
 				9110B3442BF4C32D0082036B /* BuildingEntity.swift in Sources */,
 				915533D02BFCE5FB00BCFA51 /* DirectoryNode.swift in Sources */,
 				912E49A82BFDEA3000EEAADA /* RealityViewUtils.swift in Sources */,
-				91D89D082C0B812400A2D4F5 /* FileView.swift in Sources */,
 				91ADF0322C137205007918DF /* BuildingFloorsEntity.swift in Sources */,
 				912E16DD2C0F3228007C15E1 /* City.swift in Sources */,
-				913C6CAE2C0DD4370002F220 /* RefactoringView.swift in Sources */,
-				912E49AD2BFE4EBB00EEAADA /* BuildingLayout1.swift in Sources */,
 				9111E42E2B7E0DD7007F9AAC /* ContentView.swift in Sources */,
-				91BDFF082BD95E9900DE33A8 /* TestView.swift in Sources */,
 				912E49AA2BFDFD6100EEAADA /* FileUtils.swift in Sources */,
 				91D89D052C0B7C6F00A2D4F5 /* FileViewModel.swift in Sources */,
 				9111E42C2B7E0DD7007F9AAC /* SpatialLiveRefApp.swift in Sources */,
@@ -323,7 +280,6 @@
 				91ADF0302C1365B0007918DF /* FloorEntity.swift in Sources */,
 				910D3B3F2C0B696500548F46 /* File.swift in Sources */,
 				913C6CAC2C0DD33B0002F220 /* RefactoringViewModel.swift in Sources */,
-				91633F482BE3D850004399E4 /* BuildingView.swift in Sources */,
 				9111E4302B7E0DD7007F9AAC /* ImmersiveView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

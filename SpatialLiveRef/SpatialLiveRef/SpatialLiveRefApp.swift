@@ -15,8 +15,6 @@ struct SpatialLiveRefApp: App {
     init() {
         FirebaseApp.configure()
     }
-    
-   // let (fileBuildings, files, refactorings) = getProjectFiles()
 
     var body: some Scene {
         WindowGroup {
