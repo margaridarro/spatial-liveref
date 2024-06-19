@@ -160,6 +160,7 @@ struct ContentView : View {
                 } else {
                     buildingFloorsEntity.highlight()
                     
+                    fileViewModel.openFile(fileName: buildingFloorsEntity.building.fileName, filePath: buildingFloorsEntity.building.filePath);
                     selectedBuildingEntities.append(buildingFloorsEntity)
                     if selectedBuildingEntities.count > 1 {
                         selectedBuildingEntities[0].removeHighlight()

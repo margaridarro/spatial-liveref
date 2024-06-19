@@ -71,15 +71,7 @@ class FileViewModel : ObservableObject {
         if let nRefactorings = nRefactorings {
           filteredQuery = filteredQuery.whereField("nRefactorings", isGreaterThan: nRefactorings)
         }
-    /*
-        if let city = city {
-          filteredQuery = filteredQuery.whereField("city", isEqualTo: city)
-        }
 
-        if let price = price {
-          filteredQuery = filteredQuery.whereField("price", isEqualTo: price)
-        }
-    */
         if let sortOption = sortOption {
           filteredQuery = filteredQuery.order(by: sortOption)
         }
@@ -87,45 +79,8 @@ class FileViewModel : ObservableObject {
         return filteredQuery
     }
     
-    
-    func getFiles() async {
-        files.removeAll()
-        do {
-            let querySnapshot = try await db.collection("files").getDocuments()
-            for document in querySnapshot.documents {
-                //print("\(document.documentID) => \(document.data())")
-                try files.append(document.data(as: File.self))
-            }
-        } catch {
-           print("Error getting documents: \(error)")
-        }
+    func openFile(fileName: String, filePath : String)  {
+        db.collection("openFiles").document(fileName).setData(["filePath": filePath]);
     }
     
-    /*
-    func fetchFiles() {
-        
-        files.removeAll()
-        
-        let ref = db.collection("files")
-        ref.getDocuments { snapshot, error in
-            guard error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            if let snapshot = snapshot {
-                
-                for document in snapshot.documents {
-                    do {
-                        let file : File
-                        try file = document.data(as: File.self)
-                        self.files.append(file)
-                    } catch {
-                        print("Error converting document to File: \(error) ")
-                    }
-                }
-            }
-        
-            
-        }
-    }*/
 }

@@ -35,7 +35,22 @@ while(True):
     os.system("rm -r " + folder_path + "/Prints")
     updatedFilePaths = []
     
-    if time_counter % 10 == 0:
+    if time_counter % 2:
+    
+        openFilesDocs = db.collection("openFiles").get()
+        print(len(openFilesDocs))
+        
+        for id, doc in enumerate(openFilesDocs):
+            doc.reference.delete()
+            if id == 0 :
+                print(doc.id)
+                print(doc.to_dict()["filePath"])
+                os.system("idea " + folder_path + doc.to_dict()["filePath"])
+        time.sleep(2)
+        if (len(openFilesDocs) != 0):
+            os.system("rm -r " + folder_path + "/Prints")
+    
+    if time_counter % 8 == 0:
         subfolders = [f.path for f in os.scandir(folder_path) if f.is_dir()]
         new_java_files = []
         for curr_folder_path in subfolders:
