@@ -29,7 +29,6 @@ struct ContentView : View {
             HStack {
                 VStack {
                     List(){
-                        //Text("Project: \(projectName)")
                         Text("**Platforms**: Packages\n**Buildings**: Java files\n\t**Height**: Lines of Code (LOC)\n\t**Width**: Number of methods\n\t**Floors**: LOC affected by \trefactoring suggestions").font(.system(size: 30, design: .monospaced))
                         
                         VStack (alignment: .leading) {
@@ -52,16 +51,29 @@ struct ContentView : View {
                         ForEach(selectedBuildingEntities) { buildingFloor in
                             
                             let building = buildingFloor.building
-                            let text1 : String = building.fileName + "\n" + "\tPath: " + building.filePath + "\n"
-                            let text2 : String = "\t\(building.refactorings.count) refactoring candidates"
                             
                             if !building.refactorings.isEmpty {
-                                let text3_1 : String = "\n\tMost severe: \(building.refactorings.first!.refactoringType)"
-                                let text3_2 : String = " in \(building.refactorings.first!.methodName)"
-                                Text(text1 + text2 + text3_1 + text3_2).font(.system(size: 30, weight: .bold, design: .monospaced))
+                                
+                                Text("\(building.fileName)").font(.system(size: 30, weight: .bold, design: .monospaced))
+                                
+                                VStack (alignment: .leading) {
+                                    Text("\(building.refactorings.count) refactoring candidates").font(.system(size: 30, design: .monospaced))
+                                    HStack {
+                                        Rectangle().fill(.yellow).frame(width: 20, height: 20)
+                                        Text("\t\(building.yellowRefactorings)\t\t").font(.system(size: 30, design: .monospaced))
+                                        Rectangle().fill(.orange).frame(width: 20, height: 20)
+                                        Text("\t\(building.orangeRefactorings)\t\t").font(.system(size: 30, design: .monospaced))
+                                        Rectangle().fill(.red).frame(width: 20, height: 20)
+                                        Text("\t\(building.redRefactorings)").font(.system(size: 30, design: .monospaced))
+                                    }
+                                }
+                                Text("Most severe candidate:\n\(building.refactorings.first!.refactoringType) in method \(building.refactorings.first!.methodName)").font(.system(size: 30, design: .monospaced))
+                                
                             } else {
-                                Text(text1 + text2).font(.system(size: 30, weight: .bold, design: .monospaced))
+                                Text("\(building.fileName)").font(.system(size: 30, weight: .bold, design: .monospaced))
+                                Text("\(building.refactorings.count) refactoring candidates").font(.system(size: 30, design: .monospaced))
                             }
+                            
                         }
                     }
                 }

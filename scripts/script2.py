@@ -24,6 +24,7 @@ db = firestore.client()
 
 os.system("firebase firestore:delete -r files")
 os.system("firebase firestore:delete -r refactorings")
+os.system("firebase firestore:delete -r openFiles")
 
 
 # ProjectPath

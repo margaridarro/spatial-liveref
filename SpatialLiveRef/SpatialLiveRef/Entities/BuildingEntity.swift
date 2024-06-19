@@ -19,6 +19,9 @@ class Building {
     var nom : Int
     var numberRefactorings : Int
     var refactorings  = [Refactoring]()
+    var redRefactorings  = 0;
+    var orangeRefactorings  = 0;
+    var yellowRefactorings  = 0;
     var width : Float = 0.1
     var height : Float = 1
     var platforms : [Int] = []
@@ -33,6 +36,18 @@ class Building {
     }
   
     func addRefactoring(refactoring: Refactoring) {
+  
+        switch Int(refactoring.severity) {
+        case 0...4:
+            yellowRefactorings += 1
+        case 5...8:
+            orangeRefactorings += 1
+        case 9...10:
+            redRefactorings += 1
+        default:
+            print("Error in refactoring severity")
+        }
+        
         refactorings.append(refactoring)
         refactorings.sort(by: >)
     }
