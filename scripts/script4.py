@@ -26,7 +26,7 @@ while(True):
             print(doc.id)
             print(doc.to_dict()["filePath"])
             os.system("idea " + folder_path + doc.to_dict()["filePath"])
-    time.sleep(2)
+    time.sleep(1)
     if (len(openFilesDocs) != 0):
         os.system("rm -r " + folder_path + "/Prints")
         

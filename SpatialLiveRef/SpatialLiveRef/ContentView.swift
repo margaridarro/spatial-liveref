@@ -88,13 +88,32 @@ struct ContentView : View {
                 content.add(planeEntity)
                 
             } update: { content in
-                
-                if cache.previousBuildingEntitiesCount != fileViewModel.files.count || cache.previousRefactoringsCount != refactoringViewModel.refactorings.count {
+                if cache.previousBuildingEntitiesCount == fileViewModel.files.count  && cache.previousRefactoringsCount != refactoringViewModel.refactorings.count {
+
+                    for file in fileViewModel.files {
+                        if file.nRefactorings !=  cache.previousBuildingFloorsEntities[file.filePath]?.building.numberRefactorings {
+                            
+                            cache.previousBuildingFloorsEntities[file.filePath]?.building = Building(fileName: file.fileName, filePath: file.filePath, loc: file.loc, nom: file.loc, numberRefactorings: file.nRefactorings)
+                            
+                            refactoringViewModel.refactorings.forEach { refactoring in
+                                if refactoring.filePath == file.filePath {
+                                    cache.previousBuildingFloorsEntities[file.filePath]?.building.addRefactoring(refactoring: refactoring)
+                                }
+                            }
+                            
+                            updateBuildingFloors(buildingFloors: &cache.previousBuildingFloorsEntities[file.filePath]!, cityWidth: cache.cityWidth)
+                            
+                            //content.remove(cache.previousBuildingFloorsEntities[file.filePath]!)
+                            //content.add(cache.previousBuildingFloorsEntities[file.filePath]!)
+                        }
+                    }
+                } else if cache.previousBuildingEntitiesCount != fileViewModel.files.count {
     
                     while !content.entities.isEmpty {
                         content.remove(content.entities.first!)
                     }
-                    
+                    cache.previousBuildingFloorsEntities.removeAll()
+                    cache.previousRefactorings.removeAll()
                     /**
                      Regenerate base plane
                      */
@@ -111,9 +130,11 @@ struct ContentView : View {
                     }
                     refactoringViewModel.refactorings.forEach { refactoring in
                         buildings[refactoring.filePath]?.addRefactoring(refactoring: refactoring)
+                        cache.previousRefactorings.append(refactoring)
                     }
                     print("files: ", fileViewModel.files.count)
                     print("refs: ", refactoringViewModel.refactorings.count)
+                    
                     if !fileViewModel.files.isEmpty {
                         
                         /**
@@ -122,6 +143,7 @@ struct ContentView : View {
                         let city = City(buildings: buildings)
                         
                         if city.generateCity() {
+                            cache.cityWidth = city.width
 
                             let locations = city.centerPositions()
                             
@@ -141,7 +163,7 @@ struct ContentView : View {
                                  */
                                 for location in locations[platform]! {
                                     let buildingFloorsEntity = generateBuildingFloors(building: buildings[location.0]!, location: location, cityWidth: city.width)
-                                    
+                                    cache.previousBuildingFloorsEntities[buildingFloorsEntity.building.filePath] = buildingFloorsEntity
                                     content.add(buildingFloorsEntity)
                                 }
                                 
@@ -150,6 +172,7 @@ struct ContentView : View {
                     }
                     cache.previousBuildingEntitiesCount = fileViewModel.files.count
                     cache.previousRefactoringsCount = refactoringViewModel.refactorings.count
+                    
                 }
             }.task {
                 let query = fileViewModel.query(filePath: nil, nRefactorings: nil, sortOption: nil)
@@ -186,7 +209,10 @@ struct ContentView : View {
 
 class CacheViewModel {
     var previousBuildingEntitiesCount : Int = 0
+    var previousBuildingFloorsEntities = [String:BuildingFloorsEntity]();
     var previousRefactoringsCount : Int = 0
+    var previousRefactorings = [Refactoring]();
+    var cityWidth : Float = 0;
 }
 
 #Preview(windowStyle: .volumetric) {

@@ -65,7 +65,7 @@ for id, line in enumerate(refactorings_lines):
         
         fileID = refactorings_lines[next_line-1].replace("File Path: ", "").replace(folder_path, "").replace("\n", "").replace("/", "").replace(" ", "").replace("File:", "") + str(counter)
         filePath = refactorings_lines[next_line-1].replace("File: ", "").replace(folder_path, "").replace("\n", "").replace(" ", "").replace("File:", "")
-        elements = int(refactorings_lines[next_line].replace("Number of Elements: ", ""))
+        elements = int(refactorings_lines[next_line].replace("Number of Elements: ", "").replace("\n", ""))
         severity = float(refactorings_lines[next_line+1].replace("Severity: ", ""))
         locToChange = int(refactorings_lines[next_line+2].replace("LOC To Be Changed: ", ""))
 
@@ -75,7 +75,7 @@ for id, line in enumerate(refactorings_lines):
         methodName = refactorings_lines[id+2].replace("Method: ", "")
         fileID = refactorings_lines[id+3].replace("File Path: ", "").replace(folder_path, "").replace("\n", "").replace("/", "").replace(" ", "").replace("File:", "") + str(counter)
         filePath = refactorings_lines[id+3].replace("File: ", "").replace(folder_path, "").replace("\n", "").replace(" ", "").replace("File:", "")
-        elements = int(refactorings_lines[id+5].replace("Number of Elements: ", ""))
+        elements = int(refactorings_lines[id+5].replace("Number of Elements: ", "").replace("\n", ""))
         severity = float(refactorings_lines[id+6].replace("Severity: ", ""))
         locToChange = int(refactorings_lines[id+7].replace("LOC To Be Changed: ", ""))
 
@@ -85,7 +85,7 @@ for id, line in enumerate(refactorings_lines):
         className = refactorings_lines[id+2].replace("Class: ", "")
         fileID = refactorings_lines[id+3].replace("File Path: ", "").replace(folder_path, "").replace("\n", "").replace("/", "").replace(" ", "").replace("File:", "") + str(counter)
         filePath = refactorings_lines[id+3].replace("File: ", "").replace(folder_path, "").replace("\n", "").replace(" ", "").replace("File:", "")
-        elements = int(refactorings_lines[id+4].replace("Number of Elements: ", ""))
+        elements = int(refactorings_lines[id+4].replace("Number of Elements: ", "").replace("\n", ""))
         severity = float(refactorings_lines[id+5].replace("Severity: ", ""))
         methodName = refactorings_lines[id+7].replace("Method: ", "")
         locToChange = int(refactorings_lines[id+8].replace("LOC To Be Changed: ", ""))
@@ -96,7 +96,7 @@ for id, line in enumerate(refactorings_lines):
         methodName = refactorings_lines[id+2].replace("Method: ", "")
         fileID = refactorings_lines[id+3].replace("File Path: ", "").replace(folder_path, "").replace("\n", "").replace("/", "").replace(" ", "").replace("File:", "") + str(counter)
         filePath = refactorings_lines[id+3].replace("File: ", "").replace(folder_path, "").replace("\n", "").replace(" ", "").replace("File:", "")
-        elements = int(refactorings_lines[id+4].replace("Number of Elements: ", ""))
+        elements = int(refactorings_lines[id+4].replace("Number of Elements: ", "").replace("\n", ""))
         severity = float(refactorings_lines[id+5].replace("Severity: ", ""))
         locToChange = int(refactorings_lines[id+6].replace("LOC To Be Changed: ", ""))
 
@@ -106,7 +106,7 @@ for id, line in enumerate(refactorings_lines):
         methodName = refactorings_lines[id+2].replace("Method: ", "")
         fileID = refactorings_lines[id+3].replace("File Path: ", "").replace(folder_path, "").replace("\n", "").replace("/", "").replace(" ", "").replace("File:", "") + str(counter)
         filePath = refactorings_lines[id+3].replace("File: ", "").replace(folder_path, "").replace("\n", "").replace(" ", "").replace("File:", "")
-        elements = int(refactorings_lines[id+6].replace("Number of Elements: ", ""))
+        elements = int(refactorings_lines[id+6].replace("Number of Elements: ", "").replace("\n", ""))
         severity = float(refactorings_lines[id+7].replace("Severity: ", "").replace("\n", ""))
         locToChange = int(refactorings_lines[id+8].replace("LOC To Be Changed: ", ""))
 

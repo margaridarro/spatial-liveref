@@ -49,7 +49,7 @@ func generatePlane() -> ModelEntity {
     return plane
 }
 
-func generateBuildingFloors(building: Building, location: (String, Float, Float), cityWidth: Float ) -> Entity {
+func generateBuildingFloors(building: Building, location: (String, Float, Float), cityWidth: Float ) -> BuildingFloorsEntity {
     
     let buildingFloors = BuildingFloorsEntity(building: building)
     
@@ -75,6 +75,28 @@ func generateBuildingFloors(building: Building, location: (String, Float, Float)
     buildingFloors.components.set(InputTargetComponent())
     
     return buildingFloors
+}
+
+
+func updateBuildingFloors(buildingFloors: inout BuildingFloorsEntity, cityWidth: Float ) {
+    
+    buildingFloors.floors.removeAll()
+    buildingFloors.children.removeAll()
+    
+    if buildingFloors.building.refactorings.isEmpty {
+        let grayThickness = 0.015 + buildingFloors.building.height*0.3
+        let grayFloor = FloorEntity(width: buildingFloors.building.width/cityWidth, thickness: grayThickness, height: 0, color: FloorColor.gray)
+        buildingFloors.addChild(grayFloor)
+        buildingFloors.floors.append(grayFloor)
+        buildingFloors.thickness = grayThickness
+
+    } else {
+        buildingFloors.addFloors(refactorings: buildingFloors.building.refactorings, cityWidth: cityWidth)
+    }
+    
+    buildingFloors.generateCollisionShapes(recursive: true)
+    
+    buildingFloors.components.set(InputTargetComponent())
 }
 
 func getBuildingFloorsEntityFromEntity(entity: Entity) -> BuildingFloorsEntity {
