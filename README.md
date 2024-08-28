@@ -22,7 +22,7 @@ To install SpatialLiveRef on your Apple Vision Pro headset, perform the followin
 2. Enable Developer mode on the headset and trust development team/user.
 3. On your macOS device, open a terminal on the spatial-liveref/SpatialLiveRef directory.
 4. Setup a Cloud Firestore application.
-5. Run "" to open Xcode enabling Firebase for visionOS.
+5. Run "open --env FIREBASE_SOURCE_FIRESTORE /path/to/project.xcodeproj" to open Xcode enabling Firebase for visionOS.
 6. On Xcode, select building device as Apple Vision Pro and run to install the app.
 
-Note: you may have to close and reopen Xcode multiple times to remove fake errors before building successfully.
+Note: you may have to close and reopen Xcode multiple times to remove errors before building successfully.
